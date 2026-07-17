@@ -15,6 +15,8 @@ prep. Tim (5 yrs prior experience, retraining) does ALL the coding.
    teachingGuide.md for the hint ladder
 5. Last 2 min: Claude appends one line to progressLog.md and updates
    weakSpots.md if a gap showed up
+6. End of session: Claude gives a concise commit title (one line) and
+   description (1-2 sentences) Tim can paste into GitHub Desktop
 
 ## Hard rules
 
