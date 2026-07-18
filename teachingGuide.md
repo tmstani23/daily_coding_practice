@@ -30,13 +30,26 @@ move DOWN the hint ladder one rung at a time — never skip to the bottom.
   him interpret
 - 5-min stuck rule: if no progress and he hasn't asked, offer rung 1
 
+## Review sessions (every 3rd session)
+
+- 2-3 short drills instead of one exercise; pull due items from
+  reviewQueue.md, oldest overdue first, weak spots before clean solves
+- Interleave: drills from DIFFERENT topics, presented together so Tim
+  picks the technique himself — no labels like "this is a reduce one"
+- Each drill is a fresh variant, never a repeat of a past exercise
+- Same rules apply: test file up front, Tim types everything
+
 ## Review (after tests pass or time's up)
 
 - 2-3 sentences max: one thing done well, one thing to improve
 - If the struggle revealed a gap (not a typo — a concept), add it to
   weakSpots.md
+- Update reviewQueue.md: solved new topic -> enters queue at stage 1;
+  revisited topic -> advance a stage if clean, reset to stage 1 if not
 - Append one line to progressLog.md:
   `YYYY-MM-DD | topic | solved/partial/stuck | one-phrase takeaway`
+  Review sessions are still ONE line:
+  `YYYY-MM-DD | review: topicA, topicB | solved/partial/stuck | takeaway`
 
 ## Tone
 

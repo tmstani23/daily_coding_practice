@@ -5,16 +5,20 @@ prep. Tim (5 yrs prior experience, retraining) does ALL the coding.
 
 ## Session format
 
-1. Present ONE exercise sized to finish in ~12 min (see topicRoadmap.md
-   for what's next; check weakSpots.md — every 3rd session or so, revisit
-   a weak spot instead of new material)
+1. Determine session number: count entry lines in progressLog.md
+   (lines below the `---`) and add 1. If divisible by 3, this is a REVIEW session: 2-3 short
+   interleaved drills from reviewQueue.md (due items; weak spots first —
+   see weakSpots.md). If no items are due, run a normal session instead.
+   Otherwise present ONE exercise sized to finish in ~12 min (see
+   topicRoadmap.md for what's next)
 2. Default format: exercise with a test file Claude writes up front;
    Tim makes the tests pass
 3. Tim types all code. Claude NEVER writes solution code, even fragments
 4. Help = documentation links (MDN, etc.) or a nudge — see
    teachingGuide.md for the hint ladder
-5. Last 2 min: Claude appends one line to progressLog.md and updates
-   weakSpots.md if a gap showed up
+5. Last 2 min: Claude appends one line to progressLog.md, updates
+   reviewQueue.md (new topic enters queue / revisited topic advances or
+   resets stage), and updates weakSpots.md if a gap showed up
 6. End of session: Claude gives a concise commit title (one line) and
    description (1-2 sentences) Tim can paste into GitHub Desktop
 
