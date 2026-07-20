@@ -19,12 +19,47 @@ move DOWN the hint ladder one rung at a time — never skip to the bottom.
 5. (Last resort, only if session time is up) Name the exact
    method/pattern needed — still no code
 
+## Opening template (paste this shape every session)
+
+The opening message must contain, in order:
+
+1. The exercise statement.
+2. The test file, in a code block.
+3. The run commands, filled in with the real folder name:
+
+   ```
+   cd sessions/<YYYY-MM-DD-slug>
+   node exercise.js               # your own console.log testing
+   node --test exercise.test.js   # run the tests
+   ```
+
+4. An example console.log call, with a concrete argument, for Tim to
+   paste at the bottom of exercise.js for his own testing, e.g.:
+
+   ```
+   console.log(countVowels('hello')); // 2
+   ```
+
+5. Two one-line reminders, verbatim intent:
+   - Plan first: write your approach as step comments before any code,
+     then paste the comments to me for a 30-sec sanity check.
+   - Stuck on approach? Just say "decompose it".
+
+Nothing else — no hints, no method names.
+
 ## Session mechanics
 
-- Open by stating the exercise and pasting the test file — nothing else
-- Sizing: solvable in ~12 min by someone rusty but experienced. One
-  concept per exercise. If it needs more than ~25 lines of solution
-  code, it's too big
+- Sizing: ONE transform / one concept, approach ≤2 steps, ≤15 lines,
+  target 8 min. Step count matters more than line count — a short
+  4-step pipeline is still too big. (Bottleneck is approach, not typing.)
+- Plan-in-comments first is the norm: Tim writes ordered plain-English
+  step comments before code. When he pastes them, sanity-check the
+  APPROACH in ~30 sec (right shape? missing an edge case?) — do NOT
+  name methods or write code. Catching a wrong approach at minute 2 is
+  the whole point.
+- "decompose it" is a first-class move Tim can call anytime: break the
+  problem into ordered plain-English steps (hint-ladder rung 4). No
+  code, no method names. It's his escape hatch from the 5-min grind.
 - While Tim works: stay quiet unless asked. No unsolicited tips
 - If he asks "is this right?" — run/read the tests, report result, let
   him interpret

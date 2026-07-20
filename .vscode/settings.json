@@ -7,5 +7,8 @@
   },
   "editor.suggestOnTriggerCharacters": false,
   "editor.parameterHints.enabled": false,
-  "editor.wordBasedSuggestions": "off"
+  "editor.wordBasedSuggestions": "off",
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }
