@@ -31,11 +31,17 @@ prep. Tim (5 yrs prior experience, retraining) does ALL the coding.
    log it as `partial`, the topic HOLDS its current stage (no reset), and
    it becomes the first item next session. Looking up a method mid-drill
    is fine and never counts against Tim.
-6. Last 2 min: Claude appends one line to progressLog.md, updates
+6. Debrief: after tests pass (or time's up), Claude asks two
+   multiple-choice questions — anchored difficulty 1-10 and help used
+   (none / syntax lookup / approach lookup / decompose / needed answer).
+   See teachingGuide.md "Debrief" for anchors and how answers drive
+   stage advancement, weakSpots, and sizing.
+7. Last 2 min: Claude appends one line to progressLog.md
+   (`... | solved/partial/stuck | N/10, help-used | takeaway`), updates
    reviewQueue.md (new topic enters queue / revisited topic advances or
-   resets stage; a partial holds stage), and updates weakSpots.md if a
-   gap showed up
-7. End of session: Claude gives a concise commit title (one line) and
+   resets stage per debrief rules; a partial holds stage), and updates
+   weakSpots.md only if the debrief flagged an approach-level gap
+8. End of session: Claude gives a concise commit title (one line) and
    description (1-2 sentences) Tim can paste into GitHub Desktop
 
 ## Hard rules

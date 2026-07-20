@@ -74,17 +74,45 @@ Nothing else — no hints, no method names.
 - Each drill is a fresh variant, never a repeat of a past exercise
 - Same rules apply: test file up front, Tim types everything
 
-## Review (after tests pass or time's up)
+## Debrief (after tests pass or time's up — two quick questions)
+
+Ask BOTH, as multiple-choice (taps, not typing). Use the
+AskUserQuestion tool if available.
+
+1. Difficulty 1-10, anchored (state the anchors so ratings stay
+   comparable across months). Rate it WITH whatever help was used —
+   the help answer carries the gap signal separately:
+   - 1-2 trivial (instant)
+   - 3-4 easy (some thought)
+   - 5-6 about right (worked for it, finished on time)
+   - 7-8 hard but finished
+   - 9-10 needed the answer / far over time
+   (Completion is NOT part of the score — solved/partial owns that.)
+2. Help used (multi-select): none / syntax lookup / approach or method
+   lookup / asked to decompose / needed the answer
+
+How the answers land:
+- weakSpots.md: ONLY on approach/method lookup or "needed the answer".
+  A hard-but-unaided solve (7-8, no help) is the productive zone, not a
+  gap — do not log it as a weak spot.
+- reviewQueue.md: revisited topic advances a stage only if help was
+  none or syntax-only; approach/method lookup or "needed the answer"
+  -> hold stage (reset only on outright struggle). Partial holds stage
+  as before.
+- Sizing: judgment call informed by the numbers, not a formula. Rough
+  guide: two sessions rated <=3 -> bump difficulty; 7+ -> keep sizing
+  small. Scores don't compare across topics.
+
+## Review (after the debrief)
 
 - 2-3 sentences max: one thing done well, one thing to improve
 - If the struggle revealed a gap (not a typo — a concept), add it to
   weakSpots.md
-- Update reviewQueue.md: solved new topic -> enters queue at stage 1;
-  revisited topic -> advance a stage if clean, reset to stage 1 if not
 - Append one line to progressLog.md:
-  `YYYY-MM-DD | topic | solved/partial/stuck | one-phrase takeaway`
+  `YYYY-MM-DD | topic | solved/partial/stuck | N/10, help-used | one-phrase takeaway`
+  e.g. `2026-07-21 | countVowels | solved | 6/10, syntax lookup | ...`
   Review sessions are still ONE line:
-  `YYYY-MM-DD | review: topicA, topicB | solved/partial/stuck | takeaway`
+  `YYYY-MM-DD | review: topicA, topicB | solved/partial/stuck | N/10, help-used | takeaway`
 
 ## Tone
 
