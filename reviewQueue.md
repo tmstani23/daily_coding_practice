@@ -19,3 +19,4 @@ Format: `- topic | last: YYYY-MM-DD | due: YYYY-MM-DD | stage N`
 ---
 - array methods (filter/map/reduce) | last: 2026-07-20 | due: 2026-07-30 | stage 2
 - string manipulation (titleCase) | last: 2026-07-18 | due: 2026-07-21 | stage 1
+- object destructuring/spread (updateFirstName) | last: 2026-07-21 | due: 2026-07-24 | stage 1
