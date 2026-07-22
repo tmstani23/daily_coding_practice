@@ -11,3 +11,4 @@ On the second spaced clean solve, delete the line.
 
 ---
 - [ ] string methods recall (split/charAt/slice) — had to look up rather than recall cold on titleCase exercise (2026-07-18)
+- [ ] accumulate into object by dynamic key — countByStatus needed the answer; building an object whose keys come from the data (create-if-absent then increment) is not yet a known move (2026-07-22)

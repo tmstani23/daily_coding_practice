@@ -16,7 +16,16 @@ due date <= today. If nothing is due, run a normal roadmap session.
 Format: `- topic | last: YYYY-MM-DD | due: YYYY-MM-DD | stage N`
 (due = last-seen date + 3/10/30 days for stage 1/2/3)
 
+Stepping-stone ladder items are the exception: they're ORDER-gated, not
+date-gated. Their due field reads `after stone N` (or `after stone N` /
+`after stepping-stones` for the parked hard version). They're not pulled
+by the date-based review logic; each runs as the next normal exercise
+once the prior stone in its ladder is cleared, then converts to a normal
+date-based queue entry (stage 1, due = solved-date + 3) on a clean solve.
+
 ---
 - array methods (filter/map/reduce) | last: 2026-07-20 | due: 2026-07-30 | stage 2
 - string manipulation (titleCase) | last: 2026-07-18 | due: 2026-07-21 | stage 1
 - object destructuring/spread (updateFirstName) | last: 2026-07-21 | due: 2026-07-24 | stage 1
+- grouping/counting stone 2 (increment key that may be absent — `|| 0` idiom) | last: — | due: after stone 1 | stage 1
+- grouping/counting (countByStatus — HARD, revisit after stepping-stones) | last: 2026-07-22 | due: after stone 2 | stage 1

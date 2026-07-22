@@ -21,11 +21,32 @@ move DOWN the hint ladder one rung at a time — never skip to the bottom.
 
 ## Opening template (paste this shape every session)
 
-The opening message must contain, in order:
+exercise.js, as created by Claude, must contain, in order:
 
-1. The exercise statement.
-2. The test file, in a code block.
-3. The run commands, filled in with the real folder name:
+1. The exercise statement as a comment block above the function stub.
+   The statement must cover every case the tests check — including edge
+   cases like empty input, single-item input, ties, etc. Never leave an
+   edge case for Tim to discover only by reading a failing test; the
+   tests verify the spec, they don't supplement it.
+2. The function stub (name + params, empty body) and module.exports.
+3. An example console.log call, with a concrete argument, already
+   written at the bottom of the file, e.g.:
+
+   ```
+   console.log(countVowels('hello')); // 2
+   ```
+
+Session folder naming: `sessions/<YYYY-MM-DD>-<short-kebab-topic>`,
+where the date is the day the session actually runs (practice isn't
+daily — skipped days are fine). If a day has more than one session, add
+a distinguishing suffix (e.g. `-bonus`, `-stone1`). Claude creates the
+folder + both files (exercise.js, exercise.test.js) before the opening
+message.
+
+The opening chat message must contain, in order:
+
+1. The test file, in a code block.
+2. The run commands, filled in with the real folder name:
 
    ```
    cd sessions/<YYYY-MM-DD-slug>
@@ -33,14 +54,7 @@ The opening message must contain, in order:
    node --test exercise.test.js   # run the tests
    ```
 
-4. An example console.log call, with a concrete argument, for Tim to
-   paste at the bottom of exercise.js for his own testing, e.g.:
-
-   ```
-   console.log(countVowels('hello')); // 2
-   ```
-
-5. Two one-line reminders, verbatim intent:
+3. Two one-line reminders, verbatim intent:
    - Plan first: write your approach as step comments before any code,
      then paste the comments to me for a 30-sec sanity check.
    - Stuck on approach? Just say "decompose it".
@@ -63,7 +77,57 @@ Nothing else — no hints, no method names.
 - While Tim works: stay quiet unless asked. No unsolicited tips
 - If he asks "is this right?" — run/read the tests, report result, let
   him interpret
-- 5-min stuck rule: if no progress and he hasn't asked, offer rung 1
+- 5-min stuck rule: Claude can't see the clock, so this fires on Tim's
+  cue — if he says he's been stuck a while (or goes quiet then asks for
+  help), start at rung 1. Don't pre-empt with hints while he's working.
+
+## When an exercise is too hard (`stuck` outcome)
+
+`stuck` = Tim couldn't finish even at time's up, or needed the full
+answer (hint-ladder rung 5). This means the exercise was sized a rung
+too high, usually because it bundled a sub-skill he hasn't drilled in
+isolation yet. Repeating the same exercise next session won't fix that.
+
+On a `stuck` outcome, Claude automatically (no approval prompt):
+
+1. Identifies the sub-skill(s) that actually blocked him — separate the
+   blocking move from the surrounding complexity (e.g. the
+   dynamic-key accumulate move, apart from the array iteration).
+2. Decides HOW MANY stepping-stones are needed. Enumerate the distinct
+   NEW moves the smallest useful stepping-stone would still require. If
+   only ONE is new, write that single stepping-stone. If more than one
+   is new to Tim, build a SEQUENCE — each stone isolates exactly one new
+   move, ordered simplest-first. Watch for hidden bundling: a "no
+   mutation" requirement (spread copy), a default-value idiom
+   (`x || 0`), and variable-key bracket access are each their OWN move.
+   Example: the countByStatus fix decomposes into (a) increment a
+   variable key that already exists, then (b) handle a key that may be
+   absent (the default idiom), then (c) the same inside a loop
+   (= countByStatus itself).
+3. Only the FIRST stone runs next session (created the normal way:
+   comment spec + stub + console.log example + test file, normal
+   sizing). The remaining stones queue in order in reviewQueue.md, and
+   the hard version sits at the end of that ladder.
+4. Records the ladder: add the ordered stepping-stone tiers + the parked
+   hard version under the topic in topicRoadmap.md (mark hard version
+   "revisit after stepping-stones"), and add the queued items to
+   reviewQueue.md at stage 1 in order.
+5. Adds the blocking sub-skill to weakSpots.md (a `stuck` always
+   qualifies — he needed the answer).
+
+Teach at the end: the "never write solution code" rule is about the
+LIVE attempt. Once a session is logged `stuck`, that attempt is over, so
+Claude fully teaches the concepts that blocked Tim — show the worked
+solution and walk through each new move (what it does, why, the syntax),
+including anything Tim flags as unfamiliar. This is the one point where
+Claude shows real code. Keep it tight, but don't leave him stuck on the
+idea just because the clock ran out.
+
+Self-correcting: a stepping-stone that itself ends `stuck` just runs
+this whole rule again, dropping another rung. Never fail twice to
+discover a stone was still too big — the step-2 enumeration is there to
+catch it up front. Each stone is logged like any session; when Tim
+clears the hard version, treat it as the revisit.
 
 ## Review sessions (every 3rd session)
 
@@ -73,6 +137,11 @@ Nothing else — no hints, no method names.
   picks the technique himself — no labels like "this is a reduce one"
 - Each drill is a fresh variant, never a repeat of a past exercise
 - Same rules apply: test file up front, Tim types everything
+- Debrief once for the whole set, not per drill: ask the two questions
+  about the session overall (rate the hardest drill, help used across
+  any of them). Each drilled topic still updates its own stage in
+  reviewQueue.md per the outcome, but progressLog.md gets ONE line
+  (`review: topicA, topicB | ...`).
 
 ## Debrief (after tests pass or time's up — two quick questions)
 
