@@ -10,39 +10,37 @@ session count + history), reviewQueue.md (what's due), weakSpots.md
 (priorities), topicRoadmap.md (what's next), teachingGuide.md (how to run
 it). Then follow the numbered format below.
 
-Timing is Tim-driven: Claude does NOT track wall-clock time during the
-session. The minute figures (8-min target, 12-min window, 5-min stuck
-rule) are guides for Tim, who watches his own clock and signals "time's
-up" or "I'm stuck". Claude acts on those signals, not an internal timer.
+Timing is Tim-driven. Claude never tracks wall-clock time; the minute
+figures are guides for Tim, who signals "time's up" or "I'm stuck".
 
 ## Session format
 
-1. Determine session number: count entry lines in progressLog.md
-   (lines below the `---`) and add 1. If divisible by 3, this is a REVIEW session: 2-3 short
+1. Determine session number: take the `#N` on the newest progressLog.md
+   entry and add 1. (Entries are numbered; if the newest line somehow
+   lacks a number, count entry lines below the `---` instead and
+   renumber.)
+
+   MANDATORY PRE-FLIGHT — before creating ANY files or writing the
+   opening message, state in chat, in one line: the session number, the
+   result of `N %% 3 == 0`, and the session type it implies. No files
+   until that line is written. This is the check that catches a review
+   session being missed.
+
+   If divisible by 3, this is a REVIEW session: 2-3 short
    interleaved drills from reviewQueue.md (due items; weak spots first —
    see weakSpots.md). If no items are due, run a normal session instead.
    Precedence: if a stepping-stone is pending (from a prior `stuck`) and
    this is a review session, the review WINS — it runs as scheduled and
-   the stepping-stone runs the next non-review session. (Reviews fire
-   only on multiples of 3, so preempting one would delay spaced
-   repetition by 3 sessions; a bumped stepping-stone only ever waits
-   one. If a stuck-heavy stretch ever floods the due queue faster than
-   reviews drain it, the lever is review throughput — an extra drill or
-   a more frequent review — not this tie-break.)
+   the stepping-stone runs the next non-review session.
    Otherwise present ONE exercise (see topicRoadmap.md for what's next).
    Sizing: ONE transform / one concept, approach ≤2 steps, ≤15 lines of
    solution, target 8 min. Step count matters more than line count — a
    4-step pipeline is too big even if it's short.
 2. Default format: exercise with a test file Claude writes up front;
-   Tim makes the tests pass. The opening message MUST include, every
-   session (see teachingGuide.md "Opening template"):
-   - the exercise statement + the test file
-   - the run commands (cd into the folder; run the file for his own
-     console.log testing; run the tests)
-   - an example console.log call with a concrete argument, to paste at
-     the bottom of exercise.js for his own testing
-   - the two reminders: (a) plan-in-comments first, (b) say "decompose
-     it" if stuck on approach
+   Tim makes the tests pass. Build the files and the opening message
+   from teachingGuide.md "Opening template" — every item there is
+   mandatory, every session. That template is the single source of
+   truth; do not restate it here.
 3. Tim types all code. Claude NEVER writes solution code, even fragments
 4. Help = documentation links (MDN, etc.) or a nudge — see
    teachingGuide.md for the hint ladder
@@ -60,12 +58,11 @@ up" or "I'm stuck". Claude acts on those signals, not an internal timer.
      hard") that isolates the one sub-skill that tripped Tim; that runs
      the next NON-review session (reviews take priority — see rule 1),
      and the hard version is parked to resurface later.
-   Looking up a method mid-drill is fine and never counts against Tim.
-6. Debrief: after tests pass (or time's up), Claude asks two
-   multiple-choice questions — anchored difficulty 1-10 and help used
-   (none / syntax lookup / approach lookup / decompose / needed answer).
-   See teachingGuide.md "Debrief" for anchors and how answers drive
-   stage advancement, weakSpots, and sizing.
+   Which one it was: see teachingGuide.md "Facts vs. the shape".
+6. Debrief: after tests pass (or time's up), Claude asks the two
+   multiple-choice questions from teachingGuide.md "Debrief" — that
+   section owns the options, the anchors, and how answers drive stage
+   advancement, weakSpots, and sizing.
 7. Last 2 min: Claude appends one line to progressLog.md
    (`... | solved/partial/stuck | N/10, help-used | takeaway`), updates
    reviewQueue.md (new topic enters queue / revisited topic advances or
@@ -87,8 +84,7 @@ up" or "I'm stuck". Claude acts on those signals, not an internal timer.
 
 ## Git: READ-ONLY for Claude. Never run git write operations.
 
-Claude's sandbox can create files but not delete them — git writes
-(add/commit/etc.) leave orphaned .git lock files Tim must remove by
-hand. Tim commits via GitHub Desktop after each session (doubles as
-streak tracking). Read-only git is fine but always use
+Git writes from Claude's sandbox leave orphaned .git lock files Tim has
+to clear by hand. Tim commits via GitHub Desktop after each session
+(doubles as streak tracking). Reads are fine — always use
 `git --no-optional-locks <cmd>`.

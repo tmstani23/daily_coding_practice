@@ -10,5 +10,6 @@ After first clean solve, append ` | clean 1/2 (YYYY-MM-DD)` to the line.
 On the second spaced clean solve, delete the line.
 
 ---
-- [ ] string methods recall (split/charAt/slice) — had to look up rather than recall cold on titleCase exercise (2026-07-18)
+- [ ] string methods recall (split/charAt/slice) — had to look up rather than recall cold on titleCase exercise (2026-07-18) | clean 1/2 (2026-07-24)
 - [ ] accumulate into object by dynamic key — countByStatus needed the answer; building an object whose keys come from the data (create-if-absent then increment) is not yet a known move (2026-07-22)
+- [ ] array method RETURN VALUES — reached for forEach when a returned array was needed (forEach returns undefined, map returns the array); also passed the wrong separator to join. Picking the method by what it RETURNS, not just what it iterates (2026-07-24)

@@ -46,7 +46,7 @@ Dates in parens are the session that covered it.
 ## 2. Data shaping (the daily-job skill)  ▶ YOU ARE HERE
 
 ### 2a. Building objects from data (current frontier)
-- increment a known key — read-modify-write ← stone 1 (next non-review session)
+- increment a known key — read-modify-write ← stone 1
 - increment a maybe-absent key — the `x || 0` default idiom ← stone 2
 - count items with a loop (countByStatus) ← revisit (parked, stuck 07-22)
 - group items into arrays by a key — bucketing

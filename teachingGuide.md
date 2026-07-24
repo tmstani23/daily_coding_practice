@@ -41,7 +41,9 @@ where the date is the day the session actually runs (practice isn't
 daily — skipped days are fine). If a day has more than one session, add
 a distinguishing suffix (e.g. `-bonus`, `-stone1`). Claude creates the
 folder + both files (exercise.js, exercise.test.js) before the opening
-message.
+message. First, ALWAYS list `sessions/` — if the exercise for this item
+already exists (written for a missed day, or a partial/unreached drill),
+reuse that folder as-is; never create a duplicate or rewrite it.
 
 The opening chat message must contain, in order:
 
@@ -88,6 +90,32 @@ answer (hint-ladder rung 5). This means the exercise was sized a rung
 too high, usually because it bundled a sub-skill he hasn't drilled in
 isolation yet. Repeating the same exercise next session won't fix that.
 
+### Facts vs. the shape (what counts as "needed the answer")
+
+The test is NOT "did Tim look something up." It's whether he obtained a
+FACT about a tool or the SHAPE of the solution.
+
+- FACT — what `forEach` returns, what argument `join` takes, the
+  signature of `Object.entries`. Looking these up (MDN, docs, or asking
+  Claude) is normal engineering and NEVER counts against him. Log it as
+  syntax or approach lookup in the debrief; outcome stays
+  solved/partial.
+- SHAPE — a worked solution to the exercise in front of him, or a
+  step-by-step recipe that maps 1:1 onto it. This is `stuck`.
+
+The SOURCE is irrelevant. Googling the problem statement and copying the
+top Stack Overflow answer is identical to Claude handing over the code —
+both are rung 5, both are `stuck`. Same for an LLM outside this session,
+or an editor autocomplete that writes the line for him.
+
+This is a sizing signal, not a judgement — `stuck` fires the
+stepping-stone ladder, so misclassifying either way corrupts sizing. Ask
+if it's ambiguous rather than guessing.
+
+Gray zone: if he searches a half-remembered method name and the results
+happen to include a full solution he didn't seek, that's a fact lookup —
+but the topic holds its stage rather than advancing.
+
 On a `stuck` outcome, Claude automatically (no approval prompt):
 
 1. Identifies the sub-skill(s) that actually blocked him — separate the
@@ -123,11 +151,10 @@ including anything Tim flags as unfamiliar. This is the one point where
 Claude shows real code. Keep it tight, but don't leave him stuck on the
 idea just because the clock ran out.
 
-Self-correcting: a stepping-stone that itself ends `stuck` just runs
-this whole rule again, dropping another rung. Never fail twice to
-discover a stone was still too big — the step-2 enumeration is there to
-catch it up front. Each stone is logged like any session; when Tim
-clears the hard version, treat it as the revisit.
+Self-correcting: a stone that itself ends `stuck` runs this rule again,
+dropping another rung — but step 2 exists so that rarely happens. Each
+stone is logged like any session; clearing the hard version counts as
+the revisit.
 
 ## Review sessions (every 3rd session)
 
@@ -159,6 +186,10 @@ AskUserQuestion tool if available.
    (Completion is NOT part of the score — solved/partial owns that.)
 2. Help used (multi-select): none / syntax lookup / approach or method
    lookup / asked to decompose / needed the answer
+   ("needed the answer" = he got the SHAPE of the solution, from any
+   source including his own searching — see "Facts vs. the shape" above.
+   That answer implies a `stuck` outcome; if it's selected on an
+   otherwise-finished exercise, confirm which it was before logging.)
 
 How the answers land:
 - weakSpots.md: ONLY on approach/method lookup or "needed the answer".
@@ -177,11 +208,11 @@ How the answers land:
 - 2-3 sentences max: one thing done well, one thing to improve
 - If the struggle revealed a gap (not a typo — a concept), add it to
   weakSpots.md
-- Append one line to progressLog.md:
-  `YYYY-MM-DD | topic | solved/partial/stuck | N/10, help-used | one-phrase takeaway`
-  e.g. `2026-07-21 | countVowels | solved | 6/10, syntax lookup | ...`
+- Append one line to progressLog.md, NUMBERED, at the bottom:
+  `#N | YYYY-MM-DD | topic | solved/partial/stuck | N/10, help-used | one-phrase takeaway`
+  e.g. `#4 | 2026-07-21 | countVowels | solved | 6/10, syntax lookup | ...`
   Review sessions are still ONE line:
-  `YYYY-MM-DD | review: topicA, topicB | solved/partial/stuck | N/10, help-used | takeaway`
+  `#N | YYYY-MM-DD | review: topicA, topicB | solved/partial/stuck | N/10, help-used | takeaway`
 
 ## Tone
 

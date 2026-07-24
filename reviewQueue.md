@@ -25,7 +25,8 @@ date-based queue entry (stage 1, due = solved-date + 3) on a clean solve.
 
 ---
 - array methods (filter/map/reduce) | last: 2026-07-20 | due: 2026-07-30 | stage 2
-- string manipulation (titleCase) | last: 2026-07-18 | due: 2026-07-21 | stage 1
-- object destructuring/spread (updateFirstName) | last: 2026-07-21 | due: 2026-07-24 | stage 1
+- string manipulation (getInitials) | last: 2026-07-24 | due: 2026-07-27 | stage 1
+- object destructuring/spread (updateFirstName) | last: 2026-07-21 | due: 2026-07-24 | stage 1 — reuse sessions/2026-07-24-review/exercise2.js (written, not reached)
+- grouping/counting stone 1 (increment a key that already exists) | last: — | due: next non-review session | stage 1 — reuse sessions/2026-07-23-add-count (written, not run)
 - grouping/counting stone 2 (increment key that may be absent — `|| 0` idiom) | last: — | due: after stone 1 | stage 1
 - grouping/counting (countByStatus — HARD, revisit after stepping-stones) | last: 2026-07-22 | due: after stone 2 | stage 1
