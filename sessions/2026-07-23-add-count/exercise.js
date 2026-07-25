@@ -3,6 +3,10 @@
 // present — you don't need to handle a missing key here.
 function addCount(counts, key) {
   // your code here
+ const updatedKeyObj = {...counts, [key] : counts[key] + 1}
+
+ return updatedKeyObj;
+  
 }
 
 module.exports = { addCount };

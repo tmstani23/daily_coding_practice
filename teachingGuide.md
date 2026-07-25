@@ -36,14 +36,25 @@ exercise.js, as created by Claude, must contain, in order:
    console.log(countVowels('hello')); // 2
    ```
 
-Session folder naming: `sessions/<YYYY-MM-DD>-<short-kebab-topic>`,
-where the date is the day the session actually runs (practice isn't
-daily — skipped days are fine). If a day has more than one session, add
-a distinguishing suffix (e.g. `-bonus`, `-stone1`). Claude creates the
-folder + both files (exercise.js, exercise.test.js) before the opening
-message. First, ALWAYS list `sessions/` — if the exercise for this item
-already exists (written for a missed day, or a partial/unreached drill),
-reuse that folder as-is; never create a duplicate or rewrite it.
+Session folder naming: `sessions/<short-kebab-topic>` — an ID, NOT a
+date. Exercises are often written ahead (a stepping-stone is created the
+session before it runs) and practice isn't daily, so any date in the
+name is a guess that goes stale the moment a day is skipped. The date
+belongs in the progressLog line, written when the session actually
+happens. Folders created before 2026-07-25 keep their old dated names;
+don't rename them.
+
+Name it after the move being drilled (`sort-by-field`), not the function
+name. Reviews: `review-<topics>`. Stepping-stones (written after a
+`stuck`) must carry `stone` in the ID — `stone-<move>`, e.g.
+`stone-computed-key-write` — so a pre-written stone is never mistaken
+for a normal roadmap exercise. If
+the ID would collide with an existing folder, add a distinguishing
+suffix (`-2`, `-bonus`). Claude creates the folder + both files
+(exercise.js, exercise.test.js) before the opening message. First,
+ALWAYS list `sessions/` — if the exercise for this item already exists
+(written ahead, or a partial/unreached drill), reuse that folder as-is;
+never create a duplicate or rewrite it.
 
 The opening chat message must contain, in order:
 
@@ -132,6 +143,28 @@ On a `stuck` outcome, Claude automatically (no approval prompt):
    variable key that already exists, then (b) handle a key that may be
    absent (the default idiom), then (c) the same inside a loop
    (= countByStatus itself).
+
+   Two checks before accepting a decomposition — both were missed on
+   07-22 and cost a whole session (see #7, 07-25):
+
+   - AUDIT WHAT PRIOR SOLVES ACTUALLY PROVED, not what they were
+     labeled. A log line names a topic; it does not certify every
+     variant of it. `updateFirstName` (07-21) was logged "spread +
+     override" and treated as solid, but it used a LITERAL key —
+     nothing in it exercised a key coming from a variable. Before
+     assuming a move is available, name the concrete exercise that
+     demonstrated it and confirm it used the same variant.
+   - SPLIT READ FROM WRITE of the same construct. Reading `obj[key]`
+     and writing `{ [key]: value }` share bracket syntax but are
+     different moves, and fluency in one implies nothing about the
+     other (07-25: the read was cold-solid, the write absent). Same
+     applies to any construct with a get and a set form.
+
+   Also check the TESTS don't accept an easier path than the stone
+   intends: `deepStrictEqual` on a returned object passes for a mutated
+   input, so a stone meant to drill immutable copy can be satisfied by
+   mutation. Either test for it or drop the requirement from the spec —
+   don't leave which-path-is-wanted ambiguous.
 3. Only the FIRST stone runs next session (created the normal way:
    comment spec + stub + console.log example + test file, normal
    sizing). The remaining stones queue in order in reviewQueue.md, and
