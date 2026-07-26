@@ -3,7 +3,12 @@
 // be any string — not one you type by hand into the object — and the
 // value can be anything, including falsy values like 0, '', or false.
 function makeEntry(key, value) {
-  // your code here
+  //create new obj:
+  const finalObj = {};
+    //set property as key and new key prop as value in new object
+    finalObj[key] = value
+  //return final obj
+  return finalObj;
 }
 
 module.exports = { makeEntry };

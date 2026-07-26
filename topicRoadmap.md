@@ -46,8 +46,8 @@ Dates in parens are the session that covered it.
 ## 2. Data shaping (the daily-job skill)  ▶ YOU ARE HERE
 
 ### 2a. Building objects from data (current frontier)
-- write a computed-key property in an object literal (`{ [key]: value }`) ← stone 1 (new sub-skill surfaced 07-25)
-- spread + computed-key override — copy an object, replace one key ← stone 2
+- write a computed-key property in an object literal (`{ [key]: value }`) ~ stone 1 (07-26 — solved via `obj[key] = value`, literal form still untouched)
+- spread + computed-key override — copy an object, replace one key ← stone 2, next up
 - increment a known key — read-modify-write ← stone 3 (parked, stuck 07-25 as "add-count")
 - increment a maybe-absent key — the `x || 0` default idiom ← stone 4
 - count items with a loop (countByStatus) ← revisit (parked, stuck 07-22)

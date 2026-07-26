@@ -14,3 +14,4 @@ whose number is divisible by 3 is a review session.
 #5 | 2026-07-22 | grouping/counting (countByStatus) | stuck | 9/10, needed answer | accumulate-into-object-by-dynamic-key not yet a known move; sized too high
 #6 | 2026-07-24 | review: string manipulation (getInitials) [drill 2 destructuring/spread not reached] | partial | 7/10, approach lookup | forEach returns undefined — reached for it where map was needed; join's separator arg also missed
 #7 | 2026-07-25 | grouping/counting stone (increment known key / add-count) | stuck | 9/10, needed the answer | conflated spread with computed-key write; splitting into finer stones
+#8 | 2026-07-26 | stone: computed-key write (makeEntry) | solved | 5/10, none | solved by bracket-assigning onto an empty object — the `{ [key]: value }` literal form the stone targeted is still undrilled; test accepted the easier path
