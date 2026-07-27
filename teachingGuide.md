@@ -197,11 +197,16 @@ the revisit.
   picks the technique himself — no labels like "this is a reduce one"
 - Each drill is a fresh variant, never a repeat of a past exercise
 - Same rules apply: test file up front, Tim types everything
-- Debrief once for the whole set, not per drill: ask the two questions
-  about the session overall (rate the hardest drill, help used across
-  any of them). Each drilled topic still updates its own stage in
-  reviewQueue.md per the outcome, but progressLog.md gets ONE line
-  (`review: topicA, topicB | ...`).
+- Debrief for a review set: ONE difficulty rating (for the hardest
+  drill — say which one that was, don't make Tim guess), but ask help
+  used SEPARATELY FOR EACH DRILL. Help is what moves stages, and stages
+  are per topic, so a single blended help answer would push both topics
+  the same way and corrupt the queue. Claude may pre-fill a drill's help
+  answer from what it observed during the session (e.g. "syntax lookup —
+  the `:` vs `=` slip") as the first option, but Tim still confirms.
+  progressLog.md still gets ONE line (`review: topicA, topicB | ...`);
+  put each drill's help in that line, tagged (`syntax lookup (A) +
+  approach lookup (B)`).
 
 ## Debrief (after tests pass or time's up — two quick questions)
 

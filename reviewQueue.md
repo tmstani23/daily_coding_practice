@@ -25,8 +25,8 @@ date-based queue entry (stage 1, due = solved-date + 3) on a clean solve.
 
 ---
 - array methods (filter/map/reduce) | last: 2026-07-20 | due: 2026-07-30 | stage 2
-- string manipulation (getInitials) | last: 2026-07-24 | due: 2026-07-27 | stage 1
-- object destructuring/spread (updateFirstName) | last: 2026-07-21 | due: 2026-07-24 | stage 1 — reuse sessions/2026-07-24-review/exercise2.js (written, not reached)
+- string manipulation (truncate) | last: 2026-07-27 | due: 2026-07-30 | stage 1 — held stage 07-27 (approach lookup: reached for an array method to join two strings)
+- object destructuring/spread (updateEmail) | last: 2026-07-27 | due: 2026-08-06 | stage 2 — advanced 07-27 (syntax-only slip: `=` for `:` inside the literal)
 - computed-key write in an object literal (`{ [key]: value }`) | last: 2026-07-26 | due: after spread+override stone | stage 1 — solved 07-26 via `obj[key] = value` on an empty object, NOT the literal form; stone 2 forces the literal, so this clears there
 - spread + computed-key override (copy object, replace one key) | last: — | due: next non-review session | stage 1 — must be written so bracket-assign-after-copy is not an easy out; the point is the key inside the literal
 - grouping/counting: increment a known key (read-modify-write, was "add-count") | last: 2026-07-25 | due: after spread+override stone | stage 1 — stuck 07-25 (needed the answer); resurface with a NEW variant, not sessions/2026-07-23-add-count

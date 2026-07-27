@@ -10,7 +10,9 @@
  *  - original object is unchanged after the call
  */
 function updateEmail(user, newEmail) {
-
+    //create new obj, copy the input obj with spread, update the email property with newEmail input param
+    const finalObj = {...user, email: newEmail}
+    return finalObj;
 }
 
 module.exports = updateEmail;

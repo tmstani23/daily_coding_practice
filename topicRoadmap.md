@@ -23,7 +23,7 @@ Dates in parens are the session that covered it.
 
 ### 1b. String manipulation
 - split / join — string ↔ array ~ (07-18, looked up)
-- charAt / at / slice — index & substring ~ (07-18, looked up)
+- charAt / at / slice — index & substring ~ (07-18, 07-27 — slice used correctly, but the MDN string list was needed to get there)
 - toUpperCase / toLowerCase — case
 - template literals — interpolation, multi-line
 - word-level transform (e.g. titleCase) ~ (07-18)
