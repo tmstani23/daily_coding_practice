@@ -73,7 +73,11 @@ figures are guides for Tim, who signals "time's up" or "I'm stuck".
    topicRoadmap.md, and notes the hard version in reviewQueue.md so it
    resurfaces after the stepping-stone lands.
 8. End of session: Claude gives a concise commit title (one line) and
-   description (1-2 sentences) Tim can paste into GitHub Desktop
+   description (1-2 sentences) Tim can paste into GitHub Desktop. Write
+   it as a normal commit message describing the CODE CHANGE — what the
+   exercise implements and which files changed. It is not a session
+   summary: no difficulty rating, no help-used, no outcome, no "next up".
+   That belongs in progressLog.md, not the commit.
 
 ## Hard rules
 

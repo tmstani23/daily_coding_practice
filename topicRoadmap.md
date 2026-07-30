@@ -48,8 +48,8 @@ Dates in parens are the session that covered it.
 ### 2a. Building objects from data (current frontier)
 - write a computed-key property in an object literal (`{ [key]: value }`) ✓ stone 1 (07-26 via `obj[key] = value`; literal form written cold 07-28 in stone 2)
 - spread + computed-key override — copy an object, replace one key ✓ stone 2 (07-28, setField, no help)
-- increment a known key — read-modify-write ← stone 3, next up (parked, stuck 07-25 as "add-count")
-- increment a maybe-absent key — the `x || 0` default idiom ← stone 4
+- increment a known key — read-modify-write ~ stone 3 (07-29, approach lookup — dot/bracket slip on the read)
+- increment a maybe-absent key — the `x || 0` default idiom ← stone 4, next up
 - count items with a loop (countByStatus) ← revisit (parked, stuck 07-22)
 - group items into arrays by a key — bucketing
 - build a lookup / index — id → object
