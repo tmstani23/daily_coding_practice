@@ -229,6 +229,51 @@ AskUserQuestion tool if available.
    That answer implies a `stuck` outcome; if it's selected on an
    otherwise-finished exercise, confirm which it was before logging.)
 
+### Difficulty 7+ -> teach-back primer, then a NEXT-SESSION check
+
+If the difficulty answer is 7 or higher (i.e. above the 5-6 "about
+right" band), the live attempt is over, so Claude teaches — same
+licence as the post-`stuck` teach-at-the-end rule.
+
+SPLIT ACROSS TWO SESSIONS. Both halves at the end of one session is
+too much load, especially on a review session (2 drills + primer +
+quiz was what broke 07-30):
+
+1. THIS session, right after the debrief: the PRIMER. Short — the
+   concept the session actually exercised, the idiomatic
+   implementation, and WHY that one over the alternative Tim reached
+   for. Show real code; the no-solution-code rule covers the live
+   attempt only. Keep it to the move that was hard, not a tour of the
+   topic. Then log and finish as normal.
+2. NEXT session, BEFORE the exercise: the CHECK. 2-3 questions on a
+   FRESH mini-scenario, one at a time, aimed at the DECISION he got
+   wrong ("which method would you reach for, and what does it return?")
+   — never at vocabulary. Note it in the progressLog line of the
+   session that earned it (`primer-check due`) so it isn't lost.
+
+The check is a measurement, not a formality — it is where the
+difference between "understood the explanation" and "can apply it
+cold" shows up, and it feeds the ladder trigger below.
+
+### When the check fails -> spawn a ladder
+
+If Tim can't apply the rule to the fresh scenario — wrong answer,
+hazy answer, or right answer for the wrong reason — that is the same
+signal as a `stuck`, arriving a session late. Run the stepping-stone
+procedure from "When an exercise is too hard": identify the blocking
+sub-skill, decompose into stones simplest-first, first stone runs the
+next non-review session, rest queue order-gated in reviewQueue.md,
+tiers recorded in topicRoadmap.md.
+
+The one difference from a `stuck`-fired ladder: the outcome already
+logged stays as it was (a solve is still a solve — he finished it).
+The ladder addresses the gap the solve concealed.
+
+This does NOT change anything else: weakSpots.md, reviewQueue.md
+stages, and the progressLog line are handled exactly as below,
+regardless of whether the primer ran. The primer is teaching, not a
+substitute for recording the gap.
+
 How the answers land:
 - weakSpots.md: ONLY on approach/method lookup or "needed the answer".
   A hard-but-unaided solve (7-8, no help) is the productive zone, not a
@@ -240,6 +285,45 @@ How the answers land:
 - Sizing: judgment call informed by the numbers, not a formula. Rough
   guide: two sessions rated <=3 -> bump difficulty; 7+ -> keep sizing
   small. Scores don't compare across topics.
+
+## Credit check (before logging any solve)
+
+A solve only counts for the skill the EXERCISE actually required. Before
+writing the progressLog line and advancing a stage, confirm both:
+
+- The spec did not name the method. If the statement says "keep only the
+  even ones, square each, then sum," it has dictated filter/map/reduce —
+  the session tested writing them, not CHOOSING them. Credit the syntax,
+  not the selection.
+- The tests did not accept an easier path than intended (the
+  `deepStrictEqual`-passes-a-mutation trap from the stuck section).
+
+If either fails, still log the solve, but say so in the takeaway and do
+NOT mark the roadmap bullet ✓ for the untested half — add the untested
+variant as its own bullet instead.
+
+Why this exists: array-method SELECTION was credited ✓ on 07-17 (spec
+named all three methods) and again on 07-20 (accumulated into an
+outside variable from inside a `filter`, logged "clean"), so the gap
+went unrecorded for three sessions until 07-30. A log line names a
+topic; it does not certify every variant of it.
+
+## Ladder growth -> re-decompose the roadmap
+
+Ladders may grow as long as needed — there is no deadline, and depth
+beats coverage (confirmed 07-30). Do NOT cap a ladder or skip a
+decomposition to reach later roadmap sections faster.
+
+But a bullet that keeps spawning stones was too coarse to begin with.
+Trigger: on the THIRD stone under one roadmap bullet, stop adding
+stones beside it and re-decompose that section — fold the existing
+stones in as ordered substeps and split what remains into
+one-move-each bullets. The ladder then stops being a side structure
+that jumps the queue; the roadmap just honestly says how many steps
+the topic is.
+
+This changes the roadmap's ACCURACY, not its length. A longer, truer
+roadmap is the correct outcome.
 
 ## Review (after the debrief)
 

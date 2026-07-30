@@ -11,15 +11,40 @@ Markers: `✓` done clean · `~` done but shaky / needed lookups ·
 `←` next up / current frontier · `▶ YOU ARE HERE` section marker.
 Dates in parens are the session that covered it.
 
+Stepping-stones are folded in as substeps under the bullet that spawned
+them, not queued off to the side. On the THIRD stone under one bullet,
+re-decompose that section instead of adding a fourth (teachingGuide
+"Ladder growth"). There is no deadline — a longer, more accurate
+roadmap beats a short one that over-credits.
+
 ## 1. JS core recall (speed, not learning)
 
 ### 1a. Array methods
-- map — transform each element ✓ (07-17, 07-20)
-- filter — keep by predicate ✓ (07-17, 07-20)
-- reduce — fold to a single value ✓ (07-17, 07-20)
+
+WRITING each method is ✓. CHOOSING between them is not — see the
+selection ladder below. The ✓ marks on 07-17/07-20 were over-credited:
+the 07-17 spec named all three methods in order, and 07-20 was solved
+by accumulating into an outside variable from inside a `filter`. Both
+tested syntax, not selection (see teachingGuide "Credit check").
+
+- map — transform each element, returns a NEW ARRAY ✓ syntax (07-17, 07-20)
+- filter — keep by predicate, returns a SHORTER ARRAY ✓ syntax (07-17, 07-20)
+- reduce — fold to ONE value of any type ✓ syntax (07-17, 07-20)
 - find / findIndex — first match
 - some / every — boolean over a collection
-- filter → map → reduce chain ✓ (07-17)
+- filter → map → reduce chain ✓ (07-17, spec-dictated)
+
+#### Selection ladder — pick the method from the GOAL (07-30)
+Specs in this ladder state the goal ONLY and never name a method.
+Runs after the 2a stones below; reviews still interleave every 3rd
+session.
+- sum one field across a filtered list — forces filter + reduce ← stone A
+- build `{pending: 3, shipped: 5}` from a list — reduce whose
+  accumulator is an OBJECT, not a number ← stone B
+- mixed set: 3 tiny specs, name the method and why BEFORE coding
+  ← stone C
+- (weak spot: choosing by "it loops" rather than by what the method
+  returns — used `map` as a forEach twice on 07-30. See weakSpots.md)
 
 ### 1b. String manipulation
 - split / join — string ↔ array ~ (07-18, looked up)
