@@ -30,7 +30,7 @@ date-based queue entry (stage 1, due = solved-date + 3) on a clean solve.
 - computed-key write in an object literal (`{ [key]: value }`) | last: 2026-07-28 | due: 2026-07-31 | stage 1 — cleared via stone 2 (setField), literal form written cold
 - spread + computed-key override (copy object, replace one key) | last: 2026-07-28 | due: 2026-07-31 | stage 1 — solved clean, no help
 - grouping/counting: increment a known key (read-modify-write) | last: 2026-07-29 | due: 2026-08-01 | stage 1 — solved 07-29 with approach-lookup help (dot-vs-bracket slip on the variable-keyed read)
-- grouping/counting: increment key that may be absent (`x || 0` idiom) | last: — | due: after increment-known-key stone | stage 1
+- grouping/counting: increment key that may be absent (`x || 0` idiom) | last: 2026-07-31 | due: 2026-08-03 | stage 1 — solved 07-31 with approach-lookup help (didn't incorporate the current value until prompted; also re-slipped dot-vs-bracket on the read, and confused computed-key syntax with template literals)
 - grouping/counting (countByStatus — HARD, revisit after stepping-stones) | last: 2026-07-22 | due: after default-idiom stone | stage 1
 - array-method SELECTION stone A: sum one field across a filtered list (spec states the goal only, never names a method — forces filter + reduce) | last: — | due: after countByStatus | stage 1
 - array-method SELECTION stone B: build `{pending: 3, shipped: 5}` from a list (reduce with an OBJECT accumulator) | last: — | due: after selection stone A | stage 1
@@ -38,20 +38,32 @@ date-based queue entry (stage 1, due = solved-date + 3) on a clean solve.
 
 ## Running order for order-gated items
 
-1. `x || 0` default idiom (stone 4)
-2. countByStatus (closes the 07-22 stuck)
-3. selection stone A -> B -> C
+1. countByStatus (closes the 07-22 stuck)
+2. selection stone A -> B -> C
 
 Reviews still take priority on every 3rd session; these fill the
 non-review slots in this order.
 
 ## Pending primer-check
 
-Owed at the START of session #13, before its exercise (teachingGuide
-"Difficulty 7+"): 2-3 questions on a fresh scenario about choosing an
-array method by what it returns. Earned by #12 (rated 7-8). Tim did
-not clear the 07-30 questioning — he got filter+map partly right but
-answered `forEach` for a reduce-into-object case, reasoning that
-reduce returns "a single value" and an object isn't one. If the check
-fails again, the selection ladder above is already the response; move
-it ahead of countByStatus.
+Owed at the START of session #14, before its exercise (teachingGuide
+"Difficulty 7+"): 2-3 questions on a fresh mini-scenario targeting what
+Tim identified (post-debrief, 07-31) as the actual blocker, narrower
+than "the idiom" broadly:
+1. what `||` returns when its left side is falsy vs. truthy (the
+   operator itself, not the idiom)
+2. why `(counts[key] || 0) + 1` needs the parens — what precedence
+   does without them
+Secondary, lower priority: computed-key-vs-template-literal syntax,
+and the recurring dot-vs-bracket read slip. Earned by #13 (rated 7-8).
+If the check fails, decompose into stones (operator precedence /
+grouping as its own isolated move, separate from the object-literal
+write).
+
+### Resolved primer-check (session #13)
+
+The #12-earned check (choosing reduce with an object accumulator) was
+run at the start of #13 and PASSED — 2/2 correct on the targeted
+decision (reduce, `{}` accumulator). A third question on the absent-key
+default idiom was answered wrong, but that's the gap stone 4 already
+existed to drill, not a new ladder trigger.
