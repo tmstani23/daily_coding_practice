@@ -31,34 +31,40 @@ date-based queue entry (stage 1, due = solved-date + 3) on a clean solve.
 - spread + computed-key override (copy object, replace one key) | last: 2026-07-28 | due: 2026-07-31 | stage 1 — solved clean, no help
 - grouping/counting: increment a known key (read-modify-write) | last: 2026-07-29 | due: 2026-08-01 | stage 1 — solved 07-29 with approach-lookup help (dot-vs-bracket slip on the variable-keyed read)
 - grouping/counting: increment key that may be absent (`x || 0` idiom) | last: 2026-07-31 | due: 2026-08-03 | stage 1 — solved 07-31 with approach-lookup help (didn't incorporate the current value until prompted; also re-slipped dot-vs-bracket on the read, and confused computed-key syntax with template literals)
-- grouping/counting (countByStatus — HARD, revisit after stepping-stones) | last: 2026-07-22 | due: after default-idiom stone | stage 1
-- array-method SELECTION stone A: sum one field across a filtered list (spec states the goal only, never names a method — forces filter + reduce) | last: — | due: after countByStatus | stage 1
+- grouping/counting: countByStatus (general, any status) | last: 2026-08-02 | due: 2026-08-05 | stage 1 — solved 08-02 with approach lookup (type-mismatch existence check, then dot-vs-bracket slip on the write side)
+- array-method SELECTION stone A: sum one field across a filtered list (spec states the goal only, never names a method — forces filter + reduce) | last: — | due: now up | stage 1
 - array-method SELECTION stone B: build `{pending: 3, shipped: 5}` from a list (reduce with an OBJECT accumulator) | last: — | due: after selection stone A | stage 1
 - array-method SELECTION stone C: mixed set — 3 tiny specs, name the method and why before coding | last: — | due: after selection stone B | stage 1
 
 ## Running order for order-gated items
 
-1. countByStatus (closes the 07-22 stuck)
-2. selection stone A -> B -> C
+1. selection stone A -> B -> C (countByStatus closed 08-02)
 
 Reviews still take priority on every 3rd session; these fill the
 non-review slots in this order.
 
 ## Pending primer-check
 
-Owed at the START of session #14, before its exercise (teachingGuide
-"Difficulty 7+"): 2-3 questions on a fresh mini-scenario targeting what
-Tim identified (post-debrief, 07-31) as the actual blocker, narrower
-than "the idiom" broadly:
-1. what `||` returns when its left side is falsy vs. truthy (the
-   operator itself, not the idiom)
-2. why `(counts[key] || 0) + 1` needs the parens — what precedence
-   does without them
-Secondary, lower priority: computed-key-vs-template-literal syntax,
-and the recurring dot-vs-bracket read slip. Earned by #13 (rated 7-8).
-If the check fails, decompose into stones (operator precedence /
-grouping as its own isolated move, separate from the object-literal
-write).
+Owed at the START of session #15, before its exercise (teachingGuide
+"Difficulty 7+"): 2-3 questions on a fresh mini-scenario targeting the
+dot-vs-bracket write slip and the redundant existence-check habit from
+#14:
+1. given an object and a variable holding a key name, write (not read)
+   an increment onto that key — check whether bracket notation is used
+   automatically for both the read and the write half
+2. why `obj[key] = (obj[key] || 0) + 1` doesn't need an `if`/`else` to
+   check whether the key already exists
+If the check fails, decompose into a stone isolating bracket notation
+under compound-assignment (`+=`) specifically, since that's the new
+variant where the slip showed up (prior stones only drilled `=`).
+
+### Resolved primer-check (session #14)
+
+The #13-earned check (`||` short-circuit + why `(counts[key] || 0) + 1`
+needs grouping parens) was run at the start of #14 and PASSED — correct
+on `||` evaluation, and on the follow-up with an existing value
+(`counts[key] === 2`) correctly identified 2 vs. 3, showing the
+precedence issue (not just the falsy-fallback case) was understood.
 
 ### Resolved primer-check (session #13)
 
