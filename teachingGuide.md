@@ -191,22 +191,33 @@ the revisit.
 
 ## Review sessions (every 3rd session)
 
-- 2-3 short drills instead of one exercise; pull due items from
-  reviewQueue.md, oldest overdue first, weak spots before clean solves
-- Interleave: drills from DIFFERENT topics, presented together so Tim
-  picks the technique himself — no labels like "this is a reduce one"
-- Each drill is a fresh variant, never a repeat of a past exercise
-- Same rules apply: test file up front, Tim types everything
-- Debrief for a review set: ONE difficulty rating (for the hardest
-  drill — say which one that was, don't make Tim guess), but ask help
-  used SEPARATELY FOR EACH DRILL. Help is what moves stages, and stages
-  are per topic, so a single blended help answer would push both topics
-  the same way and corrupt the queue. Claude may pre-fill a drill's help
-  answer from what it observed during the session (e.g. "syntax lookup —
-  the `:` vs `=` slip") as the first option, but Tim still confirms.
-  progressLog.md still gets ONE line (`review: topicA, topicB | ...`);
-  put each drill's help in that line, tagged (`syntax lookup (A) +
-  approach lookup (B)`).
+ONE drill, not two or three. Changed 2026-08-03 after the two-drill
+format overran three times (#6 drill 2 never reached, #12 drill B rated
+hardest and blew the clock, #15 drill A alone consumed the window). The
+root cause was drills written at full-exercise size, but the two-drill
+count made that failure mode too easy to hit, so the count is now
+capped.
+
+- ONE short drill. Same sizing as any exercise, and preferably tighter:
+  ≤2 approach steps. If the drill needs split → index → transform →
+  concat → reassign → join, it is a normal exercise, not a review drill.
+- SELECTION IS STRICT: the oldest overdue item in reviewQueue.md, full
+  stop. Weak spots do NOT get priority — with one slot per review, a
+  sticky weak spot (they need two spaced clean solves to clear) would
+  monopolize reviews and starve the rest of the queue. Weak spots still
+  drive SIZING and what the drill emphasizes, just not selection.
+- Never the same topic as the previous review session. If the oldest
+  overdue item is that topic, take the next one down.
+- Fresh variant, never a repeat of a past exercise.
+- Don't label the topic. Tim picking the technique himself is the point
+  that survives from the old interleaving rule — present the spec, not
+  the category.
+- Same rules apply: test file up front, Tim types everything.
+- Debrief: identical to a normal session — one difficulty rating, one
+  help-used answer. (The old split-help rule existed only because two
+  drills touched two topics with separate stages; with one drill there
+  is one topic and one stage.)
+- progressLog.md line: `review: <topic> | ...`.
 
 ## Debrief (after tests pass or time's up — two quick questions)
 

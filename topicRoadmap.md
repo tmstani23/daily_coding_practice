@@ -52,7 +52,11 @@ session.
 - toUpperCase / toLowerCase — case
 - template literals — interpolation, multi-line
 - word-level transform (e.g. titleCase) ~ (07-18)
+- string immutability — every string method returns a NEW string, none
+  mutate in place (08-03: this was news to Tim; arrays vs strings)
 - (weak spot: cold recall of split/charAt/slice — see weakSpots.md)
+- (weak spot: discarding a method's return value entirely — 3x on
+  08-03. Top gap; see weakSpots.md)
 
 ### 1c. Destructuring & spread
 - object destructuring — pull named fields ✓ (07-21)

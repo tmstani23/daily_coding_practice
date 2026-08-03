@@ -9,9 +9,11 @@ stage 3 = +30. Clean solve on revisit -> advance a stage (after stage 3,
 remove — it's solid). Struggled -> reset to stage 1 and add to
 weakSpots.md if it was a concept gap.
 
-Review sessions (every 3rd session) pull 2-3 short interleaved drills:
-oldest overdue first, weak-spot items get priority. "Due" means
-due date <= today. If nothing is due, run a normal roadmap session.
+Review sessions (every 3rd session) pull exactly ONE short drill:
+strictly the oldest overdue item, and not the same topic as the
+previous review. Weak spots do NOT jump the line (changed 2026-08-03 —
+see teachingGuide "Review sessions"). "Due" means due date <= today.
+If nothing is due, run a normal roadmap session.
 
 Format: `- topic | last: YYYY-MM-DD | due: YYYY-MM-DD | stage N`
 (due = last-seen date + 3/10/30 days for stage 1/2/3)
@@ -25,7 +27,7 @@ date-based queue entry (stage 1, due = solved-date + 3) on a clean solve.
 
 ---
 - array methods (filter/map/reduce) | last: 2026-07-30 | due: 2026-08-09 | stage 2 — held stage 07-30 (syntax lookup only, but map was used as a forEach-style loop with an external accumulator — filter/reduce shape not exercised)
-- string manipulation (formatInitialLastName) | last: 2026-07-30 | due: 2026-08-02 | stage 1 — held stage 07-30 (approach lookup: planned map over every word when only the first needed transforming)
+- string manipulation (capitalizeFirstWord) | last: 2026-08-03 | due: 2026-08-06 | stage 1 — HELD stage 08-03 (approach lookup: three separate discards of a method's return value; also learned strings are immutable). The 07-30 "map over every word when only the first needed it" gap DID recur — reached for map again before self-correcting to direct index access
 - object destructuring/spread (updateEmail) | last: 2026-07-27 | due: 2026-08-06 | stage 2 — advanced 07-27 (syntax-only slip: `=` for `:` inside the literal)
 - computed-key write in an object literal (`{ [key]: value }`) | last: 2026-07-28 | due: 2026-07-31 | stage 1 — cleared via stone 2 (setField), literal form written cold
 - spread + computed-key override (copy object, replace one key) | last: 2026-07-28 | due: 2026-07-31 | stage 1 — solved clean, no help
@@ -35,6 +37,29 @@ date-based queue entry (stage 1, due = solved-date + 3) on a clean solve.
 - array-method SELECTION stone A: sum one field across a filtered list (spec states the goal only, never names a method — forces filter + reduce) | last: — | due: now up | stage 1
 - array-method SELECTION stone B: build `{pending: 3, shipped: 5}` from a list (reduce with an OBJECT accumulator) | last: — | due: after selection stone A | stage 1
 - array-method SELECTION stone C: mixed set — 3 tiny specs, name the method and why before coding | last: — | due: after selection stone B | stage 1
+
+## Written ahead, not yet run
+
+- `addPoints` (grouping/counting: add to a maybe-absent key, immutably)
+  exists in `sessions/review-capitalize-addpoints/exercise2.js` — written
+  as drill B of #15 but never reached when reviews dropped to one drill.
+  It IS correctly review-sized (read, default, write, return). Use it as
+  the drill for the next review whose oldest-overdue item is the
+  grouping/counting `x || 0` entry; do not rewrite it.
+
+## Pending primer-check (session #16)
+
+Owed at the START of #16, before its exercise (difficulty 7 on #15).
+2-3 questions on a FRESH mini-scenario, aimed at the DECISION, not
+vocabulary:
+1. show a line like `someStr.toUpperCase();` standing alone, or a
+   `.map(w => { w.trim() })` with a block body — ask what the variable
+   holds afterward and why
+2. given "uppercase only the LAST word of a sentence", ask which
+   approach he'd reach for and why — checking that "one element changes
+   -> index it directly, don't map" transfers to a fresh position
+If the check fails, decompose into a stone isolating "capture and use
+what a method returns" with no string work bundled in.
 
 ## Running order for order-gated items
 

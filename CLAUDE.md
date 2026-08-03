@@ -26,9 +26,11 @@ figures are guides for Tim, who signals "time's up" or "I'm stuck".
    until that line is written. This is the check that catches a review
    session being missed.
 
-   If divisible by 3, this is a REVIEW session: 2-3 short
-   interleaved drills from reviewQueue.md (due items; weak spots first —
-   see weakSpots.md). If no items are due, run a normal session instead.
+   If divisible by 3, this is a REVIEW session: exactly ONE short drill
+   from reviewQueue.md — strictly the oldest overdue item, and never the
+   same topic as the previous review session. Weak spots do NOT jump the
+   line (see teachingGuide.md "Review sessions"). If no items are due,
+   run a normal session instead.
    Precedence: if a stepping-stone is pending (from a prior `stuck`) and
    this is a review session, the review WINS — it runs as scheduled and
    the stepping-stone runs the next non-review session.
