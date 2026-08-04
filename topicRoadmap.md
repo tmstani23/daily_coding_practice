@@ -38,7 +38,9 @@ tested syntax, not selection (see teachingGuide "Credit check").
 Specs in this ladder state the goal ONLY and never name a method.
 Runs after the 2a stones below; reviews still interleave every 3rd
 session.
-- sum one field across a filtered list — forces filter + reduce ← stone A
+- sum one field across a filtered list — forces filter + reduce ~ stone A
+  (08-04, syntax + approach lookup — filter's return shape, reduce's
+  initial-value argument)
 - build `{pending: 3, shipped: 5}` from a list — reduce whose
   accumulator is an OBJECT, not a number ← stone B
 - mixed set: 3 tiny specs, name the method and why BEFORE coding

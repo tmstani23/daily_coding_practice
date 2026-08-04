@@ -34,8 +34,8 @@ date-based queue entry (stage 1, due = solved-date + 3) on a clean solve.
 - grouping/counting: increment a known key (read-modify-write) | last: 2026-07-29 | due: 2026-08-01 | stage 1 — solved 07-29 with approach-lookup help (dot-vs-bracket slip on the variable-keyed read)
 - grouping/counting: increment key that may be absent (`x || 0` idiom) | last: 2026-07-31 | due: 2026-08-03 | stage 1 — solved 07-31 with approach-lookup help (didn't incorporate the current value until prompted; also re-slipped dot-vs-bracket on the read, and confused computed-key syntax with template literals)
 - grouping/counting: countByStatus (general, any status) | last: 2026-08-02 | due: 2026-08-05 | stage 1 — solved 08-02 with approach lookup (type-mismatch existence check, then dot-vs-bracket slip on the write side)
-- array-method SELECTION stone A: sum one field across a filtered list (spec states the goal only, never names a method — forces filter + reduce) | last: — | due: now up | stage 1
-- array-method SELECTION stone B: build `{pending: 3, shipped: 5}` from a list (reduce with an OBJECT accumulator) | last: — | due: after selection stone A | stage 1
+- array-method SELECTION stone A: sum one field across a filtered list (filter + reduce) | last: 2026-08-04 | due: 2026-08-07 | stage 1 — solved 08-04 with syntax + approach lookup (filter's return shape, reduce's initial-value argument)
+- array-method SELECTION stone B: build `{pending: 3, shipped: 5}` from a list (reduce with an OBJECT accumulator) | last: — | due: now up | stage 1
 - array-method SELECTION stone C: mixed set — 3 tiny specs, name the method and why before coding | last: — | due: after selection stone B | stage 1
 
 ## Written ahead, not yet run
@@ -47,23 +47,31 @@ date-based queue entry (stage 1, due = solved-date + 3) on a clean solve.
   the drill for the next review whose oldest-overdue item is the
   grouping/counting `x || 0` entry; do not rewrite it.
 
-## Pending primer-check (session #16)
+## Pending primer-check (session #17)
 
-Owed at the START of #16, before its exercise (difficulty 7 on #15).
+Owed at the START of #17, before its exercise (difficulty 7 on #16).
 2-3 questions on a FRESH mini-scenario, aimed at the DECISION, not
 vocabulary:
-1. show a line like `someStr.toUpperCase();` standing alone, or a
-   `.map(w => { w.trim() })` with a block body — ask what the variable
-   holds afterward and why
-2. given "uppercase only the LAST word of a sentence", ask which
-   approach he'd reach for and why — checking that "one element changes
-   -> index it directly, don't map" transfers to a fresh position
-If the check fails, decompose into a stone isolating "capture and use
-what a method returns" with no string work bundled in.
+1. given an array of objects, ask what `filter` returns — same element
+   type/shape or something else — checking the "filter returns a
+   same-shaped subset, not a stripped-down value" fact sticks
+2. ask why `reduce(cb)` without a second argument can throw on an empty
+   array, and what passing `0` (or `[]`, or `{}`) as that second
+   argument does
+If the check fails, decompose into a stone isolating reduce's
+(accumulator, initialValue) mechanics alone, no filter chained in.
+
+### Resolved primer-check (session #16)
+
+The #15-earned check (return-value capture: `someStr.toUpperCase();`
+standing alone, and picking direct-index over map for a single-element
+transform) was run at the start of #16 and PASSED — correct on both:
+identified the call result evaporates unassigned, and reached for
+split + bracket-index on the last-word scenario without prompting.
 
 ## Running order for order-gated items
 
-1. selection stone A -> B -> C (countByStatus closed 08-02)
+1. selection stone A (closed 08-04) -> B -> C
 
 Reviews still take priority on every 3rd session; these fill the
 non-review slots in this order.
