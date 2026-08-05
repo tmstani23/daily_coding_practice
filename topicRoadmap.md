@@ -42,7 +42,17 @@ session.
   (08-04, syntax + approach lookup — filter's return shape, reduce's
   initial-value argument)
 - build `{pending: 3, shipped: 5}` from a list — reduce whose
-  accumulator is an OBJECT, not a number ← stone B
+  accumulator is an OBJECT, not a number ~ stone B, attempted 08-05,
+  STUCK — needed the answer on reduce's BLOCK-BODY callback shape
+  (mutate + explicit `return`, initial-value argument placement); the
+  increment-or-initialize idiom itself traced fine but isn't solidified
+  (see weakSpots.md)
+  - reduce callback as a block body: mutate the accumulator, explicit
+    `return`, initial-value argument as reduce's own 2nd arg — never
+    exercised before (stone A was single-expression) ← stone B-prep
+    (new 08-05)
+  - (parked) retry the `{pending, shipped}` tally itself once
+    stone B-prep clears
 - mixed set: 3 tiny specs, name the method and why BEFORE coding
   ← stone C
 - (weak spot: choosing by "it loops" rather than by what the method

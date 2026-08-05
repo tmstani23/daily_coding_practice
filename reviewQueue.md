@@ -35,7 +35,8 @@ date-based queue entry (stage 1, due = solved-date + 3) on a clean solve.
 - grouping/counting: increment key that may be absent (`x || 0` idiom) | last: 2026-07-31 | due: 2026-08-03 | stage 1 — solved 07-31 with approach-lookup help (didn't incorporate the current value until prompted; also re-slipped dot-vs-bracket on the read, and confused computed-key syntax with template literals)
 - grouping/counting: countByStatus (general, any status) | last: 2026-08-02 | due: 2026-08-05 | stage 1 — solved 08-02 with approach lookup (type-mismatch existence check, then dot-vs-bracket slip on the write side)
 - array-method SELECTION stone A: sum one field across a filtered list (filter + reduce) | last: 2026-08-04 | due: 2026-08-07 | stage 1 — solved 08-04 with syntax + approach lookup (filter's return shape, reduce's initial-value argument)
-- array-method SELECTION stone B: build `{pending: 3, shipped: 5}` from a list (reduce with an OBJECT accumulator) | last: — | due: now up | stage 1
+- array-method SELECTION stone B-prep: reduce callback as a BLOCK BODY — mutate the accumulator then explicit `return`, plus where the initial-value argument goes | last: — | due: after stone A | stage 1 (new, spawned 08-05 — see stuck below)
+- array-method SELECTION stone B (hard, parked): build `{pending: 3, shipped: 5}` from a list (reduce with an OBJECT accumulator) | last: 2026-08-05 (stuck) | due: after stone B-prep | stage 1 — needed the answer on the block-body callback shape; the increment-or-initialize idiom itself was walked through OK but is not yet solidified (see weakSpots)
 - array-method SELECTION stone C: mixed set — 3 tiny specs, name the method and why before coding | last: — | due: after selection stone B | stage 1
 
 ## Written ahead, not yet run
@@ -47,19 +48,16 @@ date-based queue entry (stage 1, due = solved-date + 3) on a clean solve.
   the drill for the next review whose oldest-overdue item is the
   grouping/counting `x || 0` entry; do not rewrite it.
 
-## Pending primer-check (session #17)
+### Resolved primer-check (session #17)
 
-Owed at the START of #17, before its exercise (difficulty 7 on #16).
-2-3 questions on a FRESH mini-scenario, aimed at the DECISION, not
-vocabulary:
-1. given an array of objects, ask what `filter` returns — same element
-   type/shape or something else — checking the "filter returns a
-   same-shaped subset, not a stripped-down value" fact sticks
-2. ask why `reduce(cb)` without a second argument can throw on an empty
-   array, and what passing `0` (or `[]`, or `{}`) as that second
-   argument does
-If the check fails, decompose into a stone isolating reduce's
-(accumulator, initialValue) mechanics alone, no filter chained in.
+Run at the start of #17. Q1 (filter's return shape) passed clean — no
+help. Q2 (why reduce throws on empty array without an initial value,
+and what `0`/`[]`/`{}` do as that argument) was HAZY — got "sets what
+the accumulator starts at" but not the "no first element to seed from,
+no safe default to guess" reasoning, and not that `[]`/`{}` work by the
+same mechanism for other result shapes. Foreshadowed the session's
+actual stuck point (block-body callback shape + initial-value argument
+placement) — see stone B-prep above and weakSpots.md.
 
 ### Resolved primer-check (session #16)
 
@@ -71,7 +69,7 @@ split + bracket-index on the last-word scenario without prompting.
 
 ## Running order for order-gated items
 
-1. selection stone A (closed 08-04) -> B -> C
+1. selection stone A (closed 08-04) -> B-prep (reduce block-body, new 08-05) -> B (retry) -> C
 
 Reviews still take priority on every 3rd session; these fill the
 non-review slots in this order.
