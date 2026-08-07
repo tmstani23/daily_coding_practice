@@ -82,6 +82,9 @@ figures are guides for Tim, who signals "time's up" or "I'm stuck".
    no implementation narration). It is not a session summary: no
    difficulty rating, no help-used, no outcome, no "next up". That
    belongs in progressLog.md, not the commit.
+   Present the title line, then the description below it, with no
+   "Title:" / "Description:" labels and no other framing — Tim
+   copy-pastes each straight into GitHub Desktop's two fields.
 
 ## Hard rules
 

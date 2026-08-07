@@ -87,7 +87,7 @@ session.
 ## 2. Data shaping (the daily-job skill)  ▶ YOU ARE HERE
 
 ### 2a. Building objects from data (current frontier)
-- write a computed-key property in an object literal (`{ [key]: value }`) ✓ stone 1 (07-26 via `obj[key] = value`; literal form written cold 07-28 in stone 2)
+- write a computed-key property in an object literal (`{ [key]: value }`) ~ stone 1 (07-26 via `obj[key] = value`; literal form written cold 07-28 in stone 2) — regressed on review 08-07 (createLabel): back to `obj[field] = value`, test didn't force the literal, so downgraded from ✓ to ~ until it's cold on a test that actually requires it
 - spread + computed-key override — copy an object, replace one key ✓ stone 2 (07-28, setField, no help)
 - increment a known key — read-modify-write ~ stone 3 (07-29, approach lookup — dot/bracket slip on the read)
 - increment a maybe-absent key — the `x || 0` default idiom ~ stone 4 (07-31, approach lookup — didn't incorporate current value until prompted; also computed-key/template-literal confusion, see weakSpots.md)

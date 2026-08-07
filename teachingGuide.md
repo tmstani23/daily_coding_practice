@@ -297,6 +297,31 @@ How the answers land:
   guide: two sessions rated <=3 -> bump difficulty; 7+ -> keep sizing
   small. Scores don't compare across topics.
 
+## Enforcing the targeted move (at exercise-creation time)
+
+If an exercise exists to drill a SPECIFIC syntax or approach (not just "produce
+this output") — e.g. the object-literal computed-key form `{ [key]: value }`,
+an immutable copy via spread, a reduce chosen over a loop — that must be built
+into the exercise WHEN IT'S CREATED, not caught after the fact in the credit
+check below. `deepStrictEqual` on a returned value can't tell a literal from
+`obj[key] = value` on an empty object; both produce the same object.
+
+Before finalizing the test file:
+1. State the constraint explicitly in the exercise spec if the test can't
+   enforce it structurally — e.g. "build it as a single object literal, no
+   separate assignment line" — without naming the exact syntax (that's still
+   Tim's to find).
+2. Where feasible, add a structural check (e.g. a source-regex or
+   statement-count check on `fn.toString()`) so the alternate approach
+   actually fails the test, not just gets discouraged in prose.
+3. If neither is practical for a given move, say so — don't ship an exercise
+   where the intended move is silently optional.
+
+This applies to every exercise, not just stepping-stones (the stones section
+below already called this out for stones specifically; treat it as the
+general rule). Missing this on the 08-07 review (createLabel accepted
+`obj[field] = value`) is the example that prompted this rule.
+
 ## Credit check (before logging any solve)
 
 A solve only counts for the skill the EXERCISE actually required. Before
