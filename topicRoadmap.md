@@ -49,10 +49,13 @@ session.
   (see weakSpots.md)
   - reduce callback as a block body: mutate the accumulator, explicit
     `return`, initial-value argument as reduce's own 2nd arg — never
-    exercised before (stone A was single-expression) ← stone B-prep
-    (new 08-05)
-  - (parked) retry the `{pending, shipped}` tally itself once
-    stone B-prep clears
+    exercised before (stone A was single-expression) ~ stone B-prep
+    (08-09, doublePositives, approach lookup — defaulted to
+    `||`-as-control-flow; the mutate-then-unconditional-return
+    structure was handed to him directly, not self-arrived — see
+    weakSpots.md. primer-check due start of #20, see reviewQueue.md)
+  - retry the `{pending, shipped}` tally itself ← next up once #20
+    primer-check passes
 - mixed set: 3 tiny specs, name the method and why BEFORE coding
   ← stone C
 - (weak spot: choosing by "it loops" rather than by what the method
