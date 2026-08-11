@@ -54,8 +54,12 @@ session.
     `||`-as-control-flow; the mutate-then-unconditional-return
     structure was handed to him directly, not self-arrived — see
     weakSpots.md. primer-check due start of #20, see reviewQueue.md)
-  - retry the `{pending, shipped}` tally itself ← next up once #20
-    primer-check passes
+  - reduce ELSE-branch passthrough — non-match branch returns the
+    accumulator unchanged, not a reset value ~ stone B-prep2 (08-11,
+    sumPositives, no help — spawned when the #20 primer-check failed;
+    clean 1/2, see weakSpots.md)
+  - retry the `{pending, shipped}` tally itself ← next up once the
+    else-passthrough weak spot has its second clean solve
 - mixed set: 3 tiny specs, name the method and why BEFORE coding
   ← stone C
 - (weak spot: choosing by "it loops" rather than by what the method

@@ -36,7 +36,8 @@ date-based queue entry (stage 1, due = solved-date + 3) on a clean solve.
 - grouping/counting: countByStatus (general, any status) | last: 2026-08-02 | due: 2026-08-05 | stage 1 — solved 08-02 with approach lookup (type-mismatch existence check, then dot-vs-bracket slip on the write side)
 - array-method SELECTION stone A: sum one field across a filtered list (filter + reduce) | last: 2026-08-04 | due: 2026-08-07 | stage 1 — solved 08-04 with syntax + approach lookup (filter's return shape, reduce's initial-value argument)
 - array-method SELECTION stone B-prep: reduce callback as a BLOCK BODY — mutate the accumulator then explicit `return`, plus where the initial-value argument goes | last: 2026-08-09 | due: 2026-08-12 | stage 1 — solved 08-09 (doublePositives) with approach-lookup help; defaulted to `||`-as-control-flow (over-applying the recently-drilled default-idiom pattern), and the mutate-then-unconditionally-return structure was told to him directly rather than self-arrived (Tim confirmed he'd have assumed implicit accumulation or reached for concat) — see weakSpots, primer-check due #20
-- array-method SELECTION stone B (retry): build `{pending: 3, shipped: 5}` from a list (reduce with an OBJECT accumulator) | last: 2026-08-05 (stuck) | due: after primer-check #20 | stage 1 — needed the answer on the block-body callback shape 08-05; B-prep now cleared 08-09, so this runs as the next normal (non-review) exercise once the #20 primer-check passes
+- array-method SELECTION stone B-prep2: reduce ELSE-branch passthrough — non-match branch must return the accumulator unchanged, not reset it | last: 2026-08-11 | due: 2026-08-14 | stage 1 — spawned when #20 primer-check failed (said the else branch returns 0); solved clean same session (sumPositives), no help — clean 1/2, see weakSpots.md
+- array-method SELECTION stone B (retry): build `{pending: 3, shipped: 5}` from a list (reduce with an OBJECT accumulator) | last: 2026-08-05 (stuck) | due: after weak spot clears | stage 1 — needed the answer on the block-body callback shape 08-05; B-prep cleared 08-09, B-prep2 cleared 08-11 (1st of 2) — runs as the next normal (non-review) exercise once the else-passthrough weak spot has its second clean solve
 - array-method SELECTION stone C: mixed set — 3 tiny specs, name the method and why before coding | last: — | due: after selection stone B | stage 1
 
 ## Written ahead, not yet run
@@ -69,21 +70,22 @@ split + bracket-index on the last-word scenario without prompting.
 
 ## Running order for order-gated items
 
-1. selection stone A (closed 08-04) -> B-prep (closed 08-09) -> B (retry, next non-review slot after #20 primer-check) -> C
+1. selection stone A (closed 08-04) -> B-prep (closed 08-09) -> B-prep2 (closed 08-11, clean 1/2 on else-passthrough weak spot) -> B (retry, next non-review slot once else-passthrough weak spot fully clears) -> C
 
 Reviews still take priority on every 3rd session; these fill the
 non-review slots in this order.
 
-## Pending primer-check (session #20)
+### Resolved primer-check (session #20) — FAILED, spawned a stone
 
-Owed at the START of session #20, before its exercise (teachingGuide
-"Difficulty 7+"): fresh mini-scenario testing whether the block-body
-reduce shape is cold — plain `if` + mutate the accumulator + one
-unconditional `return`, with NO `||`-as-control-flow. E.g. given a
-similar conditional-build-up task, ask what the callback body should
-look like before any code. If it fails, decompose per teachingGuide
-(this would be reduce block-body stone #2, isolating "if vs. ||" as its
-own move) rather than proceeding straight to stone B retry.
+Run at the start of #20. Asked for the callback shape of a conditional
+number-accumulator reduce; on the follow-up ("what does the non-match
+branch return?") Tim said `0` instead of the accumulator unchanged —
+same conflation as #19's weak spot, now confirmed on a fresh scenario
+too. Per teachingGuide "when the check fails", spawned
+`stone-reduce-else-passthrough` (sumPositives) same session instead of
+proceeding to stone B retry. Solved clean, no help — first of two
+clean solves needed to clear the weak spot (see weakSpots.md). Stone B
+retry is next up once the weak spot fully clears.
 
 ## Pending primer-check
 
