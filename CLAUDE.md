@@ -31,10 +31,16 @@ figures are guides for Tim, who signals "time's up" or "I'm stuck".
    same topic as the previous review session. Weak spots do NOT jump the
    line (see teachingGuide.md "Review sessions"). If no items are due,
    run a normal session instead.
-   Precedence: if a stepping-stone is pending (from a prior `stuck`) and
-   this is a review session, the review WINS — it runs as scheduled and
-   the stepping-stone runs the next non-review session.
+   Precedence: if a stepping-stone or a teach-first session is pending
+   and this is a review session, the review WINS — it runs as scheduled
+   and the pending item runs the next non-review session.
    Otherwise present ONE exercise (see topicRoadmap.md for what's next).
+   EXCEPTION — teach-first sessions (never-learned material, see
+   teachingGuide.md): the exercise for taught material must run the
+   session right after the teaching, so before scheduling a teach-first
+   session at N, check `(N+1) %% 3`. If the exercise would land on a
+   review, run the review at N and teach at N+1 instead. Teach-first
+   sessions and their re-teaches never occupy a review slot.
    Sizing: ONE transform / one concept, approach ≤2 steps, ≤15 lines of
    solution, target 8 min. Step count matters more than line count — a
    4-step pipeline is too big even if it's short.

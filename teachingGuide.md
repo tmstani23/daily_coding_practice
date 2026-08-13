@@ -189,6 +189,103 @@ dropping another rung — but step 2 exists so that rarely happens. Each
 stone is logged like any session; clearing the hard version counts as
 the revisit.
 
+## Teach-first sessions (material Tim has NEVER learned)
+
+Every other teaching trigger in this guide is failure-driven: `stuck`
+fires the teach-at-the-end, difficulty 7+ fires a primer. That is correct
+for RUSTY material — Tim knew it once, and struggling to retrieve it is
+what rebuilds the pathway. Teaching it up front would waste the session.
+
+It is wrong for material he never learned at all. You cannot retrieve
+what was never there; failing it produces no signal and ends with Claude
+showing the answer anyway. Sections 1-2 are rusty-recall by design (the
+project is framed as "rebuilding fluency"), but that stops being reliably
+true from section 3 on — parts of async, most of TypeScript, and the
+algorithm patterns may be genuinely new.
+
+### Triage (do this before the first exercise of a new roadmap section)
+
+ASK Tim directly, and ask the FUNCTIONAL question, not the biographical
+one: "can you recall anything usable about this right now?" — NOT "have
+you learned this before?" Five-year-old exposure he can't retrieve any
+part of is functionally never-learned, and the biographical question
+over-credits it. Do not guess from the roadmap; Tim's own call decides.
+
+- Can recall something to work from -> normal system, exercise first.
+  Unchanged; the struggle to retrieve is the point.
+- Blank / nothing usable comes back -> teach-first session, even if he
+  technically studied it years ago (Tim's rule, 2026-08-13).
+
+### What a teach-first session is
+
+No exercise, no coding window, no session folder, no test file. Claude
+explains: what the thing is, the idiomatic form, a worked example, and
+why it's used over the alternative. REAL CODE IS FINE HERE — the
+never-write-solution-code rule protects a live attempt, and there is no
+live attempt in a teach session. Follow the plain-English rule in Tone.
+
+Ends with a COMPREHENSION CHECK (below). Logged in progressLog.md like
+any session, outcome `taught` (or `taught-recheck` on a re-teach), with
+the check result in the takeaway.
+
+A teach session does NOT mark its roadmap bullet — the bullet is marked
+when the exercise for it is solved.
+
+### Scheduling (both directions must be checked)
+
+- A teach-first session runs ONLY in a non-review slot. If the slot is a
+  review (N %% 3 == 0), the review runs as scheduled and the teach-first
+  session moves to N+1. Same precedence as a stepping-stone.
+- The exercise for taught material runs the session IMMEDIATELY after the
+  teach session — new material is fresh and fragile, and an unrelated
+  review sitting between teaching and application is the bad case.
+- So: BEFORE scheduling a teach-first session at N, check `(N+1) %% 3`.
+  If the exercise would land on a review, do not teach at N — run the
+  review at N and teach at N+1 instead. Avoid the collision rather than
+  adjudicating it.
+
+### The two checks — different names, different jobs, never the same content
+
+- COMPREHENSION CHECK — end of a teach-first session, in chat, no files.
+  Tests whether the explanation landed AT ALL, right now, while it's
+  fresh. ONE question, on the single most important thing just taught.
+  Not a quiz on the topic.
+- PRIMER-CHECK — start of the NEXT session, on a FRESH mini-scenario
+  (existing rule, see "Difficulty 7+"). Tests whether it can be applied
+  COLD after a gap.
+
+They must not test the same thing. The comprehension check asks about
+the mechanism just explained; the primer-check asks for a DECISION on a
+new scenario. If the comprehension check asked what the else branch
+returns, the primer-check does not ask that again.
+
+### When a COMPREHENSION CHECK fails
+
+Do NOT spawn a stepping-stone ladder. Stones isolate a sub-skill from
+surrounding complexity — that assumes the knowledge is in there and needs
+uncovering. Never-learned material has nothing to isolate; drilling it
+harder just repeats the failure. Instead:
+
+1. Identify the ONE sub-idea that didn't land — the specific piece, not
+   the topic.
+2. Re-teach that piece smaller and easier at the next slot. The re-teach
+   TAKES THE SLOT the exercise would have used; the exercise slides one
+   further. The re-teach obeys the same non-review-slot rule, so a review
+   can push it one more.
+3. CAP: on the SECOND failed comprehension check for the same topic, stop
+   re-teaching. The roadmap bullet is too big to teach in one sitting —
+   split it into smaller bullets, each getting its own teach session.
+   (Same principle as "Ladder growth": repeated failure at one bullet
+   means the bullet was too coarse, not that Tim needs more reps.)
+
+A failed PRIMER-CHECK on taught material is different — by then he's had
+the teaching and a gap, so the normal rule applies (spawn a ladder, see
+"When the check fails").
+
+Once the exercise for taught material is attempted, everything reverts to
+the normal system: debrief, weakSpots, reviewQueue stage, stones on
+`stuck`.
+
 ## Review sessions (every 3rd session)
 
 ONE drill, not two or three. Changed 2026-08-03 after the two-drill

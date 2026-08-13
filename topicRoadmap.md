@@ -11,6 +11,12 @@ Markers: `✓` done clean · `~` done but shaky / needed lookups ·
 `←` next up / current frontier · `▶ YOU ARE HERE` section marker.
 Dates in parens are the session that covered it.
 
+TRIAGE BEFORE EACH NEW SECTION: ask Tim whether he can recall anything
+usable about the material RIGHT NOW (not whether he studied it once).
+Recalls something -> exercise first, normal system. Draws a blank ->
+teach-first session (see teachingGuide.md). Sections 1-2 are
+rusty-recall; from section 3 on, ask — don't assume.
+
 Stepping-stones are folded in as substeps under the bullet that spawned
 them, not queued off to the side. On the THIRD stone under one bullet,
 re-decompose that section instead of adding a fourth (teachingGuide
