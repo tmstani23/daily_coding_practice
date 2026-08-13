@@ -39,6 +39,7 @@ date-based queue entry (stage 1, due = solved-date + 3) on a clean solve.
 - array-method SELECTION stone B-prep2: reduce ELSE-branch passthrough — non-match branch must return the accumulator unchanged, not reset it | last: 2026-08-11 | due: 2026-08-14 | stage 1 — spawned when #20 primer-check failed (said the else branch returns 0); solved clean same session (sumPositives), no help — clean 1/2, see weakSpots.md
 - array-method SELECTION stone B (retry): build `{pending: 3, shipped: 5}` from a list (reduce with an OBJECT accumulator) | last: 2026-08-05 (stuck) | due: after weak spot clears | stage 1 — needed the answer on the block-body callback shape 08-05; B-prep cleared 08-09, B-prep2 cleared 08-11 (1st of 2) — runs as the next normal (non-review) exercise once the else-passthrough weak spot has its second clean solve
 - array-method SELECTION stone C: mixed set — 3 tiny specs, name the method and why before coding | last: — | due: after selection stone B | stage 1
+- group items into arrays by a key (groupByKey) | last: 2026-08-13 | due: 2026-08-16 | stage 1 — solved 08-13, no help, 7/10 (hard but unaided) — array-bucket create-or-append idiom; primer-check due #23
 
 ## Written ahead, not yet run
 

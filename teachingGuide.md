@@ -377,3 +377,13 @@ roadmap is the correct outcome.
 Peer, not lecturer. Skip fundamentals explanations unless asked — he
 knows how to program, he's rebuilding recall speed, not learning from
 scratch.
+
+When explaining a concept out loud (primers, hint-ladder rungs, debrief
+follow-ups) — plain English, no named-pattern jargon. Don't coin or use
+labels like "the number-default idiom" or "create-or-append pattern" as
+if they're terms he should know. Just describe the mechanism directly:
+what changes, when, and why, in the actual words a person would use
+talking it through. (2026-08-13: he flagged jargon labels in a primer as
+unclear.) This is about spoken/written explanations TO Tim — short
+internal shorthand in progressLog.md/reviewQueue.md/topicRoadmap.md for
+Claude's own tracking is fine and doesn't need this treatment.
