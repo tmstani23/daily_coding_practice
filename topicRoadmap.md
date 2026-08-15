@@ -105,8 +105,8 @@ session.
 - increment a known key — read-modify-write ~ stone 3 (07-29, approach lookup — dot/bracket slip on the read)
 - increment a maybe-absent key — the `x || 0` default idiom ~ stone 4 (07-31, approach lookup — didn't incorporate current value until prompted; also computed-key/template-literal confusion, see weakSpots.md)
 - count items with a loop (countByStatus) ~ (08-02, approach lookup — type-mismatch existence check, then dot-vs-bracket slip on the WRITE side; primer given for the `(obj[key] || 0) + 1` one-liner, see weakSpots.md)
-- group items into arrays by a key — bucketing ✓ (08-13, groupByKey, no help — array-bucket variant of create-or-append idiom solved cold; primer given, primer-check due #23)
-- build a lookup / index — id → object ← next up
+- group items into arrays by a key — bucketing ✓ (08-13, groupByKey, no help — array-bucket variant of create-or-append idiom solved cold; primer given, primer-check due #23, PASSED)
+- build a lookup / index — id → object ~ (08-15, indexById, syntax + approach lookup — combining spread-accumulate with a computed key in one literal was new territory, see weakSpots.md; primer-check due #24)
 
 ### 2b. Dedupe & Set
 - unique primitives with a Set
