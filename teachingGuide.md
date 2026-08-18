@@ -198,10 +198,10 @@ what rebuilds the pathway. Teaching it up front would waste the session.
 
 It is wrong for material he never learned at all. You cannot retrieve
 what was never there; failing it produces no signal and ends with Claude
-showing the answer anyway. Sections 1-2 are rusty-recall by design (the
+showing the answer anyway. Sections 1-2a are rusty-recall by design (the
 project is framed as "rebuilding fluency"), but that stops being reliably
-true from section 3 on — parts of async, most of TypeScript, and the
-algorithm patterns may be genuinely new.
+true from 2b on — Set/Map, async, most of TypeScript, and the algorithm
+patterns may be genuinely new (cutoff moved up from section 3, 2026-08-18).
 
 ### Triage (do this before the first exercise of a new roadmap section)
 

@@ -14,8 +14,9 @@ Dates in parens are the session that covered it.
 TRIAGE BEFORE EACH NEW SECTION: ask Tim whether he can recall anything
 usable about the material RIGHT NOW (not whether he studied it once).
 Recalls something -> exercise first, normal system. Draws a blank ->
-teach-first session (see teachingGuide.md). Sections 1-2 are
-rusty-recall; from section 3 on, ask — don't assume.
+teach-first session (see teachingGuide.md). Sections 1-2a are
+rusty-recall; from 2b on, ask — don't assume (changed 2026-08-18, was
+"from section 3 on").
 
 Stepping-stones are folded in as substeps under the bullet that spawned
 them, not queued off to the side. On the THIRD stone under one bullet,
