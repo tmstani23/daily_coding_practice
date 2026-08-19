@@ -41,6 +41,7 @@ date-based queue entry (stage 1, due = solved-date + 3) on a clean solve.
 - array-method SELECTION stone C: mixed set — 3 tiny specs, name the method and why before coding | last: — | due: after selection stone B | stage 1
 - group items into arrays by a key (groupByKey) | last: 2026-08-13 | due: 2026-08-16 | stage 1 — solved 08-13, no help, 7/10 (hard but unaided) — array-bucket create-or-append idiom; primer-check due #23, PASSED clean at start of #23
 - build a lookup/index (id -> object, indexById) | last: 2026-08-15 | due: 2026-08-18 | stage 1 — solved 08-15 with syntax + approach lookup (combining spread-accumulate with a computed key in one object literal; see weakSpots.md); primer-check PASSED clean at start of #24
+- unique primitives with a Set (dedupeArray) | last: 2026-08-19 | due: 2026-08-22 | stage 1 — solved 08-19, no help, 3/10 — first exercise after Set was taught (#25); primer-check on Set->array passed clean at session start
 
 ### Resolved primer-check (session #24)
 

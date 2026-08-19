@@ -110,7 +110,7 @@ session.
 - build a lookup / index — id → object ~ (08-15, indexById, syntax + approach lookup — combining spread-accumulate with a computed key in one literal was new territory, see weakSpots.md; primer-check due #24)
 
 ### 2b. Dedupe & Set
-- unique primitives with a Set
+- unique primitives with a Set ✓ (08-19, dedupeArray, no help — taught 08-18, applied clean next session)
 - Set ↔ array round-trip
 - dedupe objects by a chosen field
 - membership tests (has), intersection / difference
