@@ -16,7 +16,10 @@
  *  - starting leaderboard is empty
  */
 function addPoints(leaderboard, player, points) {
-
+    let finalObj = {...leaderboard, [player]: (leaderboard[player] || 0) + points }
+        
+    return finalObj;
+   
 }
 
 module.exports = addPoints;

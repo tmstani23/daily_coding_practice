@@ -32,7 +32,7 @@ date-based queue entry (stage 1, due = solved-date + 3) on a clean solve.
 - computed-key write in an object literal (`{ [key]: value }`) | last: 2026-08-07 | due: 2026-08-10 | stage 1 — HELD (not advanced): review 08-07 (createLabel) slipped back to `obj[field] = value` on an empty object; test accepted it since deepStrictEqual doesn't care how the object was built, so the literal form is still not the default reach on a fresh variant
 - spread + computed-key override (copy object, replace one key) | last: 2026-08-12 | due: 2026-08-22 | stage 2 — advanced 08-12 (replaceField), clean revisit no help, test structurally enforced the literal form
 - grouping/counting: increment a known key (read-modify-write) | last: 2026-08-16 | due: 2026-08-19 | stage 1 — HELD (not advanced): revisit 08-16 (review: bumpStat) needed approach-lookup help again — bracket notation was correct this time, but the write-side expression omitted the existing value entirely (`+ 1` instead of `stats[statName] + 1`); originally solved 07-29 with approach-lookup help (dot-vs-bracket slip on the read)
-- grouping/counting: increment key that may be absent (`x || 0` idiom) | last: 2026-07-31 | due: 2026-08-03 | stage 1 — solved 07-31 with approach-lookup help (didn't incorporate the current value until prompted; also re-slipped dot-vs-bracket on the read, and confused computed-key syntax with template literals)
+- grouping/counting: increment key that may be absent (`x || 0` idiom) | last: 2026-08-20 | due: 2026-08-23 | stage 1 — HELD (not advanced): revisit 08-20 (addPoints) needed approach-lookup help again — operator precedence confusion (`|| 0` grouped with the whole sum first, then `+ points` scoped inside only one `||` branch) before self-arriving at `(leaderboard[player] || 0) + points`; originally solved 07-31 with approach-lookup help (didn't incorporate the current value until prompted; also re-slipped dot-vs-bracket on the read, and confused computed-key syntax with template literals)
 - grouping/counting: countByStatus (general, any status) | last: 2026-08-02 | due: 2026-08-05 | stage 1 — solved 08-02 with approach lookup (type-mismatch existence check, then dot-vs-bracket slip on the write side)
 - array-method SELECTION stone A: sum one field across a filtered list (filter + reduce) | last: 2026-08-04 | due: 2026-08-07 | stage 1 — solved 08-04 with syntax + approach lookup (filter's return shape, reduce's initial-value argument)
 - array-method SELECTION stone B-prep: reduce callback as a BLOCK BODY — mutate the accumulator then explicit `return`, plus where the initial-value argument goes | last: 2026-08-09 | due: 2026-08-12 | stage 1 — solved 08-09 (doublePositives) with approach-lookup help; defaulted to `||`-as-control-flow (over-applying the recently-drilled default-idiom pattern), and the mutate-then-unconditionally-return structure was told to him directly rather than self-arrived (Tim confirmed he'd have assumed implicit accumulation or reached for concat) — see weakSpots, primer-check due #20
@@ -51,14 +51,13 @@ variable names than indexById). Passed clean, no help — wrote
 `{...accum, [id]: {...item}}` cold. Confirms the 08-15 gap closed on
 first retry.
 
-## Written ahead, not yet run
+### Resolved: addPoints run (session #27)
 
-- `addPoints` (grouping/counting: add to a maybe-absent key, immutably)
-  exists in `sessions/review-capitalize-addpoints/exercise2.js` — written
-  as drill B of #15 but never reached when reviews dropped to one drill.
-  It IS correctly review-sized (read, default, write, return). Use it as
-  the drill for the next review whose oldest-overdue item is the
-  grouping/counting `x || 0` entry; do not rewrite it.
+`addPoints` (written ahead as drill B of #15, `sessions/review-capitalize-addpoints/exercise2.js`)
+ran as the review drill for #27, pulling the oldest-overdue `x || 0` idiom
+item. Solved with approach-lookup help (9/10) — see progressLog #27 and the
+updated queue entry above. Not a clean solve, so weakSpots.md line for this
+idiom stays open, not marked clean 1/2.
 
 ### Resolved primer-check (session #17)
 
