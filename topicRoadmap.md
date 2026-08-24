@@ -86,6 +86,7 @@ session.
 
 ### 1c. Destructuring & spread
 - object destructuring — pull named fields ✓ (07-21)
+- object destructuring WITH a default for a missing field — still untested (08-24, formatBook: the drill targeted it but was solved with a spread copy + dot access; see reviewQueue.md)
 - array destructuring — positions, swaps
 - spread to copy / merge an object ✓ (07-21)
 - spread to copy / concat arrays
