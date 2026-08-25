@@ -65,8 +65,14 @@ session.
     accumulator unchanged, not a reset value ~ stone B-prep2 (08-11,
     sumPositives, no help — spawned when the #20 primer-check failed;
     clean 1/2, see weakSpots.md)
-  - retry the `{pending, shipped}` tally itself ← next up once the
-    else-passthrough weak spot has its second clean solve
+  - retry the `{pending, shipped}` tally itself ✓ (08-25, countByGenre,
+    no help on the shape — reduce + object accumulator self-arrived).
+    Rated 9/10 and took ~45 min: the one-literal counting line stacks
+    three separately-drilled moves (spread copy, key from a variable,
+    read-then-bump) and that COMBINATION was never drilled directly.
+    Also began with a stretch of if/else attempts before reaching the
+    default form — see the new `||` vs `if` decision item in
+    reviewQueue.md
 - mixed set: 3 tiny specs, name the method and why BEFORE coding
   ← stone C
 - (weak spot: choosing by "it loops" rather than by what the method
