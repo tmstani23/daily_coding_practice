@@ -316,10 +316,26 @@ capped.
   is one topic and one stage.)
 - progressLog.md line: `review: <topic> | ...`.
 
-## Debrief (after tests pass or time's up — two quick questions)
+## Debrief (after tests pass or time's up — three quick questions)
 
-Ask BOTH, as multiple-choice (taps, not typing). Use the
+Ask ALL THREE, as multiple-choice (taps, not typing). Use the
 AskUserQuestion tool if available.
+
+NEVER fill in an answer Tim did not give. If he replies to only part of
+the debrief, ask again for the rest — a rating Claude assumed is a
+fabricated data point in a log whose only value is being accurate
+(happened 2026-08-25, #31: Claude logged 5/10 unasked; the real answer
+was 9/10).
+
+0. ELAPSED TIME (added 2026-08-25 after #31): roughly how long did the
+   exercise take? Options: under 10 min / 10-20 / 20-40 / over 40.
+   Claude cannot see the clock and Tim often works in silence, so an
+   unaided solve can hide a 45-minute grind — #31 was rated 9/10 with
+   NO help and took ~45 min against an 8-min target, and that only
+   surfaced because Tim mentioned it in passing. Difficulty and elapsed
+   time are different facts; a long time on an unaided solve is a
+   SIZING signal (the exercise bundled more moves than intended) even
+   though the debrief rules log no weak spot for it.
 
 1. Difficulty 1-10, anchored (state the anchors so ratings stay
    comparable across months). Rate it WITH whatever help was used —
