@@ -39,8 +39,8 @@ date-based queue entry (stage 1, due = solved-date + 3) on a clean solve.
 - array-method SELECTION stone B-prep: reduce callback as a BLOCK BODY — mutate the accumulator then explicit `return`, plus where the initial-value argument goes | last: 2026-08-09 | due: 2026-08-12 | stage 1 — solved 08-09 (doublePositives) with approach-lookup help; defaulted to `||`-as-control-flow (over-applying the recently-drilled default-idiom pattern), and the mutate-then-unconditionally-return structure was told to him directly rather than self-arrived (Tim confirmed he'd have assumed implicit accumulation or reached for concat) — see weakSpots, primer-check due #20
 - reduce else-passthrough | last: 2026-08-23 | due: 2026-09-02 | stage 2 — advanced 08-23: fresh variant (sumInStockPrices) solved clean, 5/10, no help, pointed questions only. Second clean solve; else-passthrough weak spot CLEARED and removed from weakSpots.md
 - array-method SELECTION stone B-prep2: reduce ELSE-branch passthrough — non-match branch must return the accumulator unchanged, not reset it | last: 2026-08-11 | due: 2026-08-14 | stage 1 — spawned when #20 primer-check failed (said the else branch returns 0); solved clean same session (sumPositives), no help — clean 1/2, see weakSpots.md
-- array-method SELECTION stone B (retry): build `{pending: 3, shipped: 5}` from a list (reduce with an OBJECT accumulator) | last: 2026-08-05 (stuck) | due: NEXT non-review session | stage 1 — needed the answer on the block-body callback shape 08-05; B-prep cleared 08-09, B-prep2 cleared 08-11, else-passthrough weak spot cleared 08-23 — UNBLOCKED, runs as the next normal (non-review) exercise
-- array-method SELECTION stone C: mixed set — 3 tiny specs, name the method and why before coding | last: — | due: after selection stone B | stage 1
+- array-method SELECTION stone B: build a counts object from a list (reduce with an OBJECT accumulator) | last: 2026-08-25 | due: 2026-08-28 | stage 1 — CLEARED 08-25 on the retry (countByGenre): reduce + object accumulator self-arrived, 5/10, no help on shape; two bugs (missing outer `return`, and `+ 1` with no read of the existing count) found via pointed questions only. Now a normal date-based entry
+- array-method SELECTION stone C: mixed set — 3 tiny specs, name the method and why before coding | last: — | due: NEXT non-review session | stage 1 — UNBLOCKED 08-25 (stone B cleared)
 - group items into arrays by a key (groupByKey) | last: 2026-08-13 | due: 2026-08-16 | stage 1 — solved 08-13, no help, 7/10 (hard but unaided) — array-bucket create-or-append idiom; primer-check due #23, PASSED clean at start of #23
 - build a lookup/index (id -> object, indexById) | last: 2026-08-15 | due: 2026-08-18 | stage 1 — solved 08-15 with syntax + approach lookup (combining spread-accumulate with a computed key in one object literal; see weakSpots.md); primer-check PASSED clean at start of #24
 - unique primitives with a Set (dedupeArray) | last: 2026-08-19 | due: 2026-08-22 | stage 1 — solved 08-19, no help, 3/10 — first exercise after Set was taught (#25); primer-check on Set->array passed clean at session start
@@ -82,7 +82,7 @@ split + bracket-index on the last-word scenario without prompting.
 
 ## Running order for order-gated items
 
-1. selection stone A (closed 08-04) -> B-prep (closed 08-09) -> B-prep2 (closed 08-11) -> else-passthrough 2nd rep (closed 08-23, weak spot cleared) -> B (retry, NEXT non-review slot) -> C
+1. selection stone A (closed 08-04) -> B-prep (closed 08-09) -> B-prep2 (closed 08-11) -> else-passthrough 2nd rep (closed 08-23, weak spot cleared) -> B (closed 08-25) -> C (NEXT non-review slot)
 
 Reviews still take priority on every 3rd session; these fill the
 non-review slots in this order.
