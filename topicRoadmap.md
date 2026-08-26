@@ -73,8 +73,15 @@ session.
     Also began with a stretch of if/else attempts before reaching the
     default form — see the new `||` vs `if` decision item in
     reviewQueue.md
-- mixed set: 3 tiny specs, name the method and why BEFORE coding
-  ← stone C
+- mixed set: name the method and why BEFORE coding ~ stone C (08-26,
+  adults, 5/10 no help). Shipped oversized as THREE functions against the
+  one-transform sizing rule — Tim called it out and it was trimmed
+  mid-session to one coded function (filter) plus a verbal naming drill
+  over three specs. Marked `~` not `✓`: all three method NAMES were right
+  but map's and filter's semantics were justified wrongly (see
+  weakSpots.md), so selection-for-the-right-reason is still untested
+  - map teach-first session ← #34, then the map exercise #35 (Tim's own
+    request, 08-26)
 - (weak spot: choosing by "it loops" rather than by what the method
   returns — used `map` as a forEach twice on 07-30. See weakSpots.md)
 
