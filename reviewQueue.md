@@ -42,7 +42,7 @@ date-based queue entry (stage 1, due = solved-date + 3) on a clean solve.
 - array-method SELECTION stone B: build a counts object from a list (reduce with an OBJECT accumulator) | last: 2026-08-25 | due: 2026-08-28 | stage 1 — CLEARED 08-25 on the retry (countByGenre): reduce + object accumulator self-arrived, 9/10 (hard, but no help on shape); two bugs (missing outer `return`, and `+ 1` with no read of the existing count) found via pointed questions only. Now a normal date-based entry
 - `||` vs `if` — WHEN a missing-value default applies rather than a branch | last: — (never drilled directly; FRESH EVIDENCE 08-27, #33: wrote an if/else whose two branches were identical in effect, and only saw the branch was dead weight after being walked through the trace — this drill is well-aimed, keep it queued) | due: NEXT non-review session after the #35 map exercise (repushed 08-26: stone C cleared, but #34/#35 are the map teach+exercise pair, which can't be split) | stage 1 — added 08-25. Explained twice now (#28 primer, #31 primer) and forgotten under load both times; #31 began with a stretch of if/else attempts before Tim reached the default form by trial and error. Every prior rep drilled the idiom's MECHANICS (precedence, grouping, short-circuit) — none drilled the DECISION. Drill shape: 2-3 tiny specs, Tim says `||` or `if` and why, before any code. Pair with the `??` distinction (0/'' are falsy, so `||` clobbers a legitimate zero)
 - array-method SELECTION stone C: pick the method from the goal | last: 2026-08-26 | due: 2026-08-29 | stage 1 — CLEARED 08-26 (adults), 5/10 no help. Now a normal date-based entry. NOTE: the coding half only exercised filter; the SELECTION half was the naming drill, where all three names were right but map's and filter's semantics were stated wrong (see weakSpots). Next variant should make the wrong-reason case visible again
-- map — what it hands back (a NEW array, one item per input item, original untouched) | last: — | due: after the #35 map exercise | stage 1 — added 08-26. Tim requested a teach session; scheduled #34 (teach) -> #35 (exercise). Do not date-pull this before then
+- map — what it hands back (a NEW array, one item per input item, original untouched) | last: — (TAUGHT 2026-08-29, #34, not yet exercised) | due: after the #35 map exercise | stage 1 — added 08-26. Teach session ran #34: three defining facts (new array / same length / each slot holds whatever the callback returned), the discard-the-return-value failure mode, the loop-with-accumulator alternative, and the filter/reduce/forEach boundaries. Comprehension check passed, though the original-unchanged half needed one prompt. Exercise runs #35; a short primer-check on the DECISION (does this spec want map, and what comes back) is due at the start of #35 before the exercise. Tim requested a teach session; scheduled #34 (teach) -> #35 (exercise). Do not date-pull this before then
 - group items into arrays by a key (groupByKey) | last: 2026-08-13 | due: 2026-08-16 | stage 1 — solved 08-13, no help, 7/10 (hard but unaided) — array-bucket create-or-append idiom; primer-check due #23, PASSED clean at start of #23
 - build a lookup/index (id -> object, indexById) | last: 2026-08-15 | due: 2026-08-18 | stage 1 — solved 08-15 with syntax + approach lookup (combining spread-accumulate with a computed key in one object literal; see weakSpots.md); primer-check PASSED clean at start of #24
 - unique primitives with a Set (dedupeArray) | last: 2026-08-19 | due: 2026-08-22 | stage 1 — solved 08-19, no help, 3/10 — first exercise after Set was taught (#25); primer-check on Set->array passed clean at session start
@@ -102,7 +102,7 @@ proceeding to stone B retry. Solved clean, no help — first of two
 clean solves needed to clear the weak spot (see weakSpots.md). Stone B
 retry is next up once the weak spot fully clears.
 
-## Pending primer-check (session #34)
+### Resolved primer-check (session #34) - PASSED
 
 Owed at the START of #34, BEFORE the map teaching begins (difficulty
 7-8 on #33). Target the DECISION, not vocabulary, on a fresh
@@ -116,6 +116,17 @@ didn't stick:
 If it fails, spawn a ladder per "When the check fails" — but note the
 teach-first map session still runs at #34 and the stone takes #35's
 slot, sliding the map exercise to #36.
+
+RESULT (2026-08-29, run at the start of #34 before the map teaching):
+PASSED both. Q1: stated `tally[key]` was undefined and the whole
+expression evaluates to 0 - the intermediate value was given, not just
+the final number. Q2: picked `||` for the may-be-missing-theme spec and
+`if` for the positive/negative-label spec, and the reasons held up (one
+value that may be absent with a fallback, vs two different outcomes
+decided by a test). No ladder spawned; #35 keeps the map exercise.
+Per weakSpots.md this does NOT count as a clean solve for the `x || 0`
+item - the #28 check also passed and the idiom still failed under load
+at #33.
 
 ## Pending primer-check
 
