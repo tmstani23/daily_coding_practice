@@ -80,8 +80,13 @@ session.
   over three specs. Marked `~` not `✓`: all three method NAMES were right
   but map's and filter's semantics were justified wrongly (see
   weakSpots.md), so selection-for-the-right-reason is still untested
-  - map teach-first session ← #34, then the map exercise #35 (Tim's own
-    request, 08-26)
+  - map teach-first session (#34, 08-29) then the map exercise ~ (#35,
+    09-01, itemLabels, 5-6/10 no help, under 10 min — clean single-
+    expression map with the outer `return` present). Marked `~` not `✓`:
+    the #35 primer-check failed on the goal->method direction first
+    (filter, then reduce, never map, for a project-one-field goal), so
+    the pick during the exercise came primed. One unprimed rep on a
+    goal-only spec still owed — see reviewQueue.md
 - (weak spot: choosing by "it loops" rather than by what the method
   returns — used `map` as a forEach twice on 07-30. See weakSpots.md)
 

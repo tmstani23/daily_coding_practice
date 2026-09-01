@@ -435,6 +435,34 @@ below already called this out for stones specifically; treat it as the
 general rule). Missing this on the 08-07 review (createLabel accepted
 `obj[field] = value`) is the example that prompted this rule.
 
+## Don't leak the answer before the exercise (added 2026-09-01, #35)
+
+An exercise that drills SELECTION — pick the method/approach from the
+goal — is destroyed by any mention of the answer earlier in the session.
+Two leaks, both Claude's, both hit at #35:
+
+- THE PRIMER-CHECK MUST NOT ANSWER THE EXERCISE. The check runs before
+  the exercise, on a fresh mini-scenario. If it targets the same
+  decision the exercise tests, then either it passes (and Tim walks in
+  primed) or it fails (and Claude states the correction, which IS the
+  exercise's answer). Either way the exercise no longer measures cold
+  selection. So: when the owed check and the planned exercise aim at the
+  same decision, change one of them — check a different decision, or
+  move the selection exercise to a later session and run something else
+  now. If a check fails and the correction has to be stated, the
+  session's exercise CANNOT be the same selection; log any solve of it
+  as PRIMED and leave the queue item at its stage.
+- THE FOLDER NAME MUST NOT NAME THE METHOD. Tim types the folder into
+  `cd` before writing a line, so `stone-map-output-shape` hands over the
+  method the exercise exists to make him choose. Name selection
+  exercises after the GOAL or the data shape — `stone-label-per-item`,
+  `review-total-per-customer` — never after the method. The existing
+  "name it after the move being drilled" rule still holds for exercises
+  drilling SYNTAX, where the method is already given in the spec.
+
+Same principle as "Don't label the topic" on reviews: everything Tim
+sees before he starts is part of the exercise.
+
 ## Credit check (before logging any solve)
 
 A solve only counts for the skill the EXERCISE actually required. Before
