@@ -85,8 +85,14 @@ session.
     expression map with the outer `return` present). Marked `~` not `✓`:
     the #35 primer-check failed on the goal->method direction first
     (filter, then reduce, never map, for a project-one-field goal), so
-    the pick during the exercise came primed. One unprimed rep on a
-    goal-only spec still owed — see reviewQueue.md
+    the pick during the exercise came primed
+    - unprimed rep on a goal-only spec ✓ (#38, 09-06, pricesInDollars,
+      5-6/10 no help, under 10 min). Goal-only spec, fresh output shape
+      (a number per row), folder named after the goal, no map talk
+      earlier in the session — picked map cold, block-body callback with
+      an explicit `return`, and the post-solve reasoning check was right
+      too (new array, same item count, input unchanged). map SELECTION is
+      now ✓; filter selection is not — see reviewQueue.md
 - (weak spot: choosing by "it loops" rather than by what the method
   returns — used `map` as a forEach twice on 07-30. See weakSpots.md)
 
