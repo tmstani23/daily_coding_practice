@@ -7,16 +7,15 @@ rules live in teachingGuide.md. Historical details are in progressLog.md.
 
 - Latest completed session: #40 (2026-09-14).
 - Current prepared/presented session: none.
-  #40, sessions/quantity-label, completed as technique practice. The original
-  test exposed the operator before it was corrected, so a fresh delayed
-  independent variant is still needed for missing-value-choice.
+  #41, sessions/practical-user-label, completed as an independent practical
+  task with an accurate explanation.
 - Cadence: backlog mode. Even-numbered sessions are dedicated reviews;
   odd-numbered sessions are normal slots, subject to the priorities below.
 - Trial: sessions #40–#45 inclusive. Evaluate after #45 is logged.
 - Deferred review: none.
 - Partial continuation: none.
 - Teaching application owed: none.
-- Next practical slot eligible: #43; use the first available normal slot at or
+- Next practical slot eligible: #47; use the first available normal slot at or
   after this number. After completing a practical task at N, set eligibility N+6.
 
 When presenting an assignment, record its number, folder, type, skill ID and
