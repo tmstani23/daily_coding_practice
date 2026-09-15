@@ -1,10 +1,27 @@
 # Progress Log
 
-One line per session, oldest first — newest at the bottom.
-Format: `#N | YYYY-MM-DD | topic | solved/partial/stuck | N/10, help-used | one-phrase takeaway`
+Owner of completed-session outcomes and historical evidence.
+Entries are numbered, oldest first. N = newest completed #N + 1.
+Scheduling is defined only in reviewQueue.md. Prepared files, coaching questions
+and documentation maintenance do not create completed-session entries.
 
-Entries are NUMBERED. Next session number = last `#N` + 1. Every session
-whose number is divisible by 3 is a review session.
+## Format for new entries (from session #40)
+
+#N | YYYY-MM-DD | exercise / skill ID / type | outcome | evidence | explanation | difficulty; help; elapsed | brief takeaway
+
+- Type: technique practice / independent application / practical / teaching.
+- Outcome: solved / partial / stuck / taught.
+- Evidence: independent / assisted / practice.
+- Explanation: accurate / corrected / not checked.
+- Difficulty, help and elapsed time must come from Tim. Ask for missing values;
+  use n/a for teaching-only fields, never invent an answer.
+- Keep each new record to one short line (aim for at most 60 words).
+  Capture the actual result and key learning evidence; put pending work only
+  in reviewQueue.md. Record meaningful coach leakage in the takeaway.
+- Preserve historical records #1–#39 verbatim. Their labels and detail reflect
+  the rules in force then; do not silently reinterpret or renumber them.
+- The six-session trial is assessed from actual new records. Compare time,
+  assistance and explanation evidence; report unknowns instead of inferring them.
 
 ---
 #1 | 2026-07-17 | array methods (filter/map/reduce) | solved | clean chain, first session
@@ -46,3 +63,4 @@ whose number is divisible by 3 is a review session.
 #37 | 2026-09-03 | `||` vs `if` decision drill, then displayLabel | solved | 5-6/10, syntax lookup | under 10 min. DRILL (3 tiny specs, said which operator and why, before any code): A (optional label + fallback) -> `||` correct, B (over-$50 branch) -> `if` correct. So the `||`-vs-`if` decision itself is now 2/2 cold — the first time this has been answered right without being walked through, after being explained at #28 and #31 and forgotten both times. C was the `??` trap (a quantity the user may have typed as 0): answered `||`, and the root cause was a FACT HE DID NOT HAVE — said `0` is truthy, and that `if (0)` prints. Falsy list stated plainly (false, 0, -0, 0n, '', null, undefined, NaN) plus the `??`-only-falls-back-on-nullish rule; he then asked and self-checked `NaN ?? 5` and `0 ?? 5` unprompted. New weakSpots entry — this is a missing fact, not a decision gap, and it silently underlies every `||` default he writes. EXERCISE: solved clean, `user.nickname || user.name` for the maybe-absent field and a plain `if (!user.active)` for the boolean branch — the exact split the drill tested, and NO over-application of `||` to the boolean (the #19/#28 failure mode did not recur). Return value captured: `finalStr = finalStr.concat(...)` assigned, not dropped. Only help was two MDN links (rung 3 facts). CREDIT CHECK: the coded half is PRIMED — he stated both decisions verbally minutes before writing them, so it does not certify cold selection; queue item advances on the drill result, not the code. PROCESS NOTE: mid-exercise he asked for MDN on `filter` for a function whose argument is a single object — the array-vs-string/receiver-type weak spot in a new form. One pointed question ("what does displayLabel receive?") and he self-corrected in the same breath; cost nothing, but it was the second reach-for-an-array-method-by-reflex this month
 #38 | 2026-09-06 | pick the method from the goal: one value per row (pricesInDollars) | solved | 5-6/10, none | under 10 min. THE UNPRIMED MAP-SELECTION REP OWED SINCE #35, and it lands: goal-only spec (no method named), fresh output shape (a number per row, not a string label), folder named after the goal, and zero map discussion anywhere in the session before it. Reached for `map` cold, first try, no help. Callback was a BLOCK body with an explicit `return` (the #17/#19 reduce-block-body failure mode did not recur in its map form) and the outer `return` was present (#31 slip did not recur). POST-SOLVE REASONING CHECK (the #32/#35 gap is a right pick with wrong semantics, so the pick alone proves little): asked what map hands back and what happened to the input -- answered "a new array with the same number of items, the results of the mapping function" and "products is unchanged", both correct, unprompted. So the pick AND the reasoning are cold on the same rep. map advances stage 1 -> 2; weakSpots map/filter-semantics item marked clean 1/2 -- note filter's array-not-item shape (the half that had to be stated at #32) was NOT exercised here, so the second rep should put filter in play
 #39 | 2026-09-11 | review: array methods (filter/map/reduce) | solved | 5-6/10, syntax lookup | 10-20 min. Chose reduce with an array accumulator and a conditional push to return active users’ names in order; all tests passed without input mutation. Syntax lookup only; array-method review advances to stage 3.
+#40 | 2026-09-14 | quantity-label / missing-value-choice / technique practice | solved | practice | accurate | 5; none; 10-20 | preserved zero and explained nullish fallback; the originally exposed operator means independent selection remains untested

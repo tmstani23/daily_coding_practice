@@ -1,107 +1,54 @@
 # Daily Coding Practice — Project Rules
 
-15-min daily sessions rebuilding coding fluency for mid-level web dev job
-prep. Tim (5 yrs prior experience, retraining) does ALL the coding.
+Tim is rebuilding coding fluency for mid-level web development work after
+five years of prior experience. Aim for a sustainable 15-minute session.
+Tim writes all exercise solutions.
 
-## Session start (do this first, every session)
+## Read at session start
 
-Read these before presenting anything, in order: progressLog.md (for the
-session count + history), reviewQueue.md (what's due), weakSpots.md
-(priorities), topicRoadmap.md (what's next), teachingGuide.md (how to run
-it). Then follow the numbered format below.
+1. progressLog.md: format header and the newest completed entries; derive N.
+2. reviewQueue.md: current session, scheduling, active skills and pending work.
+3. weakSpots.md: current misconceptions and evidence to look for.
+4. topicRoadmap.md: available next material.
+5. teachingGuide.md: how to teach, help, test and assess.
 
-Timing is Tim-driven. Claude never tracks wall-clock time; the minute
-figures are guides for Tim, who signals "time's up" or "I'm stuck".
+Read older log entries only when needed to verify a particular skill.
+Do not load the archive routinely. Rules below apply to coaching sessions;
+documentation maintenance and project reviews do not consume a session number.
 
-## Session format
+## One owner for each kind of information
 
-1. Determine session number: take the `#N` on the newest progressLog.md
-   entry and add 1. (Entries are numbered; if the newest line somehow
-   lacks a number, count entry lines below the `---` instead and
-   renumber.)
+- teachingGuide.md owns session format, help, assessment and mastery criteria.
+- reviewQueue.md owns scheduling, due dates, stages and pending exercises.
+- weakSpots.md owns current misconceptions and the evidence needed to clear them.
+- topicRoadmap.md owns curriculum order and capability coverage.
+- progressLog.md owns completed-session outcomes and historical evidence.
+- docs/archive/2026-09-14-system.md preserves superseded rules and detailed notes.
 
-   MANDATORY PRE-FLIGHT — before creating ANY files or writing the
-   opening message, state in chat, in one line: the session number, the
-   result of `N %% 3 == 0`, and the session type it implies. No files
-   until that line is written. This is the check that catches a review
-   session being missed.
+If a detail disagrees, use its owner above; flag and fix the stale copy.
+Never invent an outcome, difficulty rating, elapsed time or help report.
 
-   If divisible by 3, this is a REVIEW session: exactly ONE short drill
-   from reviewQueue.md — strictly the oldest overdue item, and never the
-   same topic as the previous review session. Weak spots do NOT jump the
-   line (see teachingGuide.md "Review sessions"). If no items are due,
-   run a normal session instead.
-   Precedence: if a stepping-stone or a teach-first session is pending
-   and this is a review session, the review WINS — it runs as scheduled
-   and the pending item runs the next non-review session.
-   Otherwise present ONE exercise (see topicRoadmap.md for what's next).
-   EXCEPTION — teach-first sessions (never-learned material, see
-   teachingGuide.md): the exercise for taught material must run the
-   session right after the teaching, so before scheduling a teach-first
-   session at N, check `(N+1) %% 3`. If the exercise would land on a
-   review, run the review at N and teach at N+1 instead. Teach-first
-   sessions and their re-teaches never occupy a review slot.
-   Sizing: ONE transform / one concept, approach ≤2 steps, ≤15 lines of
-   solution, target 8 min. Step count matters more than line count — a
-   4-step pipeline is too big even if it's short.
-2. Default format: exercise with a test file Claude writes up front;
-   Tim makes the tests pass. Build the files and the opening message
-   from teachingGuide.md "Opening template" — every item there is
-   mandatory, every session. That template is the single source of
-   truth; do not restate it here.
-3. Tim types all code. Claude NEVER writes solution code, even fragments
-4. Help = documentation links (MDN, etc.) or a nudge — see
-   teachingGuide.md for the hint ladder
-5. The 12-min coding window excludes reading the exercise, logging, and
-   the commit message — those don't eat the clock. Two unfinished
-   outcomes, handled differently:
-   - `partial` = on track, just slow. Topic HOLDS its stage (no reset),
-     the SAME exercise becomes the first item next session — Tim keeps
-     his existing session folder and continues in it; don't create a new
-     one or rewrite the exercise.
-   - `stuck` = too hard: couldn't finish even at time's up, or needed
-     the full answer. The exercise was sized a rung too high. Do NOT
-     repeat it next session. Instead Claude writes a simpler
-     stepping-stone (see teachingGuide.md "When an exercise is too
-     hard") that isolates the one sub-skill that tripped Tim; that runs
-     the next NON-review session (reviews take priority — see rule 1),
-     and the hard version is parked to resurface later.
-   Which one it was: see teachingGuide.md "Facts vs. the shape".
-6. Debrief: after tests pass (or time's up), Claude asks the two
-   multiple-choice questions from teachingGuide.md "Debrief" — that
-   section owns the options, the anchors, and how answers drive stage
-   advancement, weakSpots, and sizing.
-7. Last 2 min: Claude appends one line to progressLog.md
-   (`... | solved/partial/stuck | N/10, help-used | takeaway`), updates
-   reviewQueue.md (new topic enters queue / revisited topic advances or
-   resets stage per debrief rules; a partial holds stage), and updates
-   weakSpots.md only if the debrief flagged an approach-level gap. On a
-   `stuck` outcome Claude also: writes the stepping-stone exercise for
-   next session, adds a follow-up tier under the topic in
-   topicRoadmap.md, and notes the hard version in reviewQueue.md so it
-   resurfaces after the stepping-stone lands.
-8. End of session: Claude gives a concise commit title (one line) and
-   description (1-2 sentences) Tim can paste into GitHub Desktop. Write
-   it as a normal commit message describing the CODE CHANGE — what the
-   exercise implements and which files changed. Description states WHAT
-   was accomplished only — no why, no how (no method/technique names,
-   no implementation narration). It is not a session summary: no
-   difficulty rating, no help-used, no outcome, no "next up". That
-   belongs in progressLog.md, not the commit.
-   Present the title line, then the description below it, with no
-   "Title:" / "Description:" labels and no other framing — Tim
-   copy-pastes each straight into GitHub Desktop's two fields.
+## Hard boundaries
 
-## Hard rules
+- Before creating session files or presenting an exercise, state one line:
+  "Session #N — TYPE — REASON." Derive the type from reviewQueue.md.
+  Do not expose the technique for an independent-application exercise.
+- List sessions/ before creating files. Reuse the current or partial exercise
+  without overwriting Tim's code. Prepared files are not completed sessions.
+- During a live attempt, give help according to teachingGuide.md; do not
+  write the solution or a recipe that supplies the whole approach.
+- Teaching examples are allowed in explicitly identified teaching/practice
+  mode, or after the live attempt has ended. Record any resulting priming.
+- Keep responses short. No emojis. Tim controls timing and signals when stuck.
+- Preserve the user's code and historical session entries.
+- Git is READ-ONLY for the coach. Tim commits through GitHub Desktop.
+  Use git --no-optional-locks for reads; never commit, stage or change Git config.
 
-- Follow teachingGuide.md exactly — it defines how to teach
-- Logging must take < 1 min; one line per session, no essays
-- Keep responses short; Tim is on a limited budget
-- No emojis
+## End of a session
 
-## Git: READ-ONLY for Claude. Never run git write operations.
-
-Git writes from Claude's sandbox leave orphaned .git lock files Tim has
-to clear by hand. Tim commits via GitHub Desktop after each session
-(doubles as streak tracking). Reads are fine — always use
-`git --no-optional-locks <cmd>`.
+Follow teachingGuide.md for the understanding check and three-question debrief.
+Append one concise record, update affected active entries, and give a commit
+title plus a 1–2 sentence description that Tim can paste into GitHub Desktop.
+Describe the actual code/files changed; omit ratings, help, teaching narration
+and scheduling. For documentation-only work, describe the documentation changes.
+Do not mark an unfinished exercise complete to close a conversation.

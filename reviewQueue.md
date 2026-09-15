@@ -1,167 +1,141 @@
 # Review Queue
 
-Spaced repetition for ALL solved topics — not just weak spots. When an
-exercise is solved, its topic enters the queue. Revisits use a NEW
-variant exercise, never the same one.
+Owner of scheduling, skill stages/dates and pending work. Teaching and evidence
+rules live in teachingGuide.md. Historical details are in progressLog.md.
 
-Stages (expanding intervals): stage 1 = due +3 days, stage 2 = +10,
-stage 3 = +30. Clean solve on revisit -> advance a stage (after stage 3,
-remove — it's solid). Struggled -> reset to stage 1 and add to
-weakSpots.md if it was a concept gap.
+## Current state — revised 2026-09-14
 
-Review sessions (every 3rd session) pull exactly ONE short drill:
-strictly the oldest overdue item, and not the same topic as the
-previous review. Weak spots do NOT jump the line (changed 2026-08-03 —
-see teachingGuide "Review sessions"). "Due" means due date <= today.
-If nothing is due, run a normal roadmap session.
+- Latest completed session: #40 (2026-09-14).
+- Current prepared/presented session: none.
+  #40, sessions/quantity-label, completed as technique practice. The original
+  test exposed the operator before it was corrected, so a fresh delayed
+  independent variant is still needed for missing-value-choice.
+- Cadence: backlog mode. Even-numbered sessions are dedicated reviews;
+  odd-numbered sessions are normal slots, subject to the priorities below.
+- Trial: sessions #40–#45 inclusive. Evaluate after #45 is logged.
+- Deferred review: none.
+- Partial continuation: none.
+- Teaching application owed: none.
+- Next practical slot eligible: #43; use the first available normal slot at or
+  after this number. After completing a practical task at N, set eligibility N+6.
 
-Format: `- topic | last: YYYY-MM-DD | due: YYYY-MM-DD | stage N`
-(due = last-seen date + 3/10/30 days for stage 1/2/3)
+When presenting an assignment, record its number, folder, type, skill ID and
+any priming in Current state. On completion, clear it or replace it with the
+actual continuation. Prepared files and doc maintenance never increment N.
 
-Stepping-stone ladder items are the exception: they're ORDER-gated, not
-date-gated. Their due field reads `after stone N` (or `after stone N` /
-`after stepping-stones` for the parked hard version). They're not pulled
-by the date-based review logic; each runs as the next normal exercise
-once the prior stone in its ladder is cleared, then converts to a normal
-date-based queue entry (stage 1, due = solved-date + 3) on a clean solve.
+## Scheduling — apply in this order
 
----
-- array methods (filter/map/reduce) | last: 2026-09-11 | due: 2026-10-11 | stage 3 — ADVANCED 09-11 (review: activeUserNames), solved 5-6/10 in 10-20 min with syntax lookup only. Chose reduce with an array accumulator and conditional push; all tests passed and the input stayed unchanged. Prior: HELD stage 07-30 (syntax lookup only, but map was used as a forEach-style loop with an external accumulator — filter/reduce shape not exercised)
-- string manipulation (fileExtension) | last: 2026-09-02 | due: 2026-09-12 | stage 2 — ADVANCED 09-02 (review: fileExtension), solved 3-4/10, syntax lookup only (MDN string-methods page). Last dot located, slice offset by one, lowercase chained; every return value captured, no discards. Prior: HELD stage 08-03 — HELD stage 08-03 (approach lookup: three separate discards of a method's return value; also learned strings are immutable). The 07-30 "map over every word when only the first needed it" gap DID recur — reached for map again before self-correcting to direct index access
-- spread to copy an object | last: 2026-08-24 | due: 2026-09-23 | stage 3 — advanced 08-24 (review: formatBook): `{...book}` written cold, no help; input-not-modified test passed
-- object DESTRUCTURING — pull named fields into variables, incl. a default for a missing field | last: — (not yet exercised) | due: 2026-08-27 | stage 1 — split out 08-24: the formatBook drill aimed at this and did NOT test it (Tim satisfied the one-mention constraint with a spread copy + dot access on the copy). The prose constraint alone wasn't enough — the next variant needs a structural check that actually requires named variables, or a shape where dot access can't win (e.g. renaming a field, or a nested field). Original 07-21 solve (updateFirstName) is the only prior exposure
-- computed-key write in an object literal (`{ [key]: value }`) | last: 2026-08-07 | due: 2026-08-10 | stage 1 — HELD (not advanced): review 08-07 (createLabel) slipped back to `obj[field] = value` on an empty object; test accepted it since deepStrictEqual doesn't care how the object was built, so the literal form is still not the default reach on a fresh variant
-- spread + computed-key override (copy object, replace one key) | last: 2026-08-12 | due: 2026-08-22 | stage 2 — advanced 08-12 (replaceField), clean revisit no help, test structurally enforced the literal form
-- grouping/counting: increment a known key (read-modify-write) | last: 2026-08-16 | due: 2026-08-19 | stage 1 — HELD (not advanced): revisit 08-16 (review: bumpStat) needed approach-lookup help again — bracket notation was correct this time, but the write-side expression omitted the existing value entirely (`+ 1` instead of `stats[statName] + 1`); originally solved 07-29 with approach-lookup help (dot-vs-bracket slip on the read)
-- grouping/counting: increment key that may be absent (`x || 0` idiom) | last: 2026-08-21 | due: 2026-08-24 | stage 1 — primer-check on this idiom PASSED clean at start of #28 (correct expression + correct precedence comparison); prior note: HELD (not advanced): revisit 08-20 (addPoints) needed approach-lookup help again — operator precedence confusion (`|| 0` grouped with the whole sum first, then `+ points` scoped inside only one `||` branch) before self-arriving at `(leaderboard[player] || 0) + points`; originally solved 07-31 with approach-lookup help (didn't incorporate the current value until prompted; also re-slipped dot-vs-bracket on the read, and confused computed-key syntax with template literals)
-- grouping/counting: countByStatus (general, any status) | last: 2026-08-27 | due: 2026-09-06 | stage 2 — ADVANCED 08-27 (review: countVotes), solved cold 7-8/10, no help, ~15 min. reduce + object accumulator self-arrived; carried a redundant if/else whose branches collapse to one line. NOTE: this item and the cleared selection-stone-B entry now drill the SAME move — merge them next time either comes due. Prior: solved 08-02 with approach lookup (type-mismatch existence check, then dot-vs-bracket slip on the write side)
-- array-method SELECTION stone A: sum one field across a filtered list (filter + reduce) | last: 2026-08-04 | due: 2026-08-07 | stage 1 — solved 08-04 with syntax + approach lookup (filter's return shape, reduce's initial-value argument)
-- array-method SELECTION stone B-prep: reduce callback as a BLOCK BODY — mutate the accumulator then explicit `return`, plus where the initial-value argument goes | last: 2026-08-09 | due: 2026-08-12 | stage 1 — solved 08-09 (doublePositives) with approach-lookup help; defaulted to `||`-as-control-flow (over-applying the recently-drilled default-idiom pattern), and the mutate-then-unconditionally-return structure was told to him directly rather than self-arrived (Tim confirmed he'd have assumed implicit accumulation or reached for concat) — see weakSpots, primer-check due #20
-- reduce else-passthrough | last: 2026-08-23 | due: 2026-09-02 | stage 2 — advanced 08-23: fresh variant (sumInStockPrices) solved clean, 5/10, no help, pointed questions only. Second clean solve; else-passthrough weak spot CLEARED and removed from weakSpots.md
-- array-method SELECTION stone B-prep2: reduce ELSE-branch passthrough — non-match branch must return the accumulator unchanged, not reset it | last: 2026-08-11 | due: 2026-08-14 | stage 1 — spawned when #20 primer-check failed (said the else branch returns 0); solved clean same session (sumPositives), no help — clean 1/2, see weakSpots.md
-- array-method SELECTION stone B: build a counts object from a list (reduce with an OBJECT accumulator) | last: 2026-08-25 | due: 2026-08-28 | stage 1 — CLEARED 08-25 on the retry (countByGenre): reduce + object accumulator self-arrived, 9/10 (hard, but no help on shape); two bugs (missing outer `return`, and `+ 1` with no read of the existing count) found via pointed questions only. Now a normal date-based entry
-- `||` vs `if` — WHEN a missing-value default applies rather than a branch, AND the falsy-vs-nullish distinction (`??`) | last: 2026-09-03 | due: 2026-09-13 | stage 2 — ADVANCED 09-03 (#37). Ran as designed: 3 tiny specs, operator named with a reason before any code. A (optional label + fallback) -> `||`, B (over-$50 branch) -> `if`, both correct COLD — first time this decision has been right without being walked through, after being explained at #28 and #31 and lost both times. C was the `??` trap (quantity the user may have typed as 0): answered `||`, but the cause was a missing FACT, not a bad decision — he did not know `0` is falsy (said `if (0)` prints). Taught: full falsy list + `??` falls back only on null/undefined; he then checked `NaN ?? 5` and `0 ?? 5` himself. See the new weakSpots line for the falsy set. The coded exercise (displayLabel) applied both correctly with no over-application of `||` to the boolean, but it is PRIMED by the drill minutes earlier — the stage advance rests on the drill, not the code. Next variant: drill the decision on specs where a legitimate 0 or '' is in play, so `??` vs `||` is the live choice, not just `||` vs `if`
-- array-method SELECTION stone C: pick the method from the goal | last: 2026-08-26 | due: 2026-08-29 | stage 1 — CLEARED 08-26 (adults), 5/10 no help. Now a normal date-based entry. NOTE: the coding half only exercised filter; the SELECTION half was the naming drill, where all three names were right but map's and filter's semantics were stated wrong (see weakSpots). Next variant should make the wrong-reason case visible again
-- map — what it hands back (a NEW array, one item per input item, original untouched), AND reaching for it from a goal | last: 2026-09-06 | due: 2026-09-16 | stage 2 — ADVANCED 09-06 (#38, pricesInDollars): the unprimed rep this entry asked for, run exactly as specified — goal-only spec, fresh output shape (a number per row), folder named after the goal, no map talk earlier in the session. Picked map cold with no help, 5-6/10, under 10 min, block-body callback with an explicit return and the outer return present. Post-solve reasoning check passed too (new array, same item count, input unchanged — stated unprompted), so this is a pick AND a reason, not a lucky pick. Next variant should put FILTER in play as the live choice — filter's array-not-item shape is the half that had to be stated at #32 and has not been re-tested since. Prior: HELD at stage 1 (not advanced). Exercise #35 (itemLabels) solved clean, under 10 min, no help, single-expression callback with the outer `return` present. But the #35 primer-check FAILED first on the decision half: given "just the ids, same order" he picked filter, correctly rejected filter's own output shape, then said reduce, never map — one minute after correctly ruling map out of a sum-the-array spec for the right reason. He was told the answer before coding, so the solve is PRIMED and does not certify cold selection. Next variant: a goal-only spec on a fresh shape (project one field, or derive one value per row), with no map discussion anywhere in the session before it, and a folder name that doesn't name the method (see teachingGuide "Don't leak the answer before the exercise"). Teach session was #34
+1. Resume the current presented assignment, if not completed.
+2. Continue a logged partial in the same files.
+3. Run application owed from a teaching-only session at the next session.
+   Mark it practice if the technique was supplied.
+4. Run a deferred dedicated review, if recorded.
+5. Run a dedicated review when required by the active cadence.
+6. On a normal slot, run an eligible practical task.
+7. Otherwise use eligible pending normal work in order, then the roadmap frontier.
+   Skip a pending item whose due date or prerequisite has not been reached.
 
-- group items into arrays by a key (groupByKey) | last: 2026-08-13 | due: 2026-08-16 | stage 1 — solved 08-13, no help, 7/10 (hard but unaided) — array-bucket create-or-append idiom; primer-check due #23, PASSED clean at start of #23
-- build a lookup/index (id -> object, indexById) | last: 2026-08-15 | due: 2026-08-18 | stage 1 — solved 08-15 with syntax + approach lookup (combining spread-accumulate with a computed key in one object literal; see weakSpots.md); primer-check PASSED clean at start of #24
-- unique primitives with a Set (dedupeArray) | last: 2026-08-19 | due: 2026-08-22 | stage 1 — solved 08-19, no help, 3/10 — first exercise after Set was taught (#25); primer-check on Set->array passed clean at session start
+If priorities 2 or 3 displace a scheduled review, record a deferred review for
+the next free session. Clear that flag when the review runs or when no review
+is eligible. If a deferred review falls on a scheduled review slot, one drill
+satisfies both. Do not stack catch-up drills into a session. Teaching does not
+require manipulating session numbers to reserve two slots.
 
-### Resolved primer-check (session #24)
+Dedicated reviews select the earliest due active skill, excluding the skill
+from the previous dedicated review. Use the log to identify that skill.
+Ties follow table order. If no other active skill is due, select due maintenance;
+if neither is eligible, run normal work. Do not repeat the same dedicated review
+just to fill a slot. Weak spots shape the exercise but do not jump the queue.
 
-Run at the start of #24. Asked for the combined spread-accumulate +
-computed-key literal on a fresh lookup-building scenario (different
-variable names than indexById). Passed clean, no help — wrote
-`{...accum, [id]: {...item}}` cold. Confirms the 08-15 gap closed on
-first retry.
+Normal work may exercise a due skill and update its date, but does not count as
+a dedicated review for the same-topic exclusion. Independent reviews use fresh
+variants. Technique reviews remain openly named practice.
 
-### Resolved: addPoints run (session #27)
+## Cadence evaluation
 
-`addPoints` (written ahead as drill B of #15, `sessions/review-capitalize-addpoints/exercise2.js`)
-ran as the review drill for #27, pulling the oldest-overdue `x || 0` idiom
-item. Solved with approach-lookup help (9/10) — see progressLog #27 and the
-updated queue entry above. Not a clean solve, so weakSpots.md line for this
-idiom stays open, not marked clean 1/2.
+At #45, count due ACTIVE rows and inspect the six-session evidence:
+- If at most five are due and sessions remain manageable, switch to regular
+  mode: every third session is a dedicated review.
+- Otherwise retain backlog mode for six more sessions and move the trial endpoint
+  forward by six. Adjust difficulty/queue duplication before adding workload.
+- In regular mode, if more than five active skills are due at a six-session
+  evaluation, return to backlog mode for a six-session trial.
+- These thresholds are an initial operating choice, not a mastery measure.
+  Report actual evidence to Tim; never declare a benefit from six sessions alone.
 
-### Resolved primer-check (session #17)
+Keep the current-state fields up to date so future sessions need no archaeology.
 
-Run at the start of #17. Q1 (filter's return shape) passed clean — no
-help. Q2 (why reduce throws on empty array without an initial value,
-and what `0`/`[]`/`{}` do as that argument) was HAZY — got "sets what
-the accumulator starts at" but not the "no first element to seed from,
-no safe default to guess" reasoning, and not that `[]`/`{}` work by the
-same mechanism for other result shapes. Foreshadowed the session's
-actual stuck point (block-body callback shape + initial-value argument
-placement) — see stone B-prep above and weakSpots.md.
+## Stages, dates and maintenance
 
-### Resolved primer-check (session #16)
+Stage 1: revisit after 3 days; stage 2: after 10; stage 3: after 30.
+Dates are calendar dates, measured from the actual relevant attempt.
+These are earliest review targets, not a promise to fit every item on its due day.
 
-The #15-earned check (return-value capture: `someStr.toUpperCase();`
-standing alone, and picking direct-index over map for a single-element
-transform) was run at the start of #16 and PASSED — correct on both:
-identified the call result evaporates unassigned, and reached for
-split + bracket-index on the last-word scenario without prompting.
+Use teachingGuide.md to decide advance / hold / reset:
+- First independent successful application enters stage 1.
+- On a qualifying independent revisit, advance one stage.
+- After a qualifying stage-3 revisit, move to maintenance, due in 60 days.
+- If stage holds after an attempt (assisted, primed, partial or unchecked), set
+  due to attempt date +3 days without changing its stage. A practice-only new
+  skill enters stage 1 provisionally; do not describe this as demonstrated mastery.
+- After an actual regression, reset to stage 1, due +3 days.
+- A maintenance success remains maintenance, due +60 days; regression returns
+  it to active stage 1. An inconclusive/assisted maintenance attempt returns it
+  to active stage 3 with a +3-day check.
+- An unrelated teaching mention or a comprehension check does not change dates.
+- Preserve separate fields for the last attempt and evidence; do not count a
+  short check as a new clean solve.
 
-## Running order for order-gated items
+One row per distinct skill. Merge aliases using the latest relevant evidence,
+not the highest stage found. Distinct decisions/output shapes can stay separate.
+Dates/stages carried over below are historical state, not newly certified mastery.
 
-1. selection stone A (closed 08-04) -> B-prep (closed 08-09) -> B-prep2 (closed 08-11) -> else-passthrough 2nd rep (closed 08-23, weak spot cleared) -> B (closed 08-25) -> C (closed 08-26). LADDER COMPLETE.
-2. map teach-first (#34, done) -> map exercise (#35, done — primed solve, unprimed rep still owed) -> `||` vs `if` decision drill (#37, done — drill 2/2 cold, `??`/falsy gap found) -> unprimed map-selection rep (#38, done — picked map cold, reasoning correct, stage advanced). LADDER COMPLETE.
+## Active skills
 
-No order-gated items outstanding. Non-review slots now come from the
-date-based queue above and topicRoadmap 2b (Set/Map). Two open threads to
-place: (a) an unprimed `||`-vs-`if` rep with a legitimate 0 or '' in play,
-so `??` vs `||` is the live choice (the #37 falsy gap needs a spaced rep —
-see weakSpots); (b) a selection rep with FILTER as the live choice.
+| Skill ID | Target | Last attempt | Due | Stage | Evidence / next requirement |
+| --- | --- | --- | --- | --- | --- |
+| conditional-total | Choose an approach for a conditional numeric total | 2026-08-04 | 2026-08-07 | 1 | #16 needed help. Fresh goal, at most two familiar steps. |
+| reduce-block | Conditional mutation plus explicit block-body return and initial value | 2026-08-09 | 2026-08-12 | 1 | #19 needed the structure supplied. #39 is relevant later evidence, but no new retrospective credit. |
+| group-buckets | Group records into arrays by a key | 2026-08-13 | 2026-08-16 | 1 | #22 unaided; check accurate explanation on revisit. |
+| lookup-by-id | Build an id-to-record lookup | 2026-08-15 | 2026-08-18 | 1 | #23 combination needed help; #24 check passed, not a spaced solve. |
+| increment-known | Read and increment an existing variable-keyed value | 2026-08-16 | 2026-08-19 | 1 | #24 omitted the old value; observe both read and write. |
+| computed-key-object | Build a variable-keyed object, including copy plus override | 2026-08-12 | 2026-08-22 | 2 | #21 cold literal + copy; merges obsolete standalone literal entry last seen #18. Practice openly if requiring syntax. |
+| set-dedupe | Unique primitives and Set-to-array conversion | 2026-08-19 | 2026-08-22 | 1 | #26 practice after teaching; later independent application needed. |
+| increment-absent | Count with a possibly absent variable key | 2026-08-20 | 2026-08-24 | 1 | #27 assisted; #28 check did not certify retention. #33 explanation still wrong. |
+| destructure-fields | Pull named fields, including a missing-field default | — | 2026-08-27 | 1 | Provisional: #30 did not exercise this. Name syntax openly for technique practice. |
+| select-subset | Choose an approach returning a subset of original records | 2026-08-26 | 2026-08-29 | 1 | #32 correct method name, incorrect explanation; need independent choice + array semantics. |
+| reduce-passthrough | Preserve accumulator on a non-match | 2026-08-23 | 2026-09-02 | 2 | #20 + #29 clean; merges stale B-prep2 row. Misconception already cleared. |
+| tally-records | Build a counts object from records | 2026-08-27 | 2026-09-06 | 2 | #31 and #33; merges selection stone B with general counting. Check explanation; do not infer default-expression mastery. |
+| string-result | Locate and transform a string portion | 2026-09-02 | 2026-09-12 | 2 | #36 syntax lookup, correct result; fresh goal with manageable steps. |
+| missing-value-choice | Choose fallback versus condition; preserve legitimate zero/empty values | 2026-09-14 | 2026-09-17 | 2 | #37 cold branch/default choices, falsy gap. #40 practice solved with accurate explanation after the operator had been exposed; fresh independent rep required. |
+| select-per-item | Choose one output value per input item | 2026-09-06 | 2026-09-16 | 2 | #38 independently solved and explained; retain separate subset decision. |
+| copy-object | Copy an object without modifying its input | 2026-08-24 | 2026-09-23 | 3 | #30 demonstrated copy, not destructuring. |
+| conditional-names | Return names from matching records | 2026-09-11 | 2026-10-11 | 3 | #39 syntax-only help. Narrowed former "filter/map/reduce" family; not blanket mastery of all three. |
 
-Reviews still take priority on every 3rd session; these fill the
-non-review slots in this order.
+## Maintenance
 
-### Resolved primer-check (session #20) — FAILED, spawned a stone
+No skills moved to maintenance by this documentation revision.
+Use the same columns as active skills, with stage "maintenance".
 
-Run at the start of #20. Asked for the callback shape of a conditional
-number-accumulator reduce; on the follow-up ("what does the non-match
-branch return?") Tim said `0` instead of the accumulator unchanged —
-same conflation as #19's weak spot, now confirmed on a fresh scenario
-too. Per teachingGuide "when the check fails", spawned
-`stone-reduce-else-passthrough` (sumPositives) same session instead of
-proceeding to stone B retry. Solved clean, no help — first of two
-clean solves needed to clear the weak spot (see weakSpots.md). Stone B
-retry is next up once the weak spot fully clears.
+## Pending normal work
 
-### Resolved primer-check (session #34) - PASSED
+1. Schedule a fresh independent missing-value-choice variant no earlier than
+   2026-09-17. Do not teach or quiz that same decision immediately before it.
+2. Next available normal exercise: select-subset, fresh goal and accurate
+   explanation afterward. Do not identify the technique in the opening.
+3. Continue roadmap frontier: deduplicating objects by one field, after asking
+   whether Tim can recall anything usable. Set construction/array conversion
+   has already been practiced; do not silently reteach the whole section.
 
-Owed at the START of #34, BEFORE the map teaching begins (difficulty
-7-8 on #33). Target the DECISION, not vocabulary, on a fresh
-mini-scenario — do NOT reuse #28's wording, which passed and still
-didn't stick:
-1. Given a tally object and a key that has never been seen, what does
-   `(tally[key] || 0) + 1` evaluate to? Make him state the intermediate
-   value of `tally[key] || 0`, not just the final number.
-2. Given a spec, does it want `||` or an `if`? Two tiny specs, one of
-   each shape.
-If it fails, spawn a ladder per "When the check fails" — but note the
-teach-first map session still runs at #34 and the stone takes #35's
-slot, sliding the map exercise to #36.
+No stepping-stone ladder is pending. No primer-check is pending: the old #15
+check was completed in #15; other resolved checks remain in the historical log.
+Add new continuations, teaching applications and stones only from actual evidence.
+Remove pending items when completed; avoid duplicating them in other docs.
 
-RESULT (2026-08-29, run at the start of #34 before the map teaching):
-PASSED both. Q1: stated `tally[key]` was undefined and the whole
-expression evaluates to 0 - the intermediate value was given, not just
-the final number. Q2: picked `||` for the may-be-missing-theme spec and
-`if` for the positive/negative-label spec, and the reasons held up (one
-value that may be absent with a fallback, vs two different outcomes
-decided by a test). No ladder spawned; #35 keeps the map exercise.
-Per weakSpots.md this does NOT count as a clean solve for the `x || 0`
-item - the #28 check also passed and the idiom still failed under load
-at #33.
+## Migration notes
 
-## Pending primer-check
-
-Owed at the START of session #15, before its exercise (teachingGuide
-"Difficulty 7+"): 2-3 questions on a fresh mini-scenario targeting the
-dot-vs-bracket write slip and the redundant existence-check habit from
-#14:
-1. given an object and a variable holding a key name, write (not read)
-   an increment onto that key — check whether bracket notation is used
-   automatically for both the read and the write half
-2. why `obj[key] = (obj[key] || 0) + 1` doesn't need an `if`/`else` to
-   check whether the key already exists
-If the check fails, decompose into a stone isolating bracket notation
-under compound-assignment (`+=`) specifically, since that's the new
-variant where the slip showed up (prior stones only drilled `=`).
-
-### Resolved primer-check (session #14)
-
-The #13-earned check (`||` short-circuit + why `(counts[key] || 0) + 1`
-needs grouping parens) was run at the start of #14 and PASSED — correct
-on `||` evaluation, and on the follow-up with an existing value
-(`counts[key] === 2`) correctly identified 2 vs. 3, showing the
-precedence issue (not just the falsy-fallback case) was understood.
-
-### Resolved primer-check (session #13)
-
-The #12-earned check (choosing reduce with an object accumulator) was
-run at the start of #13 and PASSED — 2/2 correct on the targeted
-decision (reduce, `{}` accumulator). A third question on the absent-key
-default idiom was answered wrong, but that's the gap stone 4 already
-existed to drill, not a new ladder trigger.
+Merged three redundant rows without inventing solves: computed-key literal into
+computed-key-object using #21; B-prep2 into reduce-passthrough using #29; selection
+stone B into tally-records using #33. Restored increment-absent's last attempt to
+#27's date; #28 was only a check. Broad array-family credit is now scoped to #39's
+actual task. Full prior records are in docs/archive/2026-09-14-system.md.

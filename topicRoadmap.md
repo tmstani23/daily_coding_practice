@@ -1,204 +1,149 @@
 # Topic Roadmap
 
-Work top to bottom. One micro-skill per session unless noted — each
-bullet is roughly one exercise's worth. Detail is front-loaded: the
-near-term sections are broken down finely because that's where Tim
-actually is; later sections are lighter and get refined as we approach
-them. Every 3rd session is a review (see CLAUDE.md), which doesn't
-consume a roadmap line.
+Owner of curriculum coverage. Scheduling, due dates and pending exercises are
+in reviewQueue.md; learning evidence is in progressLog.md.
+The goal is usable coding ability: read, explain, implement, test and debug.
 
-Markers: `✓` done clean · `~` done but shaky / needed lookups ·
-`←` next up / current frontier · `▶ YOU ARE HERE` section marker.
-Dates in parens are the session that covered it.
+## Reading the markers
 
-TRIAGE BEFORE EACH NEW SECTION: ask Tim whether he can recall anything
-usable about the material RIGHT NOW (not whether he studied it once).
-Recalls something -> exercise first, normal system. Draws a blank ->
-teach-first session (see teachingGuide.md). Sections 1-2a are
-rusty-recall; from 2b on, ask — don't assume (changed 2026-08-18, was
-"from section 3 on").
+- [ ] Not demonstrated yet.
+- [P] Practiced with a named technique, teaching or support.
+- [I] Independently applied with an accurate explanation at least once.
+- [E] Prior successful usage is recorded, but explanation/independence was not
+  assessed consistently under the current rules. Preserve that evidence.
+These markers describe coverage, not permanent mastery. Review stages live only
+in reviewQueue.md. Do not mark an entire section complete from one exercise.
 
-Stepping-stones are folded in as substeps under the bullet that spawned
-them, not queued off to the side. On the THIRD stone under one bullet,
-re-decompose that section instead of adding a fourth (teachingGuide
-"Ladder growth"). There is no deadline — a longer, more accurate
-roadmap beats a short one that over-credits.
+Work through the frontier while reviewing older skills. An unresolved gap is
+not a blanket barrier to unrelated new material. Ask what Tim can recall before
+introducing unfamiliar material in ANY section; teaching is available throughout.
 
-## 1. JS core recall (speed, not learning)
+## Current frontier
 
-### 1a. Array methods
+Data shaping: unique primitives/Set conversion have been practiced (#25–#26).
+Next new material is deduplicating objects by a chosen field, one small move
+at a time. The queue owns any review, continuation or practice scheduled first.
 
-WRITING each method is ✓. CHOOSING between them is not — see the
-selection ladder below. The ✓ marks on 07-17/07-20 were over-credited:
-the 07-17 spec named all three methods in order, and 07-20 was solved
-by accumulating into an outside variable from inside a `filter`. Both
-tested syntax, not selection (see teachingGuide "Credit check").
+## 1. JavaScript core
 
-- map — transform each element, returns a NEW ARRAY ✓ syntax (07-17, 07-20)
-- filter — keep by predicate, returns a SHORTER ARRAY ✓ syntax (07-17, 07-20)
-- reduce — fold to ONE value of any type ✓ syntax (07-17, 07-20)
-- find / findIndex — first match
-- some / every — boolean over a collection
-- filter → map → reduce chain ✓ (07-17, spec-dictated)
+### Collections: choose by the input and wanted output
+- [E] Use map/filter/reduce syntax (#1–#3); selection was prompted then.
+- [I] One value per input item: choose and explain map (#38).
+- [P] A subset of original records: filter usage present, independent
+  explanation still unverified (#32; queue select-subset).
+- [P] Conditional numeric total: approach and initial value needed help (#16).
+- [E] Conditional array result: active user names via reduce (#39).
+- [ ] First match / index: find, findIndex.
+- [ ] Boolean over a collection: some, every.
+- [ ] Choose iteration versus direct access for one selected element.
+- [P] Block-body return and reduce initial value (#17/#19).
+- [E] Reduce non-match passthrough (#20/#29); keep distinct from mutation-return.
 
-#### Selection ladder — pick the method from the GOAL (07-30)
-Specs in this ladder state the goal ONLY and never name a method.
-Runs after the 2a stones below; reviews still interleave every 3rd
-session.
-- sum one field across a filtered list — forces filter + reduce ~ stone A
-  (08-04, syntax + approach lookup — filter's return shape, reduce's
-  initial-value argument)
-- build `{pending: 3, shipped: 5}` from a list — reduce whose
-  accumulator is an OBJECT, not a number ~ stone B, attempted 08-05,
-  STUCK — needed the answer on reduce's BLOCK-BODY callback shape
-  (mutate + explicit `return`, initial-value argument placement); the
-  increment-or-initialize idiom itself traced fine but isn't solidified
-  (see weakSpots.md)
-  - reduce callback as a block body: mutate the accumulator, explicit
-    `return`, initial-value argument as reduce's own 2nd arg — never
-    exercised before (stone A was single-expression) ~ stone B-prep
-    (08-09, doublePositives, approach lookup — defaulted to
-    `||`-as-control-flow; the mutate-then-unconditional-return
-    structure was handed to him directly, not self-arrived — see
-    weakSpots.md. primer-check due start of #20, see reviewQueue.md)
-  - reduce ELSE-branch passthrough — non-match branch returns the
-    accumulator unchanged, not a reset value ~ stone B-prep2 (08-11,
-    sumPositives, no help — spawned when the #20 primer-check failed;
-    clean 1/2, see weakSpots.md)
-  - retry the `{pending, shipped}` tally itself ✓ (08-25, countByGenre,
-    no help on the shape — reduce + object accumulator self-arrived).
-    Rated 9/10 and took ~45 min: the one-literal counting line stacks
-    three separately-drilled moves (spread copy, key from a variable,
-    read-then-bump) and that COMBINATION was never drilled directly.
-    Also began with a stretch of if/else attempts before reaching the
-    default form — see the new `||` vs `if` decision item in
-    reviewQueue.md
-- mixed set: name the method and why BEFORE coding ~ stone C (08-26,
-  adults, 5/10 no help). Shipped oversized as THREE functions against the
-  one-transform sizing rule — Tim called it out and it was trimmed
-  mid-session to one coded function (filter) plus a verbal naming drill
-  over three specs. Marked `~` not `✓`: all three method NAMES were right
-  but map's and filter's semantics were justified wrongly (see
-  weakSpots.md), so selection-for-the-right-reason is still untested
-  - map teach-first session (#34, 08-29) then the map exercise ~ (#35,
-    09-01, itemLabels, 5-6/10 no help, under 10 min — clean single-
-    expression map with the outer `return` present). Marked `~` not `✓`:
-    the #35 primer-check failed on the goal->method direction first
-    (filter, then reduce, never map, for a project-one-field goal), so
-    the pick during the exercise came primed
-    - unprimed rep on a goal-only spec ✓ (#38, 09-06, pricesInDollars,
-      5-6/10 no help, under 10 min). Goal-only spec, fresh output shape
-      (a number per row), folder named after the goal, no map talk
-      earlier in the session — picked map cold, block-body callback with
-      an explicit `return`, and the post-solve reasoning check was right
-      too (new array, same item count, input unchanged). map SELECTION is
-      now ✓; filter selection is not — see reviewQueue.md
-- (weak spot: choosing by "it loops" rather than by what the method
-  returns — used `map` as a forEach twice on 07-30. See weakSpots.md)
+### Strings
+- [P] Split/join and selecting a character or slice (#2/#6/#9).
+- [E] Locate a character, slice and lowercase (#36; reference used).
+- [E] Upper/lowercase, template literals and capture returned values
+  (#15/#30/#36/#37); cold recall and combined use are assessed separately.
+- [ ] Explain that strings are immutable and that method return TYPES vary
+  (some return strings, others numbers, booleans or arrays).
+- [ ] Apply a short string transformation in an existing function.
 
-### 1b. String manipulation
-- split / join — string ↔ array ~ (07-18, looked up)
-- charAt / at / slice — index & substring ~ (07-18, 07-27 — slice used correctly, but the MDN string list was needed to get there)
-- toUpperCase / toLowerCase — case
-- template literals — interpolation, multi-line
-- word-level transform (e.g. titleCase) ~ (07-18)
-- string immutability — every string method returns a NEW string, none
-  mutate in place (08-03: this was news to Tim; arrays vs strings)
-- (weak spot: cold recall of split/charAt/slice — see weakSpots.md)
-- (weak spot: discarding a method's return value entirely — 3x on
-  08-03. Top gap; see weakSpots.md)
+### Objects, destructuring and spread
+- [E] Copy an object without changing its input (#4/#30).
+- [ ] Destructure named fields with a default; earlier credit was too broad:
+  #30's spread/dot-access solution did not demonstrate destructuring.
+- [ ] Array destructuring, positions and swaps.
+- [ ] Spread to copy/concatenate arrays.
+- [ ] Rest parameters and parameter defaults.
+- [E] Computed-key literal and copy-plus-override (#10/#21).
+  Reading a variable property and constructing one remain different actions.
 
-### 1c. Destructuring & spread
-- object destructuring — pull named fields ✓ (07-21)
-- object destructuring WITH a default for a missing field — still untested (08-24, formatBook: the drill targeted it but was solved with a spread copy + dot access; see reviewQueue.md)
-- array destructuring — positions, swaps
-- spread to copy / merge an object ✓ (07-21)
-- spread to copy / concat arrays
-- rest params & default values
+### Sorting
+- [E] Numeric comparator (#4 bonus).
+- [ ] String comparator.
+- [ ] Sort records by one field.
+- [ ] Copy-before-sort when the input must remain unchanged.
+- [ ] Tie-breakers after single-field sorting is comfortable.
 
-### 1d. Sorting with comparators
-- numeric comparator (a - b) ✓ (07-21 bonus)
-- string comparator (localeCompare)
-- sort by an object field, ascending/descending
-- multi-key sort (tie-breakers)
-- copy-before-sort (sort mutates — immutability)
+## 2. Data shaping
 
-## 2. Data shaping (the daily-job skill)  ▶ YOU ARE HERE
+- [P] Increment an existing variable-keyed number: include the read (#11/#24).
+- [P] Handle a missing counter without losing the existing count (#13/#27).
+- [E] Counts object from records (#31/#33); explanation revealed a separate
+  fallback gap, so successful tallying does not close that misconception.
+- [E] Group records into array buckets (#22).
+- [P] Build an id lookup using copy plus computed property (#23).
+- [P] Choose fallback versus conditional behavior; preserve valid zero/empty
+  values (#37). Practice and independent assessment must be separated.
+- [P] Unique primitives using Set and convert back to an array (#25/#26).
+- [ ] Deduplicate records by one chosen field.
+- [ ] Set membership; then intersection/difference as separate small tasks.
+- [ ] Map: set/get/has, choosing it versus an object.
+- [ ] Count/group with Map after its basic operations.
+- [ ] Iterate Map and convert between Map/object.
+- [I] Project a field/value from records (#38); do not duplicate as a new skill.
+- [ ] Flatten one level.
+- [ ] Group then aggregate, after both components are familiar.
+- [ ] Readable pipelines and choosing a chain versus a single accumulation.
 
-### 2a. Building objects from data (current frontier)
-- write a computed-key property in an object literal (`{ [key]: value }`) ~ stone 1 (07-26 via `obj[key] = value`; literal form written cold 07-28 in stone 2) — regressed on review 08-07 (createLabel): back to `obj[field] = value`, test didn't force the literal, so downgraded from ✓ to ~ until it's cold on a test that actually requires it
-- spread + computed-key override — copy an object, replace one key ✓ stone 2 (07-28, setField, no help)
-- increment a known key — read-modify-write ~ stone 3 (07-29, approach lookup — dot/bracket slip on the read)
-- increment a maybe-absent key — the `x || 0` default idiom ~ stone 4 (07-31, approach lookup — didn't incorporate current value until prompted; also computed-key/template-literal confusion, see weakSpots.md)
-- count items with a loop (countByStatus) ~ (08-02, approach lookup — type-mismatch existence check, then dot-vs-bracket slip on the WRITE side; primer given for the `(obj[key] || 0) + 1` one-liner, see weakSpots.md)
-- group items into arrays by a key — bucketing ✓ (08-13, groupByKey, no help — array-bucket variant of create-or-append idiom solved cold; primer given, primer-check due #23, PASSED)
-- build a lookup / index — id → object ~ (08-15, indexById, syntax + approach lookup — combining spread-accumulate with a computed key in one literal was new territory, see weakSpots.md; primer-check due #24)
+Introduce combinations only after checking their component evidence. If a task
+bundles unfamiliar moves, split it; return to the combined goal later.
 
-### 2b. Dedupe & Set
-- unique primitives with a Set ✓ (08-19, dedupeArray, no help — taught 08-18, applied clean next session)
-- Set ↔ array round-trip
-- dedupe objects by a chosen field
-- membership tests (has), intersection / difference
+## 3. Async — refine near arrival
 
-### 2c. Map (vs plain object)
-- Map basics — set/get/has, when to prefer over object
-- counting / grouping with a Map
-- iterating a Map, Map ↔ object
+- [ ] Read a Promise's resolution/rejection; then/catch/finally.
+- [ ] Return through a Promise chain.
+- [ ] async/await and error handling.
+- [ ] Basic fetch + JSON and non-success responses.
+- [ ] Sequential versus independent requests.
+- [ ] Promise.all, then allSettled; race/any only when useful.
+- [ ] Construct a Promise for a concrete need.
+Keep each bullet small enough for a session; these are coverage headings, not
+permission to bundle the section into one exercise.
 
-### 2d. Nested transforms
-- array of objects → single lookup object
-- pluck / project a field out of each row
-- group, then aggregate each group (count/sum/avg)
-- flatten one level (flatMap)
+## 4. Closures, scope and functions
 
-### 2e. Chaining cleanly
-- multi-step pipeline with named intermediates
-- choosing method-chain vs single reduce
-- keeping steps readable (no giant one-liners)
+- [ ] Scope and declared variables; recognize accidental globals.
+- [ ] Closures through a simple counter.
+- [ ] once, then memoization.
+- [ ] this and bind/call/apply.
+- [ ] Debounce, then throttle.
 
-## 3. Async (refine detail when we arrive)
+## 5. TypeScript
 
-### 3a. Promise fundamentals
-- create a Promise, resolve/reject
-- then / catch / finally
-- chaining thens, returning values through a chain
+- [ ] Function parameters/returns; object types/interfaces.
+- [ ] Unions and narrowing; then discriminated unions.
+- [ ] Basic generics.
+- [ ] Pick/Omit/Partial/Record as separate practical needs.
 
-### 3b. async / await
-- await a promise, unwrap a value
-- try/catch around await
-- sequential awaits vs accidental serialization
+## 6. Algorithms
 
-### 3c. Concurrency
-- Promise.all — parallel, fail-fast
-- Promise.allSettled — collect all outcomes
-- Promise.race / any
+- [ ] Frequency counter, linked to existing counting evidence.
+- [ ] Two pointers.
+- [ ] Sliding window.
+- [ ] Basic recursion.
+- [ ] Binary search.
+Use these for reasoning practice when prerequisites are ready, without blocking
+ordinary development practice until every algorithm is mastered.
 
-### 3d. fetch patterns
-- basic fetch + json
-- sequential vs parallel requests
-- error handling on non-ok responses
+## 7. Practical tasks — available now
 
-## 4. Closures, scope, functions (lighter — refine later)
-- closure basics — a counter
-- once / memoize
-- this + bind/call/apply
-- debounce, then throttle
+Cadence and next eligibility are owned by reviewQueue.md. One practical task
+replaces a normal drill and uses the same time budget.
 
-## 5. TypeScript (lighter — refine later)
-- typing function params & return
-- typing objects / interfaces
-- unions & narrowing
-- discriminated unions
-- generics basics
-- utility types: Pick, Omit, Partial, Record
+Start with an existing small exercise or a minimal inventory/task-list module.
+Choose ONE:
+- Diagnose and fix one bug from a failing test.
+- Write one meaningful test for a stated edge case; explain what it catches.
+- Add one small requirement using at most two familiar skills.
+- Read a short existing function, predict its behavior, then make one change.
 
-## 6. Classic algorithms (interview staples, light touch)
-- frequency counter pattern
-- two pointers
-- sliding window
-- basic recursion
-- binary search
+Tim writes the implementation and any test that is the learning objective.
+The coach may supply a minimal fixture/scaffold, but must avoid embedding the
+solution. Do not require package setup, UI work, network access or async before
+those are taught. Reuse code safely; preserve completed exercise solutions if
+using them as a reference for a fresh task.
 
-## 7. Mini-project sessions (layer in 1-2x/week from section 3 on)
-- small CLI tool or tiny API — decision practice, not drills
-- project TBD when we get there
+Over time, these tasks should demonstrate code reading, debugging, test design,
+clear names, returning results and combining familiar operations. Grow into
+small CLI/API work when the needed prerequisites have actually been practiced.

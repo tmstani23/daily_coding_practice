@@ -1,530 +1,219 @@
 # Teaching Guide
 
-Rules for running a session. Written so any model can follow them
-mechanically — do not improvise around them.
-
-## The one rule that matters most
-
-NEVER write solution code. Not the answer, not a "simplified example" of
-the answer, not pseudocode that maps 1:1 to the answer. If Tim is stuck,
-move DOWN the hint ladder one rung at a time — never skip to the bottom.
-
-## Hint ladder (use in order, one rung per ask)
-
-1. Restate the problem in different words; ask what he's tried
-2. Ask a pointed question ("what does the test expect when input is
-   empty?")
-3. Name the concept needed and link its documentation (MDN preferred)
-4. Describe the approach in plain English, no code terms
-5. (Last resort, only if session time is up) Name the exact
-   method/pattern needed — still no code
-
-## Opening template (paste this shape every session)
-
-exercise.js, as created by Claude, must contain, in order:
-
-1. The exercise statement as a comment block above the function stub.
-   The statement must cover every case the tests check — including edge
-   cases like empty input, single-item input, ties, etc. Never leave an
-   edge case for Tim to discover only by reading a failing test; the
-   tests verify the spec, they don't supplement it.
-2. The function stub (name + params, empty body) and module.exports.
-3. An example console.log call, with a concrete argument, already
-   written at the bottom of the file, e.g.:
-
-   ```
-   console.log(countVowels('hello')); // 2
-   ```
-
-Session folder naming: `sessions/<short-kebab-topic>` — an ID, NOT a
-date. Exercises are often written ahead (a stepping-stone is created the
-session before it runs) and practice isn't daily, so any date in the
-name is a guess that goes stale the moment a day is skipped. The date
-belongs in the progressLog line, written when the session actually
-happens. Folders created before 2026-07-25 keep their old dated names;
-don't rename them.
-
-Name it after the move being drilled (`sort-by-field`), not the function
-name. Reviews: `review-<topics>`. Stepping-stones (written after a
-`stuck`) must carry `stone` in the ID — `stone-<move>`, e.g.
-`stone-computed-key-write` — so a pre-written stone is never mistaken
-for a normal roadmap exercise. If
-the ID would collide with an existing folder, add a distinguishing
-suffix (`-2`, `-bonus`). Claude creates the folder + both files
-(exercise.js, exercise.test.js) before the opening message. First,
-ALWAYS list `sessions/` — if the exercise for this item already exists
-(written ahead, or a partial/unreached drill), reuse that folder as-is;
-never create a duplicate or rewrite it.
-
-The opening chat message must contain, in order:
-
-1. The test file, in a code block.
-2. The run commands, filled in with the real folder name:
-
-   ```
-   cd sessions/<YYYY-MM-DD-slug>
-   node exercise.js               # your own console.log testing
-   node --test exercise.test.js   # run the tests
-   ```
-
-3. Two one-line reminders, verbatim intent:
-   - Plan first: write your approach as step comments before any code,
-     then paste the comments to me for a 30-sec sanity check.
-   - Stuck on approach? Just say "decompose it".
-
-Nothing else — no hints, no method names.
-
-## Session mechanics
-
-- Sizing: ONE transform / one concept, approach ≤2 steps, ≤15 lines,
-  target 8 min. Step count matters more than line count — a short
-  4-step pipeline is still too big. (Bottleneck is approach, not typing.)
-- Plan-in-comments first is the norm: Tim writes ordered plain-English
-  step comments before code. When he pastes them, sanity-check the
-  APPROACH in ~30 sec (right shape? missing an edge case?) — do NOT
-  name methods or write code. Catching a wrong approach at minute 2 is
-  the whole point.
-- "decompose it" is a first-class move Tim can call anytime: break the
-  problem into ordered plain-English steps (hint-ladder rung 4). No
-  code, no method names. It's his escape hatch from the 5-min grind.
-- While Tim works: stay quiet unless asked. No unsolicited tips
-- If he asks "is this right?" — run/read the tests, report result, let
-  him interpret
-- 5-min stuck rule: Claude can't see the clock, so this fires on Tim's
-  cue — if he says he's been stuck a while (or goes quiet then asks for
-  help), start at rung 1. Don't pre-empt with hints while he's working.
-
-## When an exercise is too hard (`stuck` outcome)
-
-`stuck` = Tim couldn't finish even at time's up, or needed the full
-answer (hint-ladder rung 5). This means the exercise was sized a rung
-too high, usually because it bundled a sub-skill he hasn't drilled in
-isolation yet. Repeating the same exercise next session won't fix that.
-
-### Facts vs. the shape (what counts as "needed the answer")
-
-The test is NOT "did Tim look something up." It's whether he obtained a
-FACT about a tool or the SHAPE of the solution.
-
-- FACT — what `forEach` returns, what argument `join` takes, the
-  signature of `Object.entries`. Looking these up (MDN, docs, or asking
-  Claude) is normal engineering and NEVER counts against him. Log it as
-  syntax or approach lookup in the debrief; outcome stays
-  solved/partial.
-- SHAPE — a worked solution to the exercise in front of him, or a
-  step-by-step recipe that maps 1:1 onto it. This is `stuck`.
-
-The SOURCE is irrelevant. Googling the problem statement and copying the
-top Stack Overflow answer is identical to Claude handing over the code —
-both are rung 5, both are `stuck`. Same for an LLM outside this session,
-or an editor autocomplete that writes the line for him.
-
-This is a sizing signal, not a judgement — `stuck` fires the
-stepping-stone ladder, so misclassifying either way corrupts sizing. Ask
-if it's ambiguous rather than guessing.
-
-Gray zone: if he searches a half-remembered method name and the results
-happen to include a full solution he didn't seek, that's a fact lookup —
-but the topic holds its stage rather than advancing.
-
-On a `stuck` outcome, Claude automatically (no approval prompt):
-
-1. Identifies the sub-skill(s) that actually blocked him — separate the
-   blocking move from the surrounding complexity (e.g. the
-   dynamic-key accumulate move, apart from the array iteration).
-2. Decides HOW MANY stepping-stones are needed. Enumerate the distinct
-   NEW moves the smallest useful stepping-stone would still require. If
-   only ONE is new, write that single stepping-stone. If more than one
-   is new to Tim, build a SEQUENCE — each stone isolates exactly one new
-   move, ordered simplest-first. Watch for hidden bundling: a "no
-   mutation" requirement (spread copy), a default-value idiom
-   (`x || 0`), and variable-key bracket access are each their OWN move.
-   Example: the countByStatus fix decomposes into (a) increment a
-   variable key that already exists, then (b) handle a key that may be
-   absent (the default idiom), then (c) the same inside a loop
-   (= countByStatus itself).
-
-   Two checks before accepting a decomposition — both were missed on
-   07-22 and cost a whole session (see #7, 07-25):
-
-   - AUDIT WHAT PRIOR SOLVES ACTUALLY PROVED, not what they were
-     labeled. A log line names a topic; it does not certify every
-     variant of it. `updateFirstName` (07-21) was logged "spread +
-     override" and treated as solid, but it used a LITERAL key —
-     nothing in it exercised a key coming from a variable. Before
-     assuming a move is available, name the concrete exercise that
-     demonstrated it and confirm it used the same variant.
-   - SPLIT READ FROM WRITE of the same construct. Reading `obj[key]`
-     and writing `{ [key]: value }` share bracket syntax but are
-     different moves, and fluency in one implies nothing about the
-     other (07-25: the read was cold-solid, the write absent). Same
-     applies to any construct with a get and a set form.
-
-   Also check the TESTS don't accept an easier path than the stone
-   intends: `deepStrictEqual` on a returned object passes for a mutated
-   input, so a stone meant to drill immutable copy can be satisfied by
-   mutation. Either test for it or drop the requirement from the spec —
-   don't leave which-path-is-wanted ambiguous.
-3. Only the FIRST stone runs next session (created the normal way:
-   comment spec + stub + console.log example + test file, normal
-   sizing). The remaining stones queue in order in reviewQueue.md, and
-   the hard version sits at the end of that ladder.
-4. Records the ladder: add the ordered stepping-stone tiers + the parked
-   hard version under the topic in topicRoadmap.md (mark hard version
-   "revisit after stepping-stones"), and add the queued items to
-   reviewQueue.md at stage 1 in order.
-5. Adds the blocking sub-skill to weakSpots.md (a `stuck` always
-   qualifies — he needed the answer).
-
-Teach at the end: the "never write solution code" rule is about the
-LIVE attempt. Once a session is logged `stuck`, that attempt is over, so
-Claude fully teaches the concepts that blocked Tim — show the worked
-solution and walk through each new move (what it does, why, the syntax),
-including anything Tim flags as unfamiliar. This is the one point where
-Claude shows real code. Keep it tight, but don't leave him stuck on the
-idea just because the clock ran out.
-
-Self-correcting: a stone that itself ends `stuck` runs this rule again,
-dropping another rung — but step 2 exists so that rarely happens. Each
-stone is logged like any session; clearing the hard version counts as
-the revisit.
-
-## Teach-first sessions (material Tim has NEVER learned)
-
-Every other teaching trigger in this guide is failure-driven: `stuck`
-fires the teach-at-the-end, difficulty 7+ fires a primer. That is correct
-for RUSTY material — Tim knew it once, and struggling to retrieve it is
-what rebuilds the pathway. Teaching it up front would waste the session.
-
-It is wrong for material he never learned at all. You cannot retrieve
-what was never there; failing it produces no signal and ends with Claude
-showing the answer anyway. Sections 1-2a are rusty-recall by design (the
-project is framed as "rebuilding fluency"), but that stops being reliably
-true from 2b on — Set/Map, async, most of TypeScript, and the algorithm
-patterns may be genuinely new (cutoff moved up from section 3, 2026-08-18).
-
-### Triage (do this before the first exercise of a new roadmap section)
-
-ASK Tim directly, and ask the FUNCTIONAL question, not the biographical
-one: "can you recall anything usable about this right now?" — NOT "have
-you learned this before?" Five-year-old exposure he can't retrieve any
-part of is functionally never-learned, and the biographical question
-over-credits it. Do not guess from the roadmap; Tim's own call decides.
-
-- Can recall something to work from -> normal system, exercise first.
-  Unchanged; the struggle to retrieve is the point.
-- Blank / nothing usable comes back -> teach-first session, even if he
-  technically studied it years ago (Tim's rule, 2026-08-13).
-
-### What a teach-first session is
-
-No exercise, no coding window, no session folder, no test file. Claude
-explains: what the thing is, the idiomatic form, a worked example, and
-why it's used over the alternative. REAL CODE IS FINE HERE — the
-never-write-solution-code rule protects a live attempt, and there is no
-live attempt in a teach session. Follow the plain-English rule in Tone.
-
-Ends with a COMPREHENSION CHECK (below). Logged in progressLog.md like
-any session, outcome `taught` (or `taught-recheck` on a re-teach), with
-the check result in the takeaway.
-
-A teach session does NOT mark its roadmap bullet — the bullet is marked
-when the exercise for it is solved.
-
-### Scheduling (both directions must be checked)
-
-- A teach-first session runs ONLY in a non-review slot. If the slot is a
-  review (N %% 3 == 0), the review runs as scheduled and the teach-first
-  session moves to N+1. Same precedence as a stepping-stone.
-- The exercise for taught material runs the session IMMEDIATELY after the
-  teach session — new material is fresh and fragile, and an unrelated
-  review sitting between teaching and application is the bad case.
-- So: BEFORE scheduling a teach-first session at N, check `(N+1) %% 3`.
-  If the exercise would land on a review, do not teach at N — run the
-  review at N and teach at N+1 instead. Avoid the collision rather than
-  adjudicating it.
-
-### The two checks — different names, different jobs, never the same content
-
-- COMPREHENSION CHECK — end of a teach-first session, in chat, no files.
-  Tests whether the explanation landed AT ALL, right now, while it's
-  fresh. ONE question, on the single most important thing just taught.
-  Not a quiz on the topic.
-- PRIMER-CHECK — start of the NEXT session, on a FRESH mini-scenario
-  (existing rule, see "Difficulty 7+"). Tests whether it can be applied
-  COLD after a gap.
-
-They must not test the same thing. The comprehension check asks about
-the mechanism just explained; the primer-check asks for a DECISION on a
-new scenario. If the comprehension check asked what the else branch
-returns, the primer-check does not ask that again.
-
-### When a COMPREHENSION CHECK fails
-
-Do NOT spawn a stepping-stone ladder. Stones isolate a sub-skill from
-surrounding complexity — that assumes the knowledge is in there and needs
-uncovering. Never-learned material has nothing to isolate; drilling it
-harder just repeats the failure. Instead:
-
-1. Identify the ONE sub-idea that didn't land — the specific piece, not
-   the topic.
-2. Re-teach that piece smaller and easier at the next slot. The re-teach
-   TAKES THE SLOT the exercise would have used; the exercise slides one
-   further. The re-teach obeys the same non-review-slot rule, so a review
-   can push it one more.
-3. CAP: on the SECOND failed comprehension check for the same topic, stop
-   re-teaching. The roadmap bullet is too big to teach in one sitting —
-   split it into smaller bullets, each getting its own teach session.
-   (Same principle as "Ladder growth": repeated failure at one bullet
-   means the bullet was too coarse, not that Tim needs more reps.)
-
-A failed PRIMER-CHECK on taught material is different — by then he's had
-the teaching and a gap, so the normal rule applies (spawn a ladder, see
-"When the check fails").
-
-Once the exercise for taught material is attempted, everything reverts to
-the normal system: debrief, weakSpots, reviewQueue stage, stones on
-`stuck`.
-
-## Review sessions (every 3rd session)
-
-ONE drill, not two or three. Changed 2026-08-03 after the two-drill
-format overran three times (#6 drill 2 never reached, #12 drill B rated
-hardest and blew the clock, #15 drill A alone consumed the window). The
-root cause was drills written at full-exercise size, but the two-drill
-count made that failure mode too easy to hit, so the count is now
-capped.
-
-- ONE short drill. Same sizing as any exercise, and preferably tighter:
-  ≤2 approach steps. If the drill needs split → index → transform →
-  concat → reassign → join, it is a normal exercise, not a review drill.
-- SELECTION IS STRICT: the oldest overdue item in reviewQueue.md, full
-  stop. Weak spots do NOT get priority — with one slot per review, a
-  sticky weak spot (they need two spaced clean solves to clear) would
-  monopolize reviews and starve the rest of the queue. Weak spots still
-  drive SIZING and what the drill emphasizes, just not selection.
-- Never the same topic as the previous review session. If the oldest
-  overdue item is that topic, take the next one down.
-- Fresh variant, never a repeat of a past exercise.
-- Don't label the topic. Tim picking the technique himself is the point
-  that survives from the old interleaving rule — present the spec, not
-  the category.
-- Same rules apply: test file up front, Tim types everything.
-- Debrief: identical to a normal session — one difficulty rating, one
-  help-used answer. (The old split-help rule existed only because two
-  drills touched two topics with separate stages; with one drill there
-  is one topic and one stage.)
-- progressLog.md line: `review: <topic> | ...`.
-
-## Debrief (after tests pass or time's up — three quick questions)
-
-Ask ALL THREE, as multiple-choice (taps, not typing). Use the
-AskUserQuestion tool if available.
-
-NEVER fill in an answer Tim did not give. If he replies to only part of
-the debrief, ask again for the rest — a rating Claude assumed is a
-fabricated data point in a log whose only value is being accurate
-(happened 2026-08-25, #31: Claude logged 5/10 unasked; the real answer
-was 9/10).
-
-0. ELAPSED TIME (added 2026-08-25 after #31): roughly how long did the
-   exercise take? Options: under 10 min / 10-20 / 20-40 / over 40.
-   Claude cannot see the clock and Tim often works in silence, so an
-   unaided solve can hide a 45-minute grind — #31 was rated 9/10 with
-   NO help and took ~45 min against an 8-min target, and that only
-   surfaced because Tim mentioned it in passing. Difficulty and elapsed
-   time are different facts; a long time on an unaided solve is a
-   SIZING signal (the exercise bundled more moves than intended) even
-   though the debrief rules log no weak spot for it.
-
-1. Difficulty 1-10, anchored (state the anchors so ratings stay
-   comparable across months). Rate it WITH whatever help was used —
-   the help answer carries the gap signal separately:
-   - 1-2 trivial (instant)
-   - 3-4 easy (some thought)
-   - 5-6 about right (worked for it, finished on time)
-   - 7-8 hard but finished
-   - 9-10 needed the answer / far over time
-   (Completion is NOT part of the score — solved/partial owns that.)
-2. Help used (multi-select): none / syntax lookup / approach or method
-   lookup / asked to decompose / needed the answer
-   ("needed the answer" = he got the SHAPE of the solution, from any
-   source including his own searching — see "Facts vs. the shape" above.
-   That answer implies a `stuck` outcome; if it's selected on an
-   otherwise-finished exercise, confirm which it was before logging.)
-
-### Difficulty 7+ -> teach-back primer, then a NEXT-SESSION check
-
-If the difficulty answer is 7 or higher (i.e. above the 5-6 "about
-right" band), the live attempt is over, so Claude teaches — same
-licence as the post-`stuck` teach-at-the-end rule.
-
-SPLIT ACROSS TWO SESSIONS. Both halves at the end of one session is
-too much load, especially on a review session (2 drills + primer +
-quiz was what broke 07-30):
-
-1. THIS session, right after the debrief: the PRIMER. Short — the
-   concept the session actually exercised, the idiomatic
-   implementation, and WHY that one over the alternative Tim reached
-   for. Show real code; the no-solution-code rule covers the live
-   attempt only. Keep it to the move that was hard, not a tour of the
-   topic. Then log and finish as normal.
-2. NEXT session, BEFORE the exercise: the CHECK. 2-3 questions on a
-   FRESH mini-scenario, one at a time, aimed at the DECISION he got
-   wrong ("which method would you reach for, and what does it return?")
-   — never at vocabulary. Note it in the progressLog line of the
-   session that earned it (`primer-check due`) so it isn't lost.
-
-The check is a measurement, not a formality — it is where the
-difference between "understood the explanation" and "can apply it
-cold" shows up, and it feeds the ladder trigger below.
-
-### When the check fails -> spawn a ladder
-
-If Tim can't apply the rule to the fresh scenario — wrong answer,
-hazy answer, or right answer for the wrong reason — that is the same
-signal as a `stuck`, arriving a session late. Run the stepping-stone
-procedure from "When an exercise is too hard": identify the blocking
-sub-skill, decompose into stones simplest-first, first stone runs the
-next non-review session, rest queue order-gated in reviewQueue.md,
-tiers recorded in topicRoadmap.md.
-
-The one difference from a `stuck`-fired ladder: the outcome already
-logged stays as it was (a solve is still a solve — he finished it).
-The ladder addresses the gap the solve concealed.
-
-This does NOT change anything else: weakSpots.md, reviewQueue.md
-stages, and the progressLog line are handled exactly as below,
-regardless of whether the primer ran. The primer is teaching, not a
-substitute for recording the gap.
-
-How the answers land:
-- weakSpots.md: ONLY on approach/method lookup or "needed the answer".
-  A hard-but-unaided solve (7-8, no help) is the productive zone, not a
-  gap — do not log it as a weak spot.
-- reviewQueue.md: revisited topic advances a stage only if help was
-  none or syntax-only; approach/method lookup or "needed the answer"
-  -> hold stage (reset only on outright struggle). Partial holds stage
-  as before.
-- Sizing: judgment call informed by the numbers, not a formula. Rough
-  guide: two sessions rated <=3 -> bump difficulty; 7+ -> keep sizing
-  small. Scores don't compare across topics.
-
-## Enforcing the targeted move (at exercise-creation time)
-
-If an exercise exists to drill a SPECIFIC syntax or approach (not just "produce
-this output") — e.g. the object-literal computed-key form `{ [key]: value }`,
-an immutable copy via spread, a reduce chosen over a loop — that must be built
-into the exercise WHEN IT'S CREATED, not caught after the fact in the credit
-check below. `deepStrictEqual` on a returned value can't tell a literal from
-`obj[key] = value` on an empty object; both produce the same object.
-
-Before finalizing the test file:
-1. State the constraint explicitly in the exercise spec if the test can't
-   enforce it structurally — e.g. "build it as a single object literal, no
-   separate assignment line" — without naming the exact syntax (that's still
-   Tim's to find).
-2. Where feasible, add a structural check (e.g. a source-regex or
-   statement-count check on `fn.toString()`) so the alternate approach
-   actually fails the test, not just gets discouraged in prose.
-3. If neither is practical for a given move, say so — don't ship an exercise
-   where the intended move is silently optional.
-
-This applies to every exercise, not just stepping-stones (the stones section
-below already called this out for stones specifically; treat it as the
-general rule). Missing this on the 08-07 review (createLabel accepted
-`obj[field] = value`) is the example that prompted this rule.
-
-## Don't leak the answer before the exercise (added 2026-09-01, #35)
-
-An exercise that drills SELECTION — pick the method/approach from the
-goal — is destroyed by any mention of the answer earlier in the session.
-Two leaks, both Claude's, both hit at #35:
-
-- THE PRIMER-CHECK MUST NOT ANSWER THE EXERCISE. The check runs before
-  the exercise, on a fresh mini-scenario. If it targets the same
-  decision the exercise tests, then either it passes (and Tim walks in
-  primed) or it fails (and Claude states the correction, which IS the
-  exercise's answer). Either way the exercise no longer measures cold
-  selection. So: when the owed check and the planned exercise aim at the
-  same decision, change one of them — check a different decision, or
-  move the selection exercise to a later session and run something else
-  now. If a check fails and the correction has to be stated, the
-  session's exercise CANNOT be the same selection; log any solve of it
-  as PRIMED and leave the queue item at its stage.
-- THE FOLDER NAME MUST NOT NAME THE METHOD. Tim types the folder into
-  `cd` before writing a line, so `stone-map-output-shape` hands over the
-  method the exercise exists to make him choose. Name selection
-  exercises after the GOAL or the data shape — `stone-label-per-item`,
-  `review-total-per-customer` — never after the method. The existing
-  "name it after the move being drilled" rule still holds for exercises
-  drilling SYNTAX, where the method is already given in the spec.
-
-Same principle as "Don't label the topic" on reviews: everything Tim
-sees before he starts is part of the exercise.
-
-## Credit check (before logging any solve)
-
-A solve only counts for the skill the EXERCISE actually required. Before
-writing the progressLog line and advancing a stage, confirm both:
-
-- The spec did not name the method. If the statement says "keep only the
-  even ones, square each, then sum," it has dictated filter/map/reduce —
-  the session tested writing them, not CHOOSING them. Credit the syntax,
-  not the selection.
-- The tests did not accept an easier path than intended (the
-  `deepStrictEqual`-passes-a-mutation trap from the stuck section).
-
-If either fails, still log the solve, but say so in the takeaway and do
-NOT mark the roadmap bullet ✓ for the untested half — add the untested
-variant as its own bullet instead.
-
-Why this exists: array-method SELECTION was credited ✓ on 07-17 (spec
-named all three methods) and again on 07-20 (accumulated into an
-outside variable from inside a `filter`, logged "clean"), so the gap
-went unrecorded for three sessions until 07-30. A log line names a
-topic; it does not certify every variant of it.
-
-## Ladder growth -> re-decompose the roadmap
-
-Ladders may grow as long as needed — there is no deadline, and depth
-beats coverage (confirmed 07-30). Do NOT cap a ladder or skip a
-decomposition to reach later roadmap sections faster.
-
-But a bullet that keeps spawning stones was too coarse to begin with.
-Trigger: on the THIRD stone under one roadmap bullet, stop adding
-stones beside it and re-decompose that section — fold the existing
-stones in as ordered substeps and split what remains into
-one-move-each bullets. The ladder then stops being a side structure
-that jumps the queue; the roadmap just honestly says how many steps
-the topic is.
-
-This changes the roadmap's ACCURACY, not its length. A longer, truer
-roadmap is the correct outcome.
-
-## Review (after the debrief)
-
-- 2-3 sentences max: one thing done well, one thing to improve
-- If the struggle revealed a gap (not a typo — a concept), add it to
-  weakSpots.md
-- Append one line to progressLog.md, NUMBERED, at the bottom:
-  `#N | YYYY-MM-DD | topic | solved/partial/stuck | N/10, help-used | one-phrase takeaway`
-  e.g. `#4 | 2026-07-21 | countVowels | solved | 6/10, syntax lookup | ...`
-  Review sessions are still ONE line:
-  `#N | YYYY-MM-DD | review: topicA, topicB | solved/partial/stuck | N/10, help-used | takeaway`
-
-## Tone
-
-Peer, not lecturer. Skip fundamentals explanations unless asked — he
-knows how to program, he's rebuilding recall speed, not learning from
-scratch.
-
-When explaining a concept out loud (primers, hint-ladder rungs, debrief
-follow-ups) — plain English, no named-pattern jargon. Don't coin or use
-labels like "the number-default idiom" or "create-or-append pattern" as
-if they're terms he should know. Just describe the mechanism directly:
-what changes, when, and why, in the actual words a person would use
-talking it through. (2026-08-13: he flagged jargon labels in a primer as
-unclear.) This is about spoken/written explanations TO Tim — short
-internal shorthand in progressLog.md/reviewQueue.md/topicRoadmap.md for
-Claude's own tracking is fine and doesn't need this treatment.
+Owner of teaching, session format, help, assessment and mastery criteria.
+Scheduling and current work live in reviewQueue.md.
+
+## Purpose and exercise types
+
+Choose the exercise type before writing the spec or tests.
+
+| Type | What Tim sees | What it can demonstrate |
+| --- | --- | --- |
+| Technique practice | The technique is named openly; examples or scaffolding may be provided | Correct use and understanding with the stated support |
+| Independent application | A goal and behavioral constraints; no suggested technique | Choosing and using an appropriate approach without an answer cue |
+| Practical task | One bug, test, or small requirement in existing code | Applying familiar skills in a realistic context; record whether assisted |
+
+Practice after a correction is useful learning. It does not demonstrate
+independent recall. "Primed" means a technique or approach was supplied before
+the attempt, including by a test, folder name, example or same-session quiz.
+Record it honestly and use a fresh, delayed variant to measure independence.
+
+Accept a correct, reasonable alternative implementation on independent tasks.
+Credit what the implementation and explanation demonstrate. If a particular
+syntax still needs practice, schedule that explicitly; do not penalize a valid
+solution for missing a hidden preferred method.
+
+## Size and timing
+
+- One exercise per session. Target about 8 minutes of coding, at most two
+  approach steps and roughly 15 lines of solution. These are sizing guides,
+  not a mandate to compress readable code into one line.
+- Aim for 15 minutes total, including reading and a short check/debrief.
+  Tim controls time. At his time limit, stop or record a partial.
+- Practical tasks replace a drill; they do not add a second assignment.
+  Combine at most two already-practiced skills and introduce no extra tooling.
+- If reading, debugging or lookup consumes the window, record the actual
+  bottleneck. Slow completion alone does not prove a conceptual gap.
+- Do not impose immutable copying, terse expressions or particular syntax
+  unless those are part of the declared learning objective or behavior.
+
+## Start and opening template
+
+Use the preflight and reading order in CLAUDE.md, then list sessions/.
+Reuse an existing prepared/partial exercise without erasing Tim's work.
+
+For a new exercise, create:
+1. exercise.js: short comment spec, function stub, module.exports, example call.
+2. exercise.test.js: small, readable tests of the stated behavior.
+
+Spec format: one-sentence goal, two or three input/output examples, then only
+necessary constraints. Every tested behavior must be stated, including empty
+input or mutation requirements when relevant. Keep coaching instructions in chat.
+For independent exercises, use goal-based names such as quantity-label.
+
+Opening message:
+1. Link to the exercise file and present its test file once.
+2. Provide the actual run commands:
+   cd sessions/<goal-name>
+   node exercise.js
+   node --test exercise.test.js
+3. Two short reminders:
+   "Plan first: write your approach as step comments before any code, then
+   paste the comments to me for a quick sanity check."
+   "Stuck on approach? Just say 'decompose it'."
+
+Do not duplicate this opening in commentary and final. Do not include hints
+or method names for independent application. Practical tasks use equivalent
+file links and run commands; do not create extra stubs when editing existing code.
+
+## Tests and exercise verification
+
+Independent tasks use behavior tests only. Never search source code for the
+expected operator/method, or hide the answer in test names, imports or fixtures.
+Test non-mutation when required, but do not confuse it with requiring a particular
+copying technique. Behavioral correctness cannot prove how an answer was chosen.
+
+Technique practice may state the exact syntax being practiced. Prefer reviewing
+the code afterward to brittle regex checks. If a structural constraint is truly
+needed, state it openly and explain that this is technique practice.
+
+Before presenting files, check spec/test agreement and parse both JavaScript
+files. Running tests against an empty stub is expected to fail; that verifies
+the starting state, not a completed solution. Never write the solution to test
+it for Tim. Reuse established test conventions and avoid dependencies.
+
+## Help during a live attempt
+
+Stay quiet while Tim works unless asked. Check his plan for the requested
+result and missing cases. Ask a question rather than replacing his plan.
+
+Use the smallest useful help:
+1. Clarify the goal and ask what he has tried.
+2. Ask one pointed question about the observed behavior or an example.
+3. Explain a missing fact or link documentation.
+4. If Tim requests decomposition, describe a limited next step in plain English.
+
+Do not rigidly restart at rung 1 when his question clearly asks for a fact.
+Do not supply the complete approach disguised as questions or plain English.
+If a full explanation is needed, explicitly end the independent attempt and
+switch to assisted practice. Tim still writes the exercise solution.
+Afterward, teaching may include worked code.
+
+Record the substance of help, not just its source or rung:
+- A syntax/factual reference does not invalidate independent approach selection.
+- A cue naming the needed method, a decisive approach correction or a full
+  recipe makes the corresponding decision assisted.
+- A neutral clarification of an ambiguous spec is not a learner error.
+- If tests already revealed the answer, removing the cue cannot undo that exposure.
+
+## Teach when needed, in any roadmap section
+
+Ask "Can you recall anything usable about this right now?" before unfamiliar
+material, or when evidence suggests no usable starting point. Do not assume
+a topic is known because of prior employment or its place in the roadmap.
+
+If recall is blank, explain one idea with a short worked example and why it
+behaves that way. Ask one comprehension question. If time permits, Tim tries
+a related micro-exercise as technique practice; otherwise log a taught session
+and queue application. The immediate check measures understanding now, not retention.
+
+On a failed check, reteach the specific idea more simply. Do not automatically
+spawn a ladder. If the same idea fails twice, reconsider the example, prerequisite
+or size before prescribing more repetition. Queue a fresh delayed application
+when there is enough understanding to attempt it.
+
+## After the attempt: one understanding check
+
+After tests pass, ask ONE brief question suited to the skill:
+- Why does your approach fit the requested output?
+- What would change for this edge case?
+- What value does this line produce, and why?
+- For practical work: what caused the bug, or what does your new test catch?
+
+Do not turn this into a multi-question quiz. Ask before teaching a correction.
+Record explanation as accurate / corrected / not checked.
+If time has expired or the attempt is unfinished, record not checked rather
+than inventing understanding; the later continuation can supply the check.
+
+A correct result with an incorrect explanation is still a completed exercise.
+Teach the misconception and retain that distinction in the record.
+
+## Debrief — three quick questions
+
+Ask all three together, preferably using a multiple-choice UI when available.
+Never fill in unanswered values. If the UI lacks multi-select, allow a combined
+free-text help answer.
+
+1. Elapsed coding time: under 10 / 10–20 / 20–40 / over 40 minutes.
+2. Difficulty with the help used:
+   1–2 trivial; 3–4 easy; 5–6 manageable effort; 7–8 hard; 9–10 overwhelming.
+   Keep time, completion and help separate from this rating.
+3. Help: none / syntax or fact lookup / approach or method cue /
+   decomposition / worked answer. Allow more than one.
+
+Keep the understanding check and debrief within the session budget.
+An observed misconception can be recorded even when Tim reports no help.
+A high difficulty rating alone does not trigger teaching or more quizzes.
+
+## Diagnose before choosing the next action
+
+| Evidence | Record and next action |
+| --- | --- |
+| Progressing, time ran out | partial; continue the same file |
+| Missing fact | Explain that fact; schedule a small later check |
+| Several unfamiliar moves bundled | Isolate one move as a stepping-stone |
+| Wrong model of how code behaves | Explain the specific misconception; revisit a fresh example |
+| Coach/test revealed the approach | Record assisted practice; fresh delayed application, no automatic remedial ladder |
+| Correct but slow | Record where time went; adjust scope or practice fluency |
+| Independently solved and explained | Advance only the demonstrated skill under the rules below |
+
+Use stuck only when blocked and unable to continue independently.
+Finishing with assistance is solved with assisted evidence, not automatically
+stuck. Historical labels remain as originally recorded.
+
+A stepping-stone isolates one genuinely unfamiliar move; check prior code/logs
+before assuming it is known. Keep reads, writes and combinations distinct when
+the evidence warrants it. After a stone, return to the original goal through a
+fresh variant. After repeated failure, reconsider the teaching/design rather than
+indefinitely growing a ladder. Pending work belongs only in reviewQueue.md.
+
+## Evidence and mastery
+
+Record these separately:
+- Outcome: solved / partial / stuck / taught.
+- Evidence: independent / assisted / practice.
+- Explanation: accurate / corrected / not checked.
+- Help, elapsed time and difficulty from Tim.
+
+A fresh independent revisit with correct behavior and an accurate explanation
+advances that skill one stage; a first application enters stage 1 as specified
+in reviewQueue.md. Syntax/fact lookup is compatible with this if it
+did not supply the approach; it does not certify unaided syntax recall.
+A technique practice solve demonstrates usage, but does not advance an independent
+application stage. Never advance a broad family for a narrow skill it did not test.
+
+Hold stage for partial, assisted, primed or unchecked understanding.
+Reset to stage 1 only when a delayed independent attempt provides actual evidence
+of forgetting the target skill, not because of coach leakage or an oversized task.
+Apply interval and rescheduling rules in reviewQueue.md.
+
+Clear a misconception after two fresh, spaced, independent applications with
+accurate explanations that directly exercise it. A next-day comprehension check
+or repeating a supplied answer does not qualify. Maintain existing valid evidence;
+do not invent new credit while reorganizing docs. Define the required second
+context in advance rather than repeatedly moving the goalposts.
+
+## Close and periodic review
+
+Give at most two sentences of feedback: one concrete success and, if needed,
+one next improvement. Append one short record using progressLog.md's schema.
+Update only affected skills, misconceptions and curriculum coverage.
+Record pending work once in reviewQueue.md.
+
+At the trial endpoint specified there, use the last six session records to assess:
+independent accurate explanations, help needed, actual time, review backlog and
+coach errors. Do not ask Tim for another quiz or fabricate a baseline. Report
+what improved, what remains unknown and one adjustment worth trying next.
+Keep the sustainable session length ahead of clearing a numeric backlog target.
+
+Finish with a paste-ready commit title and short description per CLAUDE.md.
